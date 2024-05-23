@@ -1,0 +1,95 @@
+.calendario__container {
+    background-color: var(--branco);
+    border: solid 1px var(--preto);
+    border-radius: 10px;
+    margin: 1rem;
+}
+
+.calendario__container header {
+    align-items: center;
+    border-bottom: solid 1px var(--preto);
+    display: flex;
+    font-size: 18px;
+    font-weight: 700;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+.icons {
+    border-radius: 50%;
+    font-weight: 700;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 300ms;
+}
+
+.icons:hover {
+    background-color: var(--cinza-claro);
+    cursor: pointer;
+}
+
+.mes {
+    border: solid 20px var(--azul-claro-light);
+    border-radius: 0 0 10px 10px;
+    padding: 1rem;
+}
+
+.semana {
+    font-weight: 700;
+}
+
+.calendario ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.calendario ul li {
+    line-height: 70px;
+    width: calc(100% / 7);
+    text-align: center;
+}
+
+.dias li.active {
+    background-color: var(--azul-medio);
+    border-radius: 100%;
+    color: var(--branco);
+    font-weight: 700;
+}
+
+.dias li.inactive {
+    color: var(--cinza);
+}
+
+.dias li::before {
+    border-radius: 50%;
+    content: "";
+    height: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    z-index: -1;
+}
+
+.dias li.active::before {
+    background-color: var(--verde);
+}
+
+.dias li:not(.active):hover::before {
+    background-color: var(--vermelho);
+}
+
+@media screen and (max-width: 425px) {
+    .calendario ul li {
+        line-height: 40px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .calendario ul li {
+        line-height: 25px;
+    }
+}

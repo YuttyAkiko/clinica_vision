@@ -1,0 +1,139 @@
+.especialidades__container {
+  /*Tudo que envolve a parte de especialidades*/
+  align-items: center;
+  background-image: url(/clinica-vision/assets/img/fundos/bg-especialidades.svg);
+  background-position: center;
+  background-size: cover;
+  background-position-x: left;
+  display: flex;
+  height: auto;
+  width: 100%;
+}
+
+.especialidades__sub__container {
+  /*Fundo com transparência em branco*/
+  align-items: center;
+  background-color: rgba(241, 241, 241, 0.7);
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: space-evenly;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.especialidade {
+  /*Vai o mesmo estilo em todas as especialidades*/
+  align-items: center;
+  background-color: var(--azul-claro-light);
+  border: solid 1px var(--azul-escuro-light);
+  border-radius: 200px;
+  display: flex;
+  height: auto;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+  width: 90%;
+}
+
+.especialidade img {
+  border-radius: 100%;
+  height: 300px;
+  margin: 3rem;
+  width: 300px;
+  filter: drop-shadow(0px 0px 10px var(--azul-escuro));
+  /* align-items: start; */
+}
+
+.especialidade__conteudo {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  width: auto;
+  margin-right: 4rem;
+}
+
+#pediatra {
+  align-items: center;
+  display: flex;
+}
+
+#pediatra__conteudo {
+  align-items: flex-end;
+  margin: 0 0 0 4rem;
+}
+
+.btn-agendar {
+  /*Estilo do botão que fica com o conteúdo da especialidade*/
+  align-items: center;
+  background-color: var(--azul-escuro-light);
+  border-radius: 20px;
+  color: var(--branco);
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  height: 40px;
+  justify-content: center;
+  margin: 20px 50px 20px 50px;
+  text-decoration: none;
+  width: 160px;
+}
+
+.btn-agenda:hover {
+  background-color: var(--verde);
+}
+
+@media screen and (max-width: 1024px) {
+  .especialidade {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .especialidade #pediatra {
+    flex-direction: column-reverse;
+  }
+
+  .especialidade__conteudo {
+    align-items: center;
+    margin: 0 4rem;
+  }
+
+  #pediatra__conteudo {
+    align-items: center;
+    margin: 0 4rem;
+  }
+}
+
+@media screen and (max-width: 572px) {
+  .subtitulo {
+    white-space: nowrap;
+    font-size: 16px;
+    text-indent: 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .especialidade img {
+    height: 250px;
+    width: 250px;
+  }
+
+  .especialidade .texto {
+    font-size: 16px;
+  }
+
+  .especialidade__conteudo {
+    margin: 0 0 2rem 0;
+    width: 85%;
+  }
+
+  #pediatra__conteudo {
+    align-items: center;
+    margin: 0 0 2rem 0;
+  }
+
+  .subtitulo {
+    text-align: center;
+    text-indent: 0;
+  }
+}

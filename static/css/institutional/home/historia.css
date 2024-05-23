@@ -1,0 +1,35 @@
+.historia__container {
+    align-items: center;
+    background-image: url(/static/img/home/bg-historia.svg);
+    background-position: center;
+    display: flex;
+    height: auto;
+    margin: 50px 0;
+    width: 100%;
+}
+
+.historia {
+    align-items: center;
+    background-color: rgb(241 241 241 / 90%);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    padding: 2% 5%;
+    text-align: center;
+    margin: 8rem 0;
+    width: 100%;
+}
+
+.historia ul {
+    list-style: inside;
+    padding-top: 20px;
+    text-align: start;
+}
+
+@media screen and (max-width: 425px) {
+    .historia ul {
+        font-size: 16px;
+        text-indent: none;
+    }
+}

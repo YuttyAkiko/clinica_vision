@@ -1,0 +1,161 @@
+/* background */
+body{
+    width: 100%;
+    height: 500px;
+}
+/* tamanho da faixa listrada */
+img {
+    width: 100%;
+}
+/* estilo e posicionamento da janela azul */
+.left_menu {
+    max-width: 450px;
+    min-width: 350px;
+    height: 650px;
+    margin-top: -3px; /* faixa listrada esta com pequeno espaçamento entre a janela azul, por isso essa margem negativa */
+    background-color:var(--azul-escuro-light);
+    border-radius: 0px 0px 70px 0px;
+    
+    grid-area: left_menu;
+    grid-row: left_menu;
+
+    /* alinhamento da janela azul */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* alinhamento dos elementos dentro da janela azul */
+.left_menu>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+/* estilo do texto administrador(a) */
+.left_menu>div>h1 {
+    font-family: var(--titulo);
+    font-size: 20px;
+    font-weight: 700;
+}
+/* -------------------------------------- painel - pg administrador ---------------------*/
+/* Aplicando display grid na pagina e definindo quatro colunas, com três linhas;*/
+section {
+    margin: 0 auto;
+    max-width: 100%;
+    height: fit-content;
+    padding: 0px 50px 0px 0px;
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: 15% auto auto;
+    grid-template-areas: 
+    "left_menu subtitle subtitle subtitle "
+    "left_menu btn_main btn_main btn_main"
+    "left_menu btn_main btn_main btn_main";
+    grid-gap: 5%;
+}
+/* responsividade max 980 a 800px - pg adm*/
+@media screen and (max-width: 980px) {
+    .section {
+        grid-template-columns: auto auto auto;
+        grid-template-areas: 
+        "left_menu subtitle subtitle"
+        "left_menu btn_main btn_main"
+        "left_menu btn_main btn_main";
+        grid-gap: 0px 30px;
+    }
+}
+
+/* tamanho do icone adm */
+.left_menu>div>img {
+    max-width: 226px;
+    min-width: 160px;
+    height: 226px;
+    padding-bottom: 20px;
+}
+/* estilo do botao a esquerda - novo usuario */
+.left_menu>div>div {
+    width: 250px;
+    font-family: var(--titulo);
+    font-size: 20px;
+    color: var(--azul-escuro);
+    padding: 10px 20px 10px 20px;
+    border-radius: 20px;
+    background-color: var(--branco);
+    border: none;
+    margin-top: 30px;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+/* alterando cor e tamanho do menu suspenso */
+.left_menu select {
+    width: 200px;
+    background-color: var(--branco);
+}
+/* subtitulo "oq voce deseja acessar? */
+.subtitle {
+    font-family: var(--titulo);
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+    padding-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    grid-area: subtitle;
+    grid-column: subtitle;
+}
+/* tamanho dos quadrados dos botoes */
+.btn_main {
+    max-width: 230px;
+    min-width: 180px;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    grid-area: "btn_main";
+
+    background-color: var(--branco);
+    border-radius: 20px;
+    border: 2px solid;
+    margin-top: -20px;
+    border-color: var(--preto);
+    box-shadow: 0 4px 4px #666;
+}
+.btn_main a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.btn_main:hover{
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+/* tamanho dos icones dos botoes */
+.btn_main img {
+    width: 120px;
+    height: 120px;
+}
+/* usado para centralizar o icone de agendamento que estava disproporcional */
+#centralize {
+    margin-left: 10px;
+}
+
+/* estilo do texto dentro dos botoes */
+h1{
+    font-family: var(--titulo);
+    color: var(--preto);
+    font-weight:600;
+    /* padding-top: 20px; */
+    text-align: center;
+}
+/* retirando sublinhado do link */
+a{
+    text-decoration: none;
+    /* color: var(--branco); */
+}
+

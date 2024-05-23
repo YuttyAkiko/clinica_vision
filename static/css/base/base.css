@@ -1,0 +1,88 @@
+:root {
+/* Variáveis da paleta de cores do projeto */
+  --amarelo: #EDD604;
+  --azul-claro: #A2D3E1;
+  --azul-claro-light: #C8E2DF;
+  --azul-escuro: #031D38;
+  --azul-escuro-light: #337F98;
+  --azul-medio: #3F95A9;
+  --azul-medio-light: #66B5C4;
+  --azul-roxo: #160041;
+  --bg: #F1F1F1;
+  --branco: #ffffff;
+  --cinza: #44403F;
+  --cinza-claro: #D9D9D9;
+  --preto: #000000;
+  --verde: #1FC625;
+  --vermelho: #FF0000;
+
+  /* Variáveis de font */
+  --titulo: 'Raleway', sans-serif;
+  --texto: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  /* É assim que chama as cores e as fontes */
+  height: auto;
+  width: 100%;
+}
+
+.titulo {
+  /* Aqui todas as tags com a classe .titulo vão ter a fonte --titulo que é a 'Raleway' */
+  font-family: var(--titulo);
+}
+
+.texto {
+  /* Aqui todas as tags com a classe .titulo vão ter a fonte --titulo que é a 'Montserrat' */
+  font-family: var(--texto);
+}
+
+.titulo__padrao__home {
+  color: var(--azul-escuro);
+  font-size: 30px;
+  font-weight: 400;
+  text-decoration-line: underline;
+  text-transform: uppercase;;
+}
+
+.titulo__padrao {
+  font-family: var(--titulo);
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.texto__padrao {
+  font-family: var(--texto);
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.texto__padrao__home {
+/* Os parágrafos estão com o tamanho e espaçamento de identação já definido, é só chamar a classe na tag*/
+  line-height: 18px;
+  text-indent: 50px;
+  font-weight: 100;
+}
+
+.subtitulo {
+  color: var(--azul-escuro);
+  font-family: var(--titulo);
+  font-size: 20px;
+  font-weight: 600;
+  padding: 20px 0 20px 0;
+  text-decoration-line: underline;  
+}
+
+.logo {
+  min-width: 120px;
+  max-width: 200px;
+}
+
+.btn-login-header {
+  background-color: var(--azul-escuro-light);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 20px;
+  width: 100px;
+}

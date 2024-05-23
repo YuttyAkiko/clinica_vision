@@ -1,0 +1,72 @@
+#userName {
+    border: none;
+    color: var(--zaul-roxo);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--texto);
+    justify-content: center;
+}
+
+/* Sessão onde fica o input para selecionar a especialidade e o calendário */
+.container-especialidade-data {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    height: auto;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.seleciona-especialidade-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.seleciona-especialidade-container label {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+
+.seleciona-especialidade {
+    background-color: var(--azul-claro-light);
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 5rem;
+}
+
+.seleciona-especialidade option {
+    line-height: 50px;
+}
+
+.btn {
+    background-color: var(--verde);
+    border-radius: 16px;
+    width: 220px;
+    height: 40px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--branco);
+    margin: 2rem;
+}
+/* Fim da seção de seleção de especialidade junto com calendário */
+
+h2 {
+    margin: 3rem 0 1rem;
+}
+
+h3 {
+    color: var(--azul-medio);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 30px;
+}

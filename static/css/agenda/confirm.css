@@ -1,0 +1,35 @@
+.confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirmation > div {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+div > span {
+    text-align: center;
+    font-weight: 600;
+    width: 100%;
+    color: var(--cinza);
+    background-color: var(--branco);
+    border: solid 1px var(--preto);
+    padding: 1rem;
+}
+
+.title-card {
+    color: var(--branco);
+    background-color: var(--azul-medio);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.price {
+    font-size: 20px;
+    color: var(--verde);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}

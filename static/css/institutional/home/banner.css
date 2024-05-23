@@ -1,0 +1,103 @@
+.banner {
+    /* Coloquei o fundo da imagem no background */
+    align-items: center;
+    background-size: cover;
+    background-image: url(/static/img/home/bg-banner.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    height: auto;
+    padding: 70px 20px 20px 20px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.banner img {
+    height: 200px;
+    border-radius: 20px;
+    min-width: 100px;
+}
+
+.banner > div {
+    width: 50%;
+}
+
+@media (max-width:900px) {
+    .banner {
+        justify-content: center;
+        flex-wrap: wrap-reverse;
+        text-align: center;
+    }
+}
+
+/* .banner__container {
+    height: 600px;
+    width: 100%;
+} */
+
+/*Aqui é onde começa o desenho do bg do banner*/
+/* 
+.banner__bg {
+    background-color: var(--azul-claro-light);
+    display: flex;
+    justify-content: center;
+    height: 600px;
+    width: 100%;
+}
+
+/* #camada1 {
+    paralelogramo azul claro
+    background-color: var(--azul-claro);
+    opacity: 0.4;
+    width: 400px;
+    transform: none;
+    -webkit-transform: skew(25deg);
+    -moz-transform: skew(25deg);
+    -o-transform: skew(25deg);
+}
+
+#camada2 {
+    paralelogramo azul médio
+    background-color: var(--azul-medio);
+    opacity: 0.4;
+    width: 160px;
+    transform: none;
+    -webkit-transform: skew(25deg);
+    -moz-transform: skew(25deg);
+    -o-transform: skew(25deg);
+}
+
+#camada3 {
+    paralelogramo preto
+    background: var(--preto);
+    opacity: 0.4;
+    width: 140px;
+    transform: none;
+    -webkit-transform: skew(25deg);
+    -moz-transform: skew(25deg);
+    -o-transform: skew(25deg);
+}
+
+#camada4 {
+    paralelogramo azul médio invertido
+    background-color: var(--azul-medio);
+    opacity: 0.4;
+    width: 160px;
+    transform: none;
+    -webkit-transform: skew(-25deg);
+    -moz-transform: skew(-25deg);
+    -o-transform: skew(-25deg);
+}
+*/
+/*Aqui termina o desenho do bg do banner*/
+
+/* #img-banner {
+    background-image: url('../imagem/banner-medico.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 500px;
+    opacity: 0.9;
+    position: absolute;
+    top: 200px;
+    width: 100%;
+} */

@@ -1,0 +1,20 @@
+/* Título da página */
+.titulo-content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.titulo-content h1{
+    background-color: var(--azul-claro);
+    height: 60px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--branco);
+    width: 400px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}

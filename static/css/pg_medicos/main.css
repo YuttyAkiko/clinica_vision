@@ -1,0 +1,93 @@
+body{
+    background-color:var(--branco);
+    margin:0%;
+    margin-top: 0%;
+}
+/* medidas da caixa equipe medica - resumo dos 3 perfis */
+section.equipe_medica{
+    max-height: 922.49px;
+    max-width: 1440px;
+    background-color: #E3F0EF;
+}
+/* Fonte e margem dos textos */
+.equipe_medica>h1{
+    font-family: 'Raleway', sans-serif;
+    font-size: 40px;
+    padding:20px;
+    background-color: #5CA5B5;
+/* IMPORTANTE: diminuir a margem do texto */
+}
+
+/* tamanho das fotos de perfil */
+.perfil{
+    width: 181px;
+    height: 232px;
+    border-radius: 35px;
+    padding: none;
+}
+/* caixa 1 - dra andreia */ 
+section.caixa_dra_andreia{
+    display:grid;
+    width: 357px;
+    height: 667px;
+    border: 1px solid #000000;
+    border-radius: 35px;
+    justify-content: center;
+    text-align: center;
+    background-color: #337F98;
+}
+/* estilo da caixa */
+.retangulo{
+    border: 1px solid #000000;
+    width: 357px;
+    height: 482px;
+    background-color: #A2D3E1;
+}
+/* estilo do texto */
+.caixa_dra_andreia>h3{
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    padding-top: 20px;
+    color: #FFFFFF;
+}
+.retangulo{
+    display: grid;
+    justify-content: center;
+    padding-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+.oftalmologista{
+    font-weight: bold;
+}
+.especialidades{
+    font-weight: bold;
+}
+/* estilo do botão - saiba mais */
+.botao_saiba_mais{
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    color: #FFFFFF;
+    padding: 10px 20px 10px 20px;
+    border-radius: 35px;
+    border: 1px; /* Não consegui colocar a borda */
+    border-color: #000000;
+    background-color: #1FC625;
+}
+
+
+
+
+section.dra_andreia{
+    background-color: #C8E2DF;
+    max-width: 1440px;
+    max-height: 600px;
+    padding: 200px;
+    top:150px;
+}
+
+.esp_dra_andreia{
+    display: flex;
+    
+
+}

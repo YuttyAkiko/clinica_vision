@@ -1,0 +1,146 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/institutional/home/banner.css' %}" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/institutional/home/especialidades.css' %}" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/institutional/home/sobre.css' %}" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/institutional/home/historia.css' %}" media="screen" />
+{% endblock head %}
+
+{% block content %}
+    {% block banner %}
+    <!-- Aqui está o banner com a imagem logo abaixo do cabeçalho -->
+    <article class="banner"> 
+        <div>
+            <h1>Lorem ipsum dolor sit amet consectetur.</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit nesciunt unde deserunt necessitatibus dolore quo repellat error eum, non soluta molestias nulla? Est expedita eligendi eaque maxime enim quas dolorum soluta nam nemo, placeat consectetur velit odit doloremque quos impedit vitae id perspiciatis quia beatae dicta reprehenderit ab veniam tenetur.</p>
+        </div>
+        <img src="{% static "img/home/banner.svg" %}"
+            alt="Foto de um médico fazendo exame oftalmológico com um aparelho em uma paciente.">
+    </article>
+    {% endblock banner %}
+
+    {% block about %}
+    <a name="sobre"></a>
+    <!--Esta parte é o SOBRE NÓS-->
+    <section class="sobre__container"> 
+        <figure class="sobre__img">
+            <img src="{% static "img/home/medico.png" %}" alt="Foto de um médico.">
+        </figure>
+        <article class="sobre__conteudo">
+            <h1 class="titulo titulo__padrao__home">Sobre nós</h1>
+            <p class="texto texto__padrao__home">
+                Clínica Vision oferece a melhor experiência para os seus pacientes, trazendo soluções à sua vista.
+                A
+                nossa equipe especializada possui qualificação e excelência nos serviços prestados.
+            </p>
+            <p class="texto texto__padrao__home">
+                Para nós, o paciente não é apenas um número. Ele é uma vida valiosa que se encontra fragilizado e
+                inseguro. Por conta disso, os nossos atendentes devem ser ótimos ouvintes para tirar todas as
+                dúvidas e
+                oferecer as melhores resoluções possíveis.
+            </p>
+            <p class="texto texto__padrao__home">
+                O nosso diferencial é que colocamos os nossos princípios acima da tomada de decisão, agindo com
+                responsabilidade, empatia e inclusão.
+            </p>
+        </article>
+    </section>
+    {% endblock about %}
+
+    {% block specialties %}
+    <a name="especialidades"></a>
+    <!--Aqui começa a parte de ESPECIALIDADES-->
+    <section class="especialidades__container"> 
+        <div class="especialidades__sub__container">
+            <!--Aqui é a parte da Neuroftalmologia, a caixa com fundo azul imagem redonda e parágrafo -->
+            <h1 class="titulo titulo__padrao__home">Especialidades</h1>
+            <article class="especialidade">
+                <img src="{% static "img/home/neuro.png" %}" alt="Médica olhando através de um aparelho oftalmológico.">
+                <div class="especialidade__conteudo">
+                    <h2 class="subtitulo">Especialista em Neuroftalmologia</h2>
+                    <p class="texto texto__padrao__home">
+                        Neuroftamologia é uma especialidade que cuida das doenças que atingem as funções
+                        neurológicas relacionadas ao olho - visão, movimento dos olhos e pupila. Em alguns casos, o
+                        problema pode estar relacionado também com alguma outra doença pré-existente e pode chegar a
+                        afetar a saude dos olhos.
+                    </p>
+                    <p class="texto texto__padrao__home">
+                        Distúrbios como perda transitória da visão, visão dupla e perda inexplicável do campo de
+                        visão podem ser tratados pelo médico neuroftalmologista.
+                    </p>
+                    <a class="texto btn-agendar" href="{{ agendamento }}" target="_blank">AGENDAR</a>
+                    <!-- link em formato de botão -->
+                </div>
+            </article>
+
+            <article class="especialidade"> <!--Oftalmopediatria-->
+                <div id="pediatra">
+                    <div id="pediatra__conteudo" class="especialidade__conteudo">
+                        <h2 class="subtitulo">Especialista em Oftalmopediatria</h2>
+                        <p class="texto texto__padrao__home">
+                            Oftalmopediatria é uma especialidade para diagnóstico e tratamento de bebês, crianças e
+                            adolescentes portadores de doenças como má formação e problemas de refração.
+                        </p>
+                        <p class="texto texto__padrao__home">
+                            O oftalmopediatra atua em todas as fases da infância. Ao nascerem, todos os bebês devem ser
+                            submetidos ao “Teste do Olhinho”, que detecta precocemente alterações visuais, como catarata
+                            e glaucoma congênitos, entre outros problemas que quando diagnosticados no nascimento podem
+                            ser tratados a tempo, permitindo que a visão se desenvolva normalmente ou muito próxima do
+                            normal.
+                        </p>
+                        <a class="texto btn-agendar" href="{{ agendamento }}" target="_blank">AGENDAR</a>
+                    </div>
+                    <img src="{% static "img/home/pediatra.png" %}" alt="Médica olhando através de um aparelho oftalmológico.">
+                </div>
+            </article>
+
+            <!--Segmento Anterior-->
+            <article class="especialidade">
+                <img src="{% static "img/home/segmento.png" %}" alt="Médica olhando através de um aparelho oftalmológico.">
+                <div class="especialidade__conteudo">
+                    <h2 class="subtitulo">Especialista em Segmento Anterior</h2>
+                    <p class="texto texto__padrao__home">
+                        O especialista é responsável por analisar o segmento anterior do olho para diagnosticar as
+                        condições adversas e indicar tratamentos adequados. Para tratá-las é imprescindível a visita
+                        frequente ao oftalmologista. Algumas doenças que são identificadas por esse especialista são
+                        miopia, catarata, conjuntivite.
+                    </p>
+                    <p class="texto texto__padrao__home">
+                        A avaliação é feita com uma lâmpada de fenda, um tipo de microscópio que possibilita o
+                        oftalmologista examinar as estruturas da face anterior do olho, com uma luz de alta
+                        intensidade.
+                    </p>
+                    <p class="texto texto__padrao__home">
+                        Patologias que o especialista consegue diagnosticar são, glaucoma, síndrome do olho seco,
+                        condições da córnea “úlceras da córnea e queratite”, entre outras.
+                    </p>
+                    <a class="texto btn-agendar" href="{{ agenda }}" target="_blank">AGENDAR</a>
+                </div>
+            </article>
+        </div>
+    </section>
+    {% endblock specialties %}
+
+    {% block history %}
+    <a name="historia"></a>
+    <section class="historia__container">
+        <article class="historia">
+            <h1 class="titulo titulo__padrao__home">Nossa história</h1>
+            <p class="texto texto__padrao__home">A nossa história começa em 2023, fundada pelo/a doutor
+                Fabrício , no bairro Belenzinho em São Paulo. O doutor idealizava uma clínica com atendimento
+                humanizado e atento às realidades dos pacientes. Não encontrando isso em outros lugares, decidiu
+                criar sua própria clínica, partindo dos princípios abaixo:
+            </p>
+            <ul class="texto texto__padrao__home">
+                <li>Atendimento humanizado</li>
+                <li>Melhorias de equipamentos</li>
+                <li>Planejamento da gestão</li>
+                <li>Equipe qualificada</li>
+                <li>Acompanhamento de resultados</li>
+            </ul>
+        </article>
+    </section>
+    {% endblock history %}
+{% endblock content %}

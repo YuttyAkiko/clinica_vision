@@ -1,0 +1,93 @@
+.perfil-cadastro {
+    width: 40%;
+    background-color: var(--azul-claro);
+    border-radius: 0 0 90px 0;
+
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: right;
+}
+
+.perfil-cadastro img {
+    width: 190px;
+    margin-left: 20px;
+}
+
+.perfil-cadastro h1 {
+    font-size: 30px;
+}
+
+#container-forms {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg);
+}
+
+.form-grid {
+    max-width: 80%;
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+        "input input"
+        "input input"
+        "input input"
+        "input input"
+        "input input"
+        "input input"
+        "input input"
+        "input input"
+        "button button";
+    gap: 10px;
+}
+
+.form-field {
+    margin-bottom: 10px;
+}
+
+.form-label {
+    font-family: var(--texto);
+    /* font-weight: bold; */
+    padding: 0 0 0 1.2rem;
+}
+
+.form-button {
+    background-color: var(--verde);
+    border-radius: 20px;
+    border: none;
+    color: var(--branco);
+    font-family: var(--titulo);
+    font-size: 20px;
+    font-weight: 600;
+    height: 40px;
+    width: 140px;
+    margin: 1rem;
+
+    grid-area: button;
+}
+
+.input-estilizado {
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--azul-claro);
+}
+
+/* estilo dos inputs na tela de cadastro */
+.form-group {
+    padding: .5rem;
+}
+
+/* imputis de email e senha na tela de Login */
+.form-control {
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    border: solid 1px;
+    margin: .5rem 0;
+    width: 400px;
+    border: none;
+    background-color: var(--azul-claro-light);
+}

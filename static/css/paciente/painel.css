@@ -1,0 +1,324 @@
+/* CSS das páginas principais dos usuarios atendente, adm, medico e paciente */
+
+/* Configurações gerais*/
+
+/* background */
+body{
+    background-color: var(--cinza-claro);
+    width: 100%;
+    height: 500px;
+}
+
+/* tamanho da faixa listrada */
+.faixa_listrada {
+    width: 100%;
+}
+
+/* estilo e posicionamento da janela azul */
+.janela_azul{
+    max-width: 450px;
+    min-width: 350px;
+    height: 650px;
+    margin-top: -3px; /* faixa listrada esta com pequeno espaçamento entre a janela azul, por isso essa margem negativa */
+    background-color:var(--azul-escuro-light);
+    border-radius: 0px 0px 70px 0px;
+    
+    grid-area: janela_azul;
+    grid-row: janela_azul;
+
+    /* alinhamento da janela azul */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* alinhamento dos elementos dentro da janela azul */
+.janela_elementos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* estilo do texto administrador(a) */
+.janela_elementos h1 {
+    font-family: var(--titulo);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* responsividade das imagens */
+img { 
+    width: 100%;
+}
+/* -------------------------------------- painel - pg administrador ---------------------*/
+/* Aplicando display grid na pagina e definindo quatro colunas, com três linhas;*/
+.container_grid_adm {
+    margin: 0 auto;
+    max-width: 100%;
+    height: fit-content;
+    padding: 0px 50px 0px 0px;
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: 15% auto auto;
+    grid-template-areas: 
+    "janela_azul subtitulo subtitulo subtitulo"
+    "janela_azul btn_quadrado btn_quadrado btn_quadrado"
+    "janela_azul btn_quadrado btn_quadrado btn_quadrado";
+    grid-gap: 5%;
+}
+/* responsividade max 980 a 800px - pg adm*/
+@media screen and (max-width: 980px) {
+    .container_grid_adm {
+        grid-template-columns: auto auto auto;
+        grid-template-areas: 
+        "janela_azul subtitulo subtitulo"
+        "janela_azul btn_quadrado btn_quadrado"
+        "janela_azul btn_quadrado btn_quadrado";
+        grid-gap: 0px 30px;
+    }
+}
+
+/* tamanho do icone adm */
+.icone_usuario {
+    max-width: 226px;
+    min-width: 160px;
+    height: 226px;
+    padding-bottom: 20px;
+}
+
+/* estilo do botao a esquerda - novo usuario */
+.btn_novo_usuario{
+    width: 250px;
+    font-family: var(--titulo);
+    font-size: 20px;
+    color: var(--azul-escuro);
+    padding: 10px 20px 10px 20px;
+    border-radius: 20px;
+    background-color: var(--branco);
+    border: none;
+    margin-top: 30px;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+/* subtitulo "oq voce deseja acessar? */
+.subtitulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: subtitulo;
+    grid-column: subtitulo;
+    text-decoration: none;
+    padding-top: 20px;
+}
+
+/* tamanho dos quadrados dos botoes */
+.btn_quadrado {
+    max-width: 230px;
+    min-width: 180px;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    grid-area: "btn_quadrado";
+
+    background-color: var(--branco);
+    border-radius: 20px;
+    border: 2px solid;
+    margin-top: -20px;
+    border-color: var(--preto);
+    box-shadow: 0 4px 4px #666;
+}
+
+/* tamanho dos icones dos botoes */
+.btn_quadrado img {
+    width: 120px;
+    height: 120px;
+}
+/* usado para centralizar o icone de agendamento que estava disproporcional */
+#centralize {
+    margin-left: 10px;
+}
+
+/* estilo do texto dentro dos botoes */
+h1{
+    font-family: var(--titulo);
+    color: var(--preto);
+    font-weight:600;
+    padding-top: 20px;
+    text-align: center;
+}
+
+/* alterando cor e tamanho do menu suspenso */
+#categoria{
+    width: 200px;
+    background-color: var(--branco);
+}
+
+/* retirando sublinhado do link */
+a{
+    text-decoration: none;
+    color: var(--branco);
+}
+/* ------------------------------------------- painel - pg atendente ---------------------- */
+/* Aplicando display grid na pagina e definindo quatro colunas, com duas linhas;*/
+.container_grid_atend {
+    margin: 0 auto;
+    max-width: 100%;
+    height: fit-content;
+    padding: 0px 50px 0px 0px;
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: 30% auto;
+    grid-template-areas: 
+    "janela_azul subtitulo subtitulo subtitulo"
+    "janela_azul btn_quadrado btn_quadrado btn_quadrado";
+    grid-gap: 5%;
+}
+
+/* ------------------------------------------- painel - pg medico ---------------------- */
+/* Aplicando display grid na pagina e definindo quatro colunas, com duas linhas;*/
+.container_grid_medico {
+    margin: 0 auto;
+    max-width: 100%;
+    height: fit-content;
+    padding: 0px 50px 0px 0px;
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: 30% auto;
+    grid-template-areas: 
+    "janela_azul subtitulo subtitulo subtitulo"
+    "janela_azul btn_quadrado btn_quadrado btn_quadrado";
+    grid-gap: 5%;
+}
+
+/* ------------------------------------------- painel - pg paciente ---------------------- */
+/* Aplicando display grid na pagina e definindo duas colunas, com duas linhas;*/
+.container_grid_paciente {
+    margin: 0 auto;
+    max-width: 100%;
+    height: fit-content;
+    padding: 0px 50px 0px 0px;
+
+    display: grid;
+    grid-template-columns: 450px auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+    "janela_azul subtitulo"
+    "janela_azul section_principal";
+    grid-gap: 0% 5%;
+}
+/* definindo posição dos botoes centrais */
+.section_principal {
+    grid-area: "section_principal";
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-weight: 600; /*fonte em negrito*/
+}
+
+/* estilo dos botoes à esquerda, dentro da janela azul*/
+.btn_quadrado_pac {
+    max-width: 380px;
+    min-width: 290px;    
+    height: 140px;
+
+    display: flex;
+    justify-content: center;
+
+    background-color: var(--branco);
+    border: 2px solid var(--preto);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 4px var(--preto);
+}
+/* tamanho dos icones dentro do botao*/
+.btn_quadrado_pac img{
+    width: 90px;
+    height: 90px;
+    padding-right: 5px;
+}
+/* alinhamento dos icones + h1 dos botoes dentro da janela azul*/
+.btn_quadrado_pac a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/* estilo e alinhamento do botao de do "segmento anterior" */
+.btn_agendamentos_futuros {
+    max-width: 800px;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+
+    border: 2px solid var(--preto);
+    border-radius: 15px;
+    background-color: var(--branco);
+    box-shadow: 0 4px 4px var(--cinza-claro);
+}
+/* estilo da linha interna do botao do "segmento anterior" */
+.linha_interna{
+    width: 700px;
+    height: 45px;
+    font-family: var(--texto);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    border: 1px solid var(--preto);
+    border-radius: 15px;
+}
+/* tam botão excluir (vermelho) */
+.icones_menores{
+    width: 30px;
+}
+/* removendo borda padrao do button */
+button {
+    border: none;
+    background-color: var(--branco);
+}
+/* subtitulo acima do botao */
+.section_principal h2{
+    font-weight: 700;
+    display: flex;
+    align-items: flex-start;
+}
+/* estilo botao historico de consultas */
+.historico_consulta {
+    max-width: 800px;
+    height: 340px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    border: 2px solid var(--preto);
+    border-radius: 15px;
+    background-color: var(--branco);
+    box-shadow: 0 4px 4px #666;
+}
+/* estilo dos botoes dentro do historico de consultas */
+.bg_botao{
+    width: 700px;
+    height: 66px;
+    font-family: var(--texto);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    border: 1px solid var(--cinza);
+    border-radius: 15px;
+    background-color: var(--cinza-claro);
+}
