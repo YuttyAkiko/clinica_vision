@@ -1,3 +1,24 @@
 .form-label {
     margin: 0;
 }
+
+.navbar-form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.custom_btn_logout {
+    font-family: var(--titulo);
+    font-weight: 500;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: var(--azul-roxo);
+    background-color: transparent;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 21px;
+}
+  
+  
