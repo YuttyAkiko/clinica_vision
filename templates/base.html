@@ -45,7 +45,7 @@
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
               <li><a href="{% url 'accounts:index' %}">Minha Conta</a></li>
-              <form method="post" action="{% url 'accounts:logout' %}">
+              <form method="post" action="{% url 'accounts:logout' %}" class="navbar-form">
                 {% csrf_token %} 
                 <li><button type="submit" class="custom_btn_logout">Sair</button></li>
               </form>
