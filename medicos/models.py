@@ -33,6 +33,13 @@ class Medico(models.Model):
                             on_delete=models.CASCADE,
                             related_name='medicos')
     
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, 
+        verbose_name='Usuário', 
+        on_delete=models.CASCADE,
+        default=0
+    )
+    
     def __str__(self):
         return f'{self.nome}'
 
