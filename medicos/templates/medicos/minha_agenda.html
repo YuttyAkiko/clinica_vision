@@ -1,0 +1,45 @@
+{% extends 'medicos/perfil.html' %}
+
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/perfil/medico/listar_consulta.css' %}">
+{% endblock head %}
+
+{% block title %}
+   Minha Agenda | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<section>
+
+    <div class="container_title">
+        <h1 class="subtitle">CONSULTAS AGENDADAS</h1>
+    </div>
+
+    <div class="container_historico">
+        {% if user.is_staff or user.is_superuser %}
+            {% if consultas %}
+                {% for consulta in consultas %}
+
+                    <div class="consulta-item" id="listar-consulta-bg">
+
+                        <p>Paciente: {{ consulta.cliente }}</p>
+
+                        <p>Especialidade: {{ consulta.agenda.medico.especialidade }}<br>
+                            Médico(a): Dr(a) {{ consulta.agenda.medico }}</p>
+
+                        <p>Data: {{ consulta.agenda.dia }}<br>
+                            Hora: {{ consulta.agenda.horario }}</p>
+
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    </div>
+
+</section>
+
+{% endblock content %}
