@@ -1,10 +1,12 @@
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.http import HttpResponseNotFound
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Medico, Agenda, Especialidade
 from .forms import Update_Medico_Form
+from clientes.models import Consulta
 
 
 class TestMixinIsAdmin(UserPassesTestMixin):
@@ -18,7 +20,9 @@ class TestMixinIsAdmin(UserPassesTestMixin):
             self.request, "Você não tem permissões!"
         )
         return redirect("accounts:index")
-    
+
+# VIEWS - PERFIL MÉDICO
+
 class PerfilView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
 
     model = Medico
@@ -28,7 +32,7 @@ class PerfilView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
         context = super().get_context_data(**kwargs)
         return context
     
-class CadastroUpdateView(LoginRequiredMixin, UpdateView):
+class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
 
     model = Medico
     form_class = Update_Medico_Form
@@ -36,6 +40,20 @@ class CadastroUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('medicos:medico_perfil', kwargs={'pk': self.object.pk})
+
+class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
+
+    model = Consulta
+    template_name= 'medicos/minha_agenda.html'
+    context_object_name = 'consultas'
+
+    def get_queryset(self):
+        medico_id = self.kwargs.get('pk')
+        agenda = get_object_or_404(Agenda, medico=medico_id)
+        consultas = Consulta.objects.filter(agenda=agenda, status_cons="Agendada")
+        return consultas
+
+# VIEWS - PERFIL ADMIN
 
 class MedicoCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
 
@@ -114,7 +132,7 @@ class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
 perfil = PerfilView.as_view()
 atualizar_cadastro = CadastroUpdateView.as_view()
-
+listar_consultas = ConsultasListView.as_view()
 
 
 medico_cadastro = MedicoCreateView.as_view()
