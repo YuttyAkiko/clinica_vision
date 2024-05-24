@@ -11,7 +11,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -24,7 +23,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'rest_framework',
     'sass_processor',
-    
+
     'accounts',
     'clientes',
     'medicos',
@@ -82,8 +81,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
 
 
 LANGUAGE_CODE = 'pt-br'

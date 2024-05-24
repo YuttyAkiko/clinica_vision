@@ -40,7 +40,7 @@ main {
 h1 {
     color: var(--azul-escuro);
     font-family: var(--titulo);
-    font-size: 40px;
+    /* font-size: 20px; */
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 1rem;
