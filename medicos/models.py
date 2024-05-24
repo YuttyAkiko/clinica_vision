@@ -20,6 +20,7 @@ class Medico(models.Model):
         ('F','Feminino'),
         ('M','Masculino')
     )
+    genero = models.CharField(max_length=9, choices=GENEROS, default='')
     email = models.EmailField(verbose_name="Email")
     crm = models.CharField(verbose_name="CRM", max_length=200)
     phone_regex = RegexValidator(

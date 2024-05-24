@@ -7,7 +7,7 @@
 {% endblock head %}
 
 {% block title %}
-    Minha Conta | {{ block.super }}
+    {{ block.super }}
 {% endblock%}
 
 {% block header %}
@@ -23,22 +23,6 @@
         </button>
       </div>
       <div class="navbar-collapse collapse" id="navbar-main">
-        <ul class="nav navbar-nav">
-          <li>
-            <a href="{% url 'clientes:consulta_create'%}"></a>
-          </li>
-          {% if user.is_staff or user.is_superuser %}
-          <li>
-            <a href="{% url 'medicos:agendar_consulta'%}"></a>
-          </li>
-          <li>
-            <a href="{% url 'medicos:medico_cadastro'%}"></a>
-          </li>
-          <li>
-            <a href="{% url 'medicos:especialidade_cadastro'%}"></a>
-          </li>
-          {% endif %}
-        </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if user.is_authenticated %}
             <li><a href="{% url 'accounts:index' %}">Minha Conta</a></li>
@@ -69,7 +53,7 @@
     </div>
 
     <div class="btn_main">
-    <a href="{% url '#' %}"> {% endcomment %}
+    {% comment %} <a href="{% url '#' %}"> {% endcomment %}
             <img src="{% static 'img/dashboard/icone_paciente.png' %}" alt="ícone ilustrativo paciente">
             <h1>PACIENTES</h1>  
         {% comment %} </a> {% endcomment %}
@@ -83,10 +67,10 @@
     </div>
 
     <div class="btn_main">
-        {% comment %} <a href='{% url 'funcionario:atualizar-cadastro' funcionario.pk %}'> {% endcomment %}
+        <a href='{% url 'medicos:atualizar_cadastro' medico.pk %}'>
             <img src="{% static 'img/dashboard/perfil_icon/icone_03.png' %}" alt="ícone perfil medico">
             <h1>MEUS DADOS</h1>
-        {% comment %} </a>  {% endcomment %}
+        </a> 
     </div> 
 </section>
 

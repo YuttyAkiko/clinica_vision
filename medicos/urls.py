@@ -4,7 +4,13 @@ from . import views
 app_name = 'medicos'
 
 urlpatterns = [
-    path('perfil/<int:pk>/', views.perfil, name='medico_perfil'),
+    #MEDICO
+    path('<int:pk>/perfil/', views.perfil, name='medico_perfil'),
+    path('<int:pk>/meus-dados/', views.atualizar_cadastro, name='atualizar_cadastro'),
+
+
+
+    # ADMIN
     path('registro/medico/', views.medico_cadastro, name='medico_cadastro'),
     path('registro/especialidade/', views.especialidade_cadastro, name='especialidade_cadastro'),
     path('agendar/', views.agenda_cadastro, name='agendar_consulta'),
@@ -13,5 +19,4 @@ urlpatterns = [
     path('minhas/consultas/', views.agenda_lista, name="agenda_lista"),
     path('admim/lista/medicos/', views.medico_lista, name="medicos_lista"),
     path('admim/lista/especialidades/', views.especialidade_lista, name="especialidade_lista")
-    
 ]

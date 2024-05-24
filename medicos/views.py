@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Medico, Agenda, Especialidade
+from .forms import Update_Medico_Form
 
 
 class TestMixinIsAdmin(UserPassesTestMixin):
@@ -26,6 +27,15 @@ class PerfilView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    
+class CadastroUpdateView(LoginRequiredMixin, UpdateView):
+
+    model = Medico
+    form_class = Update_Medico_Form
+    template_name = 'medicos/atualizar_dados.html'
+
+    def get_success_url(self):
+        return reverse_lazy('medicos:medico_perfil', kwargs={'pk': self.object.pk})
 
 class MedicoCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
 
@@ -103,6 +113,10 @@ class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
         return Agenda.objects.filter().order_by('-pk')
 
 perfil = PerfilView.as_view()
+atualizar_cadastro = CadastroUpdateView.as_view()
+
+
+
 medico_cadastro = MedicoCreateView.as_view()
 medico_lista = MedicoListView.as_view()
 especialidade_cadastro = EspecialidadeCreateView.as_view()
