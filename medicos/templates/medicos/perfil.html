@@ -1,9 +1,67 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/perfil/base.css' %}" media="screen" />
+{% endblock head %}
+
 {% block title %}
     Minha Conta | {{ block.super }}
 {% endblock%}
 
 {% block content %}
 
+<section>
+    <div class="left_menu">
+        <div>
+            <img src="{% static 'img/dashboard/perfil_icon/icone_03.png' %}" alt="ícone perfil">
+
+            <h1> Dr(a) {{ medico.user }} </h1>
+        </div>
+    </div>
+
+    <div class="btn_main">
+    {% comment %} <a href="{% url '#' %}"> {% endcomment %}
+            <img src="{% static 'img/dashboard/icone_paciente.png' %}" alt="ícone ilustrativo paciente">
+            <h1>PACIENTES</h1>  
+        {% comment %} </a> {% endcomment %}
+    </div>
+
+    <div class="btn_main">
+    {% comment %} <a href="{% url '#' %}"> {% endcomment %}
+            <img id="centralize" src="{% static 'img/dashboard/img-calendario-med.png' %}" alt="ícone ilustrativo img-calendario-med">
+            <h1>MINHA AGENDA</h1>
+        {% comment %} </a> {% endcomment %}
+    </div>
+
+    <div class="btn_main">
+        {% comment %} <a href='{% url 'funcionario:atualizar-cadastro' funcionario.pk %}'> {% endcomment %}
+            <img src="{% static 'img/dashboard/perfil_icon/icone_03.png' %}" alt="ícone perfil medico">
+            <h1>MEUS DADOS</h1>
+        {% comment %} </a>  {% endcomment %}
+    </div> 
+</section>
+
 {% endblock content %}
+
+{% block footer %}
+{% comment %} <footer class="titulo">
+<div>
+    <section>
+        <img src="{% static "img/logo/logo-vision-dark.svg" %}" alt="">
+    </section>
+    <section>
+        <p>&copy; 2024 Company, Inc</p>
+        <a href=""><img src="{% static "img/logo/logo-dev-team.png" %}" alt=""></a>
+    </section>
+    <section>
+        <nav>
+            <a href="#"><img src="{% static "img/icons/instagram.png" %}" alt=""></a>
+            <a href="#"><img src="{% static "img/icons/facebook.svg" %}" alt=""></a>
+            <a href="#"><img src="{% static "img/icons/linkedin.png" %}" alt=""></a>
+        </nav>
+    </section>
+</div>
+</footer> {% endcomment %}
+{% endblock footer %}
