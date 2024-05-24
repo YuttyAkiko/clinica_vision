@@ -47,7 +47,7 @@ class Cliente(models.Model):
     )
     
     def __str__(self):
-        return f'{self.user.name}'
+        return f'{self.nome} {self.sobrenome}'
     
 class Consulta(models.Model):
     agenda =  OneToOneField(Agenda, on_delete=models.CASCADE, related_name='consulta')
