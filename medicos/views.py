@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib import messages
@@ -17,6 +17,15 @@ class TestMixinIsAdmin(UserPassesTestMixin):
             self.request, "Você não tem permissões!"
         )
         return redirect("accounts:index")
+    
+class PerfilView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
+
+    model = Medico
+    template_name = 'medicos/perfil.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 class MedicoCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
 
@@ -92,7 +101,8 @@ class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
     def get_queryset(self):
         return Agenda.objects.filter().order_by('-pk')
-    
+
+perfil = PerfilView.as_view()
 medico_cadastro = MedicoCreateView.as_view()
 medico_lista = MedicoListView.as_view()
 especialidade_cadastro = EspecialidadeCreateView.as_view()
