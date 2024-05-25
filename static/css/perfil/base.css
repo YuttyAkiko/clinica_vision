@@ -1,5 +1,6 @@
 section {
     max-width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: row;
 }
@@ -27,7 +28,7 @@ section {
 /* estilo e posicionamento da janela azul */
 .left_menu {
     width: 30%;
-    min-height: 500px;
+    min-height: auto;
     margin-top: -3px; /* faixa listrada esta com pequeno espaçamento entre a janela azul, por isso essa margem negativa */
     background-color:var(--azul-escuro-light);
     border-radius: 0px 0px 70px 0px;
@@ -115,8 +116,8 @@ section {
 h1 {
     font-family: var(--titulo);
     color: var(--preto);
-    font-weight:600;
-    font-size: 29px;
+    font-weight: 600;
+    font-size: 25px;
     text-align: center;
 }
 

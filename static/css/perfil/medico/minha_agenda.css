@@ -1,6 +1,6 @@
 section {
     width: 100%;
-    height: 480px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,6 +45,7 @@ section {
     font-weight: 600;
     line-height: 2;
 }
+
 /* Background do listar consulta */
 #listar-consulta-bg {
     background-color: var(--azul-claro);
