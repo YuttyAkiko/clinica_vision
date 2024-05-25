@@ -49,8 +49,8 @@ class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
     def get_queryset(self):
         medico_id = self.kwargs.get('pk')
-        agenda = get_object_or_404(Agenda, medico=medico_id)
-        consultas = Consulta.objects.filter(agenda=agenda, status_cons="Agendada")
+        agendas = Agenda.objects.filter(medico=medico_id)
+        consultas = Consulta.objects.filter(agenda__in=agendas, status_cons="Agendada")
         return consultas
 
 # VIEWS - PERFIL ADMIN
