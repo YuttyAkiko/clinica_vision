@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/perfil/medico/listar_consulta.css' %}">
+    <link rel="stylesheet" href="{% static 'css/perfil/medico/minha_agenda.css' %}">
 {% endblock head %}
 
 {% block title %}
@@ -16,26 +16,38 @@
 
     <div class="container_title">
         <h1 class="subtitle">CONSULTAS AGENDADAS</h1>
+        <div>
+            <form method="GET">
+                <input type="date" name="data_consulta">
+                <button type="submit">FILTRAR</button>
+            </form>
+        </div>
     </div>
 
     <div class="container_historico">
         {% if user.is_staff or user.is_superuser %}
             {% if consultas %}
-                {% for consulta in consultas %}
-
+                {% for consulta in consultas %}                 
                     <div class="consulta-item" id="listar-consulta-bg">
 
-                        <p>Paciente: {{ consulta.cliente }}</p>
+                        <p>Paciente: {{ consulta.cliente }}<br>
+                            Prontuário: {{ consulta.cliente.id }}
+                        </p>
 
                         <p>Especialidade: {{ consulta.agenda.medico.especialidade }}<br>
                             Médico(a): Dr(a) {{ consulta.agenda.medico }}</p>
-
+                            
+                        {% with consulta.agenda|slice:"13:" as horario %}
                         <p>Data: {{ consulta.agenda.dia }}<br>
-                            Hora: {{ consulta.agenda.horario }}</p>
+                            Hora: {{ horario }}</p>
+                        {% endwith %}
+
+                        <img src="{% static 'img/icons/prontuario.svg' %}" alt="ícone ilustrativo prontuário">
 
                     </div>
-
                 {% endfor %}
+            {% else %}
+                    <h3>Não há consultas agendadas para essa data.</h3>
             {% endif %}
         {% endif %}
     </div>

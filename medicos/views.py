@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Medico, Agenda, Especialidade
 from .forms import Update_Medico_Form
 from clientes.models import Consulta
+from datetime import datetime
 
 
 class TestMixinIsAdmin(UserPassesTestMixin):
@@ -51,7 +52,14 @@ class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
         medico_id = self.kwargs.get('pk')
         agendas = Agenda.objects.filter(medico=medico_id)
         consultas = Consulta.objects.filter(agenda__in=agendas, status_cons="Agendada")
-        return consultas
+
+        data_consulta = self.request.GET.get('data_consulta')
+        if data_consulta:
+            data_consulta = datetime.strptime(data_consulta, '%Y-%m-%d').date()
+            consultas = consultas.filter(agenda__dia=data_consulta)
+            return consultas
+        else:
+            return consultas
 
 # VIEWS - PERFIL ADMIN
 
