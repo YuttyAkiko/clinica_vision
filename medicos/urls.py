@@ -5,7 +5,7 @@ app_name = 'medicos'
 
 urlpatterns = [
     #MEDICO
-    path('<int:pk>/perfil/', views.perfil, name='medico_perfil'),
+    path('perfil/', views.perfil, name='medico_perfil'),
     path('<int:pk>/meus-dados/', views.atualizar_cadastro, name='atualizar_cadastro'),
     path('<int:pk>/minha-agenda/', views.listar_consultas, name='listar_consultas'),
 

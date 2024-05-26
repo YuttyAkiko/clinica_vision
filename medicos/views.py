@@ -27,15 +27,17 @@ class TestMixinIsAdmin(UserPassesTestMixin):
 class PerfilView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
 
     model = Medico
+    login_url = 'accounts:login'
     template_name = 'medicos/perfil.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+    def get(self, request, *args, **kwargs):
+        medico = get_object_or_404(Medico, user=request.user)
+        return render(request, self.template_name, {'medico': medico})
     
 class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
 
     model = Medico
+    login_url = 'accounts:login'
     form_class = Update_Medico_Form
     template_name = 'medicos/atualizar_dados.html'
 
@@ -45,6 +47,7 @@ class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
 class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
     model = Consulta
+    login_url = 'accounts:login'
     template_name= 'medicos/minha_agenda.html'
     context_object_name = 'consultas'
 
