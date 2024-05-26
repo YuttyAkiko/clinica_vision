@@ -43,8 +43,9 @@ class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
     success_url = 'medicos:medico_perfil' 
 
     def get(self, request, *args, **kwargs):
-        user = PerfilView.get(self, request)
-        return user
+        medico = get_object_or_404(Medico, user=request.user)
+        form = self.form_class(instance=medico)
+        return render(request, self.template_name, {'medico': medico, 'form': form})
 
 class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 

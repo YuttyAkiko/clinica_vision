@@ -14,12 +14,10 @@
 
 <div class="perfil-cadastro">
     <img src="{% static 'img/dashboard/perfil_icon/icone_01.png' %}" alt="perfil">
-    {% if user.is_staff or user.is_superuser %}
-        {% if request.user.pk != medico.pk %}
-            <h1 class="titulo">{{ medico.user }}</h1>
-        {% else %}
-            <h1 class="titulo">MEUS DADOS</h1>
-        {% endif %}
+    {% if user.is_superuser %}
+        <h1 class="titulo">{{ funcionario.pk }}</h1>    
+    {% else %}
+        <h1 class="titulo">MEUS DADOS</h1>
     {% endif %}
 </div>
 
