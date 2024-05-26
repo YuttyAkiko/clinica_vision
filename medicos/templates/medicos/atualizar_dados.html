@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block head %}
+    <link rel="stylesheet" href="{% static 'css/perfil/base.css' %}" media="screen" />
     <link rel="stylesheet" href="{% static 'css/formulario/form.css' %}" media="screen" />
 {% endblock head %}
 
@@ -12,32 +13,39 @@
 
 {% block content %}
 
-<div class="perfil-cadastro">
-    <img src="{% static 'img/dashboard/perfil_icon/icone_01.png' %}" alt="perfil">
-    {% if user.is_superuser %}
-        <h1 class="titulo">{{ funcionario.pk }}</h1>    
-    {% else %}
-        <h1 class="titulo">MEUS DADOS</h1>
-    {% endif %}
-</div>
+<section>
 
-<div id="container-forms">
+    <div class="perfil-cadastro">
+        <a href="{% url 'medicos:medico_perfil' %}"><img src="{% static 'img/dashboard/perfil_icon/icone_01.png' %}" alt="perfil"></a>
+        {% if user.is_superuser %}
+            <h1 class="titulo">{{ funcionario.pk }}</h1>    
+        {% else %}
+            <h1 class="titulo">MEUS DADOS</h1>
+        {% endif %}
+    </div>
 
-    <form method="POST" class="form-grid">
+    <div id="container-forms">
 
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="form-field">
-                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label><br>
-                {{ field }}
+        <form method="POST" class="form-grid">
+
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-field">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label><br>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <div class="form-button">
+                <div>
+                    <button type="submit">CONCLUIR</button>
+                </div>
             </div>
-        {% endfor %}
-        <div class="form-button">
-            <button  type="submit">CONCLUIR</button>
-        </div>
-    </form>
 
-</div>
+        </form>
+
+    </div>
+
+</section>
 
 {% endblock content %}
 
