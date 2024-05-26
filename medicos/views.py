@@ -40,9 +40,11 @@ class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
     login_url = 'accounts:login'
     form_class = Update_Medico_Form
     template_name = 'medicos/atualizar_dados.html'
+    success_url = 'medicos:medico_perfil' 
 
-    def get_success_url(self):
-        return reverse_lazy('medicos:medico_perfil', kwargs={'pk': self.object.pk})
+    def get(self, request, *args, **kwargs):
+        user = PerfilView.get(self, request)
+        return user
 
 class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 

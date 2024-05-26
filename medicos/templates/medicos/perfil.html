@@ -63,14 +63,14 @@
       </div>
 
       <div class="btn_main">
-      <a href="{% url 'medicos:listar_consultas' medico.pk %}">
+      <a href="{% url 'medicos:listar_consultas' %}">
               <img id="centralize" src="{% static 'img/dashboard/img-calendario-med.png' %}" alt="ícone ilustrativo img-calendario-med">
               <h1>MINHA AGENDA</h1>
           </a>
       </div>
 
       <div class="btn_main">
-          <a href='{% url 'medicos:atualizar_cadastro' medico.pk %}'>
+          <a href='{% url 'medicos:atualizar_cadastro' %}'>
               <img src="{% static 'img/dashboard/perfil_icon/icone_03.png' %}" alt="ícone perfil medico">
               <h1>MEUS DADOS</h1>
           </a> 
