@@ -25,7 +25,7 @@
             <span class="icon-bar"></span>
           </button>
         </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
+        <nav class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
               <a href="{% url 'clientes:consulta_create'%}">Agendamento</a>
@@ -41,19 +41,18 @@
               <a href="{% url 'medicos:especialidade_cadastro'%}">Especialidade</a>
             </li>
             {% endif %}
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
               <li><a href="{% url 'accounts:index' %}">Minha Conta</a></li>
+              <li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
               <form method="post" action="{% url 'accounts:logout' %}">
                 {% csrf_token %} 
                 <li><button type="submit" class="custom_btn_logout">Sair</button></li>
               </form>
-            {% else %}
+              {% else %}
               <li><a href="{% url 'accounts:login' %}">Login</a></li>
             {% endif %}
           </ul>
-        </div>
+        </nav>
       </div>
     </div>
 
@@ -127,6 +126,7 @@
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="https://kit.fontawesome.com/c2a3297ec9.js" crossorigin="anonymous"></script>
   <script src="{% static 'assets/bootstrap.min.js'%}"></script>
+  <script src="{% static 'js/back-page.js'%}"></script>
 {% block scripts %}{% endblock scripts %}
 </body>
 </html>
