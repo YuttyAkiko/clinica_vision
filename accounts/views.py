@@ -49,7 +49,7 @@ class RegisterView(CreateView):
     model = User
     template_name = 'accounts/register.html'
     form_class = UserAdminCreationForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('accounts:login')
     
     def form_valid(self, form):
         messages.info(

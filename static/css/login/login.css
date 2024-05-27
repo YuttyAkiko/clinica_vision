@@ -10,9 +10,10 @@ main {
 .bem-vindo__container {
     background-image: url(/static/img/background/bg-create-account.svg);
     background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
-    height: auto;
+    height: 900px;
     width: 40%;
 }
 
@@ -29,8 +30,10 @@ main {
     display: flex;
     flex-direction: column;
     text-align: center;
-    height: 900px;
-    width: 400px;
+    padding: 4rem;
+    height: auto;
+    /* margin-right: 2rem; */
+    width: auto;
 }
 
 .bem-vindo__conteudo h1 {
