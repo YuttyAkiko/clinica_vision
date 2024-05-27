@@ -60,7 +60,7 @@ section {
     padding: 10px; /* Ajustado para garantir espaço interno */
 
     border-radius: 10px;
-    background-color: var(--cinza);
+    background-color: var(--azul-claro);
     margin: 10px;
 
     display: flex;
@@ -76,7 +76,7 @@ section {
     margin: none !important;
 }
 
-/* Background do listar consulta */
-#listar-consulta-bg {
-    background-color: var(--azul-claro);
+/* Background do historico de consultas */
+#historico-bg {
+    background-color: var(--cinza-claro);
 }
