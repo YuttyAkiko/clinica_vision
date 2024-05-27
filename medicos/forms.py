@@ -9,12 +9,12 @@ class Update_Medico_Form(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['nome'].widget.attrs['readonly'] = True
-        self.fields['sobrenome'].widget.attrs['readonly'] = True
-        self.fields['genero'].widget.attrs['readonly'] = True
+        self.fields['nome'].widget.attrs['disabled'] = True
+        self.fields['sobrenome'].widget.attrs['disabled'] = True
+        self.fields['genero'].widget.attrs['disabled'] = True
         
         for field_name, field in self.fields.items():
             field.widget.attrs.update({'class': 'input-estilizado'})
             if field_name not in ['genero','especialidade','crm','telefone']:
-                field.widget.attrs.update({'maxlength': '30', 'size': '40'})
+                field.widget.attrs.update({'maxlength': '40', 'size': '40'})
             

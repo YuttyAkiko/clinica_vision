@@ -1,8 +1,9 @@
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404
 from django.contrib import messages
-from django.http import HttpResponseNotFound
+from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Medico, Agenda, Especialidade
 from .forms import Update_Medico_Form
@@ -30,9 +31,14 @@ class PerfilView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
     login_url = 'accounts:login'
     template_name = 'medicos/perfil.html'
 
+    def get_object(self, queryset=None):
+        return get_object_or_404(Medico, user=self.request.user)
+    
     def get(self, request, *args, **kwargs):
-        medico = get_object_or_404(Medico, user=request.user)
-        return render(request, self.template_name, {'medico': medico})
+        try:
+            return super().get(request, *args, **kwargs)
+        except Http404:
+            return TestMixinIsAdmin.handle_no_permission(self)
     
 class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
 
@@ -40,12 +46,12 @@ class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
     login_url = 'accounts:login'
     form_class = Update_Medico_Form
     template_name = 'medicos/atualizar_dados.html'
-    success_url = 'medicos:medico_perfil' 
 
-    def get(self, request, *args, **kwargs):
-        medico = get_object_or_404(Medico, user=request.user)
-        form = self.form_class(instance=medico)
-        return render(request, self.template_name, {'medico': medico, 'form': form})
+    def get_object(self, queryset=None):
+        return get_object_or_404(Medico, user=self.request.user)
+    
+    def get_success_url(self):
+        return reverse_lazy('medicos:medico_perfil')
 
 class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
