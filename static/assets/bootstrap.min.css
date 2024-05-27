@@ -23678,12 +23678,13 @@ input,button,select,textarea {
 }
 
 a {
-    color: #18bc9c;
+    color: var(--azul-medio-light);
     text-decoration: none
 }
 
 a:hover,a:focus {
     /* color: var(--cinza); */
+    color: var(--verde);
     text-decoration: none;
 }
 
