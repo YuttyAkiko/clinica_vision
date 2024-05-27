@@ -71,6 +71,26 @@ class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
         else:
             return consultas
 
+class HistoricoListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
+
+    model = Consulta
+    login_url = 'accounts:login'
+    template_name= 'medicos/historico_pacientes.html'
+    context_object_name = 'consultas'
+
+    def get_queryset(self):
+        medico = get_object_or_404(Medico, user=self.request.user)
+        agendas = Agenda.objects.filter(medico=medico.pk)
+        consultas = Consulta.objects.filter(agenda__in=agendas, status_cons="Concluída")
+
+        data_consulta = self.request.GET.get('data_consulta')
+        if data_consulta:
+            data_consulta = datetime.strptime(data_consulta, '%Y-%m-%d').date()
+            consultas = consultas.filter(agenda__dia=data_consulta)
+            return consultas
+        else:
+            return consultas
+
 # VIEWS - PERFIL ADMIN
 
 class MedicoCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
@@ -151,6 +171,7 @@ class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 perfil = PerfilView.as_view()
 atualizar_cadastro = CadastroUpdateView.as_view()
 listar_consultas = ConsultasListView.as_view()
+historico_pacientes = HistoricoListView.as_view()
 
 
 medico_cadastro = MedicoCreateView.as_view()
