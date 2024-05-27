@@ -3,7 +3,7 @@ function changePlaceholder() {
     var input = document.getElementById("tipo_input");
 
     if (select.value === "nome") {
-        input.placeholder = "Digite o nome";
+        input.placeholder = "Digite o Nome";
     } else if (select.value === "cpf") {
         input.placeholder = "Digite o CPF";
     }
