@@ -1,17 +1,17 @@
 $(function() {
-  $( "#button" ).click(function() {
-    $( "#button" ).addClass( "onclic", 250, validate);
+  $( "#button-submit" ).click(function() {
+    $( "#button-submit" ).addClass( "onclic", 250, validate);
   });
 
   function validate() {
     setTimeout(function() {
-      $( "#button" ).removeClass( "onclic" );
-      $( "#button" ).addClass( "validate", 450, callback );
+      $( "#button-submit" ).removeClass( "onclic" );
+      $( "#button-submit" ).addClass( "validate", 450, callback );
     }, 2250 );
   }
     function callback() {
       setTimeout(function() {
-        $( "#button" ).removeClass( "validate" );
+        $( "#button-submit" ).removeClass( "validate" );
       }, 1250 );
     }
   });
