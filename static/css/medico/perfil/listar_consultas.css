@@ -60,18 +60,21 @@ section {
     right: 10%;
 }
 
-.container_title input, button {
+.container_title input, button,
+.container_title_historico input, select, button {
     height: 40px;
     border: none;
     margin-right: 10px;
     border-radius: 10px;
 }
 
-.container_title input{
+.container_title input,
+.container_title_historico input {
     padding: 0 10px;
 }
 
-.container_title button {
+.container_title button,
+.container_title_historico button {
     width: 100px;
     background-color: var(--verde);
     font-family: var(--texto);
@@ -82,6 +85,7 @@ section {
 /* --- HISTORICO_PACIENTES.HTML--- */
 
 .container_title_historico {
+    margin-top: 8%;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -98,26 +102,28 @@ section {
 }
 
 .container_title_historico div {
-    width: 40%;
+    width: 30%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-.container_title_historico div:first-child,
-.container_title_historico div:last-child {
+.container_title_historico div:first-child {
     width: 20%;
     flex-direction: column;
 }
 
+.container_title_historico div:last-child {
+    justify-content: space-between;
+}
 
-
-
-
-
-
-
+#tipo_select {
+    background-color: var(--azul-claro);
+}
+#tipo_input {
+    width: 100%;
+}
 
 /* Background do historico de consultas */
 #historico-bg {
