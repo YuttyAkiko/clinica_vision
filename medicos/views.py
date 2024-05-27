@@ -10,6 +10,8 @@ from .forms import Update_Medico_Form
 from clientes.models import Consulta
 from datetime import datetime
 
+import pdb
+
 
 class TestMixinIsAdmin(UserPassesTestMixin):
     def test_func(self):
@@ -46,11 +48,13 @@ class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
     login_url = 'accounts:login'
     form_class = Update_Medico_Form
     template_name = 'medicos/atualizar_dados.html'
-    success_url = reverse_lazy('medicos:medico_perfil')
+
+    def get_success_url(self):
+        return reverse_lazy('medicos:medico_perfil')
 
     def get_object(self, queryset=None):
         return get_object_or_404(Medico, user=self.request.user)
-
+        
 class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
     model = Consulta

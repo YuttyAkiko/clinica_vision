@@ -17,8 +17,8 @@ class Medico(models.Model):
     nome = models.CharField(verbose_name="Nome", max_length=200, default='')
     sobrenome = models.CharField(verbose_name="Sobrenome", max_length=200, default='')
     GENEROS = (
-        ('F','Feminino'),
-        ('M','Masculino')
+        ('Feminino','Feminino'),
+        ('Masculimo','Masculino')
     )
     genero = models.CharField(max_length=9, choices=GENEROS, default='')
     email = models.EmailField(verbose_name="Email")
