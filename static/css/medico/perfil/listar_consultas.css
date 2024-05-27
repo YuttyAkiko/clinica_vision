@@ -1,0 +1,125 @@
+section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilização da lista de consultas */
+.container_consultas {
+    width: 100%;
+    min-height: 400px;
+    max-height: auto;
+    padding: 30px 0;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.consulta-item {
+    width: 80%;
+    padding: 10px; /* Ajustado para garantir espaço interno */
+
+    border-radius: 10px;
+    background-color: var(--azul-claro);
+    margin: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    box-sizing: border-box; /* Garante que padding não expanda a div */
+}
+
+.consulta-item p {
+    font-family: var(--texto);
+    font-weight: 600;
+    line-height: 2;
+    margin: none !important;
+}
+
+/* --- MINHA_AGENDA.HTML--- */
+
+/* estilo e posição titulo */
+.container_title {
+    margin-top: 8%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;   
+}
+
+.container_title h1 {
+    font-family: var(--titulo);
+    font-size: 30px;
+}
+/* estilo e posição do filtro */
+.container_title div {
+    position: absolute;
+    right: 10%;
+}
+
+.container_title input, button {
+    height: 40px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.container_title input{
+    padding: 0 10px;
+}
+
+.container_title button {
+    width: 100px;
+    background-color: var(--verde);
+    font-family: var(--texto);
+    font-weight: 600;
+    color: var(--branco);
+}
+
+/* --- HISTORICO_PACIENTES.HTML--- */
+
+.container_title_historico {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.container_title_historico img {
+    width: 100px;
+    height: 100px;
+    font-size: 30px;
+}
+
+.container_title_historico h1 {
+    font-size: 29px;
+}
+
+.container_title_historico div {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_title_historico div:first-child,
+.container_title_historico div:last-child {
+    width: 20%;
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+
+
+/* Background do historico de consultas */
+#historico-bg {
+    background-color: var(--cinza-claro);
+}
