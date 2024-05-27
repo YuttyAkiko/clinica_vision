@@ -46,12 +46,10 @@ class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
     login_url = 'accounts:login'
     form_class = Update_Medico_Form
     template_name = 'medicos/atualizar_dados.html'
+    success_url = reverse_lazy('medicos:medico_perfil')
 
     def get_object(self, queryset=None):
         return get_object_or_404(Medico, user=self.request.user)
-    
-    def get_success_url(self):
-        return reverse_lazy('medicos:medico_perfil')
 
 class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
@@ -61,8 +59,8 @@ class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     context_object_name = 'consultas'
 
     def get_queryset(self):
-        medico_id = self.kwargs.get('pk')
-        agendas = Agenda.objects.filter(medico=medico_id)
+        medico = get_object_or_404(Medico, user=self.request.user)
+        agendas = Agenda.objects.filter(medico=medico.pk)
         consultas = Consulta.objects.filter(agenda__in=agendas, status_cons="Agendada")
 
         data_consulta = self.request.GET.get('data_consulta')
