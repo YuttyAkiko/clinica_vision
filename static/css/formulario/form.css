@@ -23,7 +23,7 @@ section {
 }
 
 .perfil-cadastro h1 {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 #container-forms {
@@ -49,7 +49,13 @@ section {
 .form-label {
     margin-bottom: -15px;
     font-family: var(--texto);
+<<<<<<< HEAD
     text-transform: uppercase;
+=======
+    /* font-weight: bold; */
+    /* padding: 0 0 0 1.2rem; */
+    font-weight: normal;
+>>>>>>> d49a87628a74f9d564401cf5d34e2d9ce00a23d4
 }
 
 .form-button {
@@ -79,9 +85,9 @@ section {
 }
 
 /* estilo dos inputs na tela de cadastro */
-.form-group {
-    padding: .5rem;
-}
+/* .form-group {
+    /* padding: .5rem; */
+ 
 
 /* imputis de email e senha na tela de Login */
 .form-control {

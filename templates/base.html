@@ -5,7 +5,8 @@
 	<meta charset="utf-8">
 	<title>{% block title %} Clinica Vision {% endblock %}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />  <!-- Outros elementos do head, como meta tags, título, etc. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	<link rel="stylesheet" href="{% static 'assets/bootstrap.min.css' %}"media="screen" />
 	<link rel="stylesheet" href="{% static 'assets/custom.min.css' %}" media="screen" />
 	<link rel="stylesheet" href="{% static 'assets/extra.css' %}" media="screen" />
@@ -18,14 +19,14 @@
     <div class="nav navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="{% url 'index'%}" class="navbar-brand"><img src="{% static "img/logo/logo-vision-dark.svg" %}" class="logo" alt=""></a>
+          <a href="{% url 'home'%}" class="navbar-brand"><img src="{% static "img/logo/logo-vision-dark.svg" %}" class="logo" alt=""></a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
         </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
+        <nav class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
               <a href="{% url 'clientes:consulta_create'%}">Agendamento</a>
@@ -41,27 +42,26 @@
               <a href="{% url 'medicos:especialidade_cadastro'%}">Especialidade</a>
             </li>
             {% endif %}
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
               <li><a href="{% url 'accounts:index' %}">Minha Conta</a></li>
-              <form method="post" action="{% url 'accounts:logout' %}" class="navbar-form">
+              <li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
+              <form method="post" action="{% url 'accounts:logout' %}">
                 {% csrf_token %} 
                 <li><button type="submit" class="custom_btn_logout">Sair</button></li>
               </form>
-            {% else %}
+              {% else %}
               <li><a href="{% url 'accounts:login' %}">Login</a></li>
             {% endif %}
           </ul>
-        </div>
+        </nav>
       </div>
     </div>
   {% endblock header %}
 
-    {% block content %}{% endblock content %}
 		{% block container %}{% endblock container %}
+    {% block content %}{% endblock content %}
 
-    <div class="container margin-top">
+    {% comment %} <div class="container margin-top">
       {% block messages %}
         {% for message in messages %}
           <div class='alert alert-{{ message.tags}}'>
@@ -70,19 +70,19 @@
         {% endfor %}
       {% endblock messages %} 
     
-    {% comment %} <div class="row">
+    <div class="row">
       <div class="col-lg-12">
         <ul class="list-unstyled">
           <li class="pull-right"><a href="#top">Voltar ao Topo</a></li>
         </ul>
       </div>
-    </div> {% endcomment %}
+    </div>
   </div>
-</div>
+</div> {% endcomment %}
 
 {% block footer %}
     <!-- Aqui começa o rodapé -->
-    <footer class="titulo">
+    <footer>
         <div>
             <section>
                 <p>
@@ -128,6 +128,7 @@
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="https://kit.fontawesome.com/c2a3297ec9.js" crossorigin="anonymous"></script>
   <script src="{% static 'assets/bootstrap.min.js'%}"></script>
-{% block scripts %}{% endblock %}
+  <script src="{% static 'js/back-page.js'%}"></script>
+{% block scripts %}{% endblock scripts %}
 </body>
 </html>
