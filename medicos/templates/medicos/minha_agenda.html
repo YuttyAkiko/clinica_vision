@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/perfil/medico/minha_agenda.css' %}">
+    <link rel="stylesheet" href="{% static 'css/perfil/medico/listar_consultas.css' %}">
 {% endblock head %}
 
 {% block title %}
@@ -15,7 +15,7 @@
 <section>
 
     <div class="container_title">
-        <h1 class="subtitle">CONSULTAS AGENDADAS</h1>
+        <h1 class="subtitle">CONSULTAS FUTURAS</h1>
         <div>
             <form method="GET">
                 <input type="date" name="data_consulta">
@@ -28,7 +28,7 @@
         {% if user.is_staff or user.is_superuser %}
             {% if consultas %}
                 {% for consulta in consultas %}                 
-                    <div class="consulta-item" id="listar-consulta-bg">
+                    <div class="consulta-item">
 
                         <p>Paciente: {{ consulta.cliente }}<br>
                             Prontuário: {{ consulta.cliente.id }}
