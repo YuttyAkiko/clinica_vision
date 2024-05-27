@@ -71,11 +71,11 @@ class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
         else:
             return consultas
 
-class HistoricoListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
+class ProntuarioListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
     model = Consulta
     login_url = 'accounts:login'
-    template_name= 'medicos/historico_pacientes.html'
+    template_name= 'medicos/prontuario_pacientes.html'
     context_object_name = 'consultas'
 
     def get_queryset(self):
@@ -171,7 +171,7 @@ class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 perfil = PerfilView.as_view()
 atualizar_cadastro = CadastroUpdateView.as_view()
 listar_consultas = ConsultasListView.as_view()
-historico_pacientes = HistoricoListView.as_view()
+prontuario_pacientes = ProntuarioListView.as_view()
 
 
 medico_cadastro = MedicoCreateView.as_view()
