@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/perfil/medico/listar_consultas.css' %}">
+    <link rel="stylesheet" href="{% static 'css/medico/perfil/listar_consultas.css' %}">
 {% endblock head %}
 
 {% block title %}
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="container_historico">
+    <div class="container_consultas">
         {% if user.is_staff or user.is_superuser %}
             {% if consultas %}
                 {% for consulta in consultas %}                 
