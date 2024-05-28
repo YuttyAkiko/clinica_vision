@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:static/css/medico/perfil/base.css
 section {
     max-width: 100%;
     height: 100vh;
@@ -32,7 +31,7 @@ section {
     min-height: auto;
     margin-top: -3px; /* faixa listrada esta com pequeno espaçamento entre a janela azul, por isso essa margem negativa */
     background-color:var(--azul-escuro-light);
-========
+}
 /* background */
 main {
     display: flex;
@@ -53,15 +52,11 @@ img {
     margin: 0 2rem 4rem 0;
     /* faixa listrada esta com pequeno espaçamento entre a janela azul, por isso essa margem negativa */
     background-color: var(--azul-medio);
->>>>>>>> d49a87628a74f9d564401cf5d34e2d9ce00a23d4:static/css/dashboard/base_dash.css
     border-radius: 0px 0px 70px 0px;
     grid-area: left_menu;
-<<<<<<<< HEAD:static/css/medico/perfil/base.css
 
-========
     grid-row: left_menu;
     
->>>>>>>> d49a87628a74f9d564401cf5d34e2d9ce00a23d4:static/css/dashboard/base_dash.css
     /* alinhamento da janela azul */
     display: flex;
     align-items: center;
@@ -78,12 +73,12 @@ img {
     align-items: center;
     text-align: center;
 }
-<<<<<<<< HEAD:static/css/medico/perfil/base.css
+
 /* estilo do texto - username*/
-========
+
 
 /* estilo do texto administrador(a) */
->>>>>>>> d49a87628a74f9d564401cf5d34e2d9ce00a23d4:static/css/dashboard/base_dash.css
+
 .left_menu>div>h1 {
     font-family: var(--titulo);
     font-size: 20px;
@@ -91,9 +86,9 @@ img {
     line-height: 30px;
 }
 
-<<<<<<<< HEAD:static/css/medico/perfil/base.css
+
 /* tamanho do icone */
-========
+
 /* -------------------------------------- painel - pg administrador ---------------------*/
 /* Aplicando display grid na pagina e definindo quatro colunas, com três linhas;*/
 .right_menu {
@@ -109,7 +104,7 @@ img {
 }
 
 /* tamanho do icone adm */
->>>>>>>> d49a87628a74f9d564401cf5d34e2d9ce00a23d4:static/css/dashboard/base_dash.css
+
 .left_menu>div>img {
     max-width: 150px;
     min-width: 100px;
@@ -133,7 +128,6 @@ img {
     /* box-sizing: border-box; */
 }
 
-<<<<<<<< HEAD:static/css/medico/perfil/base.css
 /* tamanho dos quadrados dos botoes */
 .btn_main {
     width: 230px;
@@ -141,8 +135,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-
-========
+}
 /* alterando cor e tamanho do menu suspenso */
 .left_menu select {
     width: 200px;
@@ -175,7 +168,6 @@ img {
     align-items: center;
     justify-content: center;
     grid-area: "btn_main";
->>>>>>>> d49a87628a74f9d564401cf5d34e2d9ce00a23d4:static/css/dashboard/base_dash.css
     background-color: var(--branco);
     border-radius: 20px;
     border: 2px solid;
@@ -208,7 +200,7 @@ img {
 } */
 
 /* estilo do texto dentro dos botoes */
-<<<<<<<< HEAD:static/css/medico/perfil/base.css
+
 h1 {
     font-family: var(--titulo);
     color: var(--preto);
@@ -221,7 +213,7 @@ h1 {
 a{
     text-decoration: none;
     /* color: var(--branco); */
-========
+}
 h2 {
     font-family: var(--titulo);
     color: var(--preto);
@@ -229,7 +221,7 @@ h2 {
     /* padding-top: 20px; */
     text-align: center;
     font-size: 14px;
->>>>>>>> d49a87628a74f9d564401cf5d34e2d9ce00a23d4:static/css/dashboard/base_dash.css
+
 }
 .nav navbar navbar-default navbar-fixed-top {
     grid-area: "header";

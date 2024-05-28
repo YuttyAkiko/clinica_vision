@@ -2,36 +2,15 @@
     margin: 0;
 }
 
-<<<<<<< HEAD
-.navbar-form {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-}
-
-.custom_btn_logout {
-=======
 .custom_btn_logout {
     background-color: transparent;
     border: none;
     color: var(--azul-roxo);
->>>>>>> d49a87628a74f9d564401cf5d34e2d9ce00a23d4
     font-family: var(--titulo);
     font-weight: 500;
     font-size: 18px;
     text-transform: uppercase;
-<<<<<<< HEAD
-    color: var(--azul-roxo);
-    background-color: transparent;
-    border: none;
-=======
->>>>>>> d49a87628a74f9d564401cf5d34e2d9ce00a23d4
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 21px;
 }
-<<<<<<< HEAD
-  
-  
-=======
->>>>>>> d49a87628a74f9d564401cf5d34e2d9ce00a23d4
