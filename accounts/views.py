@@ -32,7 +32,7 @@ class Login(LoginView):
 
     model = User
     template_name = 'accounts/login.html'
-    success_url = reverse_lazy("accounts:index")
+    success_url = reverse_lazy("accounts:index")            
 
 
 class Logout(LogoutView):

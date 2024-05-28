@@ -1,11 +1,17 @@
 {% extends "base_dash.html" %}
+{% load static %}
 
 {% block title %}
     Medicos
 {% endblock %}
 
+{% comment %} {% block head %}
+    <link rel="stylesheet" href="{% static "css/medicos/medicos_list.css" %}">
+{% endblock head %} {% endcomment %}
+
 {% block accounts_container %}
-<h2>Medicos</h2>
+<div>
+    <h2 class="titulo">Médicos</h2>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -54,4 +60,5 @@
         {% endfor %}
     </tbody>
 </table>
+</div>
 {% endblock %}
