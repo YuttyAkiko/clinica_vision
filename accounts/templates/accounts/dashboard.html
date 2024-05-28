@@ -19,7 +19,7 @@
         <div class="btn_main">
             <a href="{% url 'accounts:update_user'%}">
                 <img src="{% static 'img/dashboard/icone_alterar_nome.png' %}" alt="ícone ilustrativo clínica">
-                <h2>alterar<br>nome e e-mail</h2>
+                <h2>alterar<br>usuário e e-mail</h2>
             </a>
         </div>
 
@@ -48,14 +48,14 @@
             <div class="btn_main">
                 <a href="{% url 'medicos:medicos_lista'%}">
                     <img src="{% static 'img/dashboard/icone_funcionario.png' %}" alt="ícone perfil funcionário">
-                    <h2>MÉDICOS</h2>
+                    <h2>médicos</h2>
                 </a> 
             </div>
 
             <div class="btn_main">
                 <a href="{% url 'medicos:especialidade_lista'%}">
-                    <img src="{% static 'img/dashboard/icone_paciente.png' %}" alt="ícone perfil paciente">
-                    <h2>ESPECIALIDADES</h2>
+                    <img src="{% static 'img/dashboard/icone_especialidade.png' %}" alt="ícone perfil paciente">
+                    <h2>especialidades</h2>
                 </a>
             </div>
         {% endif %}
