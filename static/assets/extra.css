@@ -2,6 +2,12 @@
     margin: 0;
 }
 
+.navbar-form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
 .custom_btn_logout {
     background-color: transparent;
     border: none;
