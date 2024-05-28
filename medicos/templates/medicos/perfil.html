@@ -2,4 +2,66 @@
 
 {% load static %}
 
+{% block botoes %}
+<section class="right_menu">
+  {% block profile-title %}
+      <h1 class="titulo">O QUE VOCÊ DESEJA ACESSAR?</h1>
+  {% endblock profile-title %}
 
+  {% block accounts_container %}
+  {% endblock accounts_container %}
+
+  <div class="botoes">
+      <div class="btn_main">
+          <a href="{% url 'accounts:update_user'%}">
+              <img src="{% static 'img/dashboard/icone_alterar_nome.png' %}" alt="ícone ilustrativo clínica">
+              <h2>alterar<br>usuário e e-mail</h2>
+          </a>
+      </div>
+
+      <div class="btn_main">
+          <a href="{% url 'accounts:update_password'%}">
+              <img src="{% static 'img/dashboard/icone_alterar_senha.png' %}" alt="ícone ilustrativo clínica">
+              <h2>alterar<br>senha</h2>
+          </a>
+      </div>
+      
+      <div class="btn_main">
+          <a href="{% url 'clientes:cliente_atualizar'%}">
+              <img src="{% static 'img/dashboard/perfil_icon/icone_02.png' %}" alt="ícone ilustrativo clínica">
+              <h2>atualizar<br>meus dados</h2>
+          </a>
+      </div>
+
+      {% if request.user.is_staff or request.user.is_superuser %}
+          <div class="btn_main">
+              <a href="{% url 'medicos:agenda_lista'%}">
+                  <img id="centralize" src="{% static 'img/dashboard/icone_calendario.png' %}" alt="ícone ilustrativo agendamento">
+                  <h2>horários<br>disponíveis</h2>
+              </a>
+          </div>
+          
+          <div class="btn_main">
+              <a href="{% url 'medicos:medicos_lista'%}">
+                  <img src="{% static 'img/dashboard/icone_agenda.png' %}" alt="ícone perfil funcionário">
+                  <h2>minha agenda</h2>
+              </a> 
+          </div>
+
+          <div class="btn_main">
+              <a href="{% url 'medicos:especialidade_lista'%}">
+                  <img src="{% static 'img/dashboard/icone_paciente.png' %}" alt="ícone perfil paciente">
+                  <h2>prontuários</h2>
+              </a>
+          </div>
+      {% endif %}
+
+      {% comment %} <div class="btn_main">
+          <a href="#">
+              <img src="{% static 'img/dashboard/icone_clinica.png' %}" alt="ícone ilustrativo clínica">
+              <h2>DADOS DA<br>CLÍNICA</h2>
+          </a>
+      </div> {% endcomment %}
+  </div>
+</section>
+{% endblock botoes %}
