@@ -108,7 +108,7 @@ class MedicoCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
 class MedicoListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     
     login_url = 'accounts:login'
-    template_name = 'medicos/medicos_list.html'
+    template_name = 'medicos/medicos_lista.html'
 
     def get_queryset(self):
         return Medico.objects.all().order_by('-pk')
@@ -124,7 +124,7 @@ class EspecialidadeCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
 class EspecialidadeListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     
     login_url = 'accounts:login'
-    template_name = 'medicos/especialidade_list.html'
+    template_name = 'medicos/especialidade_lista.html'
 
     def get_queryset(self):
         return Especialidade.objects.all().order_by('-pk')
@@ -167,7 +167,7 @@ class AgendaDeleteView(LoginRequiredMixin, TestMixinIsAdmin, DeleteView):
 class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     
     login_url = 'accounts:login'
-    template_name = 'medicos/agenda_list.html'
+    template_name = 'medicos/agenda_lista.html'
 
     def get_queryset(self):
         return Agenda.objects.filter().order_by('-pk')

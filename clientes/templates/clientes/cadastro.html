@@ -1,20 +1,21 @@
-{% extends "base.html" %}
+{% extends "accounts/dashboard.html" %}
 {% load static %}
 {% load widget_tweaks %}
 
-{% block title %}
-    Cadastro | {{ block.super }}
-{% endblock %}
-
 {% block head %}
-    <link rel="stylesheet" href="{% static "css/formulario/inputs.css" %}">
+    <link rel="stylesheet" href="{% static "css/formulario/form.css" %}">
+    <link rel="stylesheet" href="{% static "css/dashboard/base_dash.css" %}">
 {% endblock head %}
+
+{% block title %}
+    Agenda | {{ block.super }}
+{% endblock %}
 
 {% block container %}
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="page-header">
-            <h1 class="text-center">Cadastro</h1>
+            <h1 class="text-center">Horários Disponíveis</h1>
         </div>
         <form class="form-horizontal" method="post">
             {% csrf_token %}

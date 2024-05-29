@@ -4,7 +4,7 @@ from .models import Convenio, Cliente, Consulta, Receita, Exame
     
 class ClientAdmin(admin.ModelAdmin):
     list_display = [
-        'cpf', 'telefone', 'sexo',
+        'nome', 'sobrenome', 'cpf', 'sexo', 'telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio', 'num_carteirinha'
     ]
     
 class ConsultaAdmin(admin.ModelAdmin):

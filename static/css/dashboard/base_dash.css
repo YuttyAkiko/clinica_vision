@@ -10,6 +10,12 @@ img {
     width: 100%;
 }
 
+.form-header-dash {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 /* estilo e posicionamento da janela azul */
 .left_menu {
     max-width: 300px;
@@ -68,7 +74,6 @@ img {
     min-width: 100px;
     height: 150px;
     padding-bottom: 20px;
-    filter: invert(1);
 }
 
 /* estilo do botao a esquerda - novo usuario */

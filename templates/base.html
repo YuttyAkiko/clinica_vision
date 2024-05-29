@@ -28,15 +28,35 @@
         </div>
         <nav class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
+            {% block nav_header %}
+            <li>
+              <a href="#about">Sobre nós</a>
+            </li>
+            <li>
+              <a href="#specialties">Especialidades</a>
+            </li>
+            <li>
+              <a href="#history">Nossa história</a>
+            </li>
+            <li>
+              <a href="#contact">Contato</a>
+            </li>
+            {% endblock nav_header %}
+            {% comment %} {% if user.is_staff or user.is_superuser %}
+            <li>
+              <a href="{% url 'medicos:agendar_consulta'%}">Agendas</a>
+            </li>
+            {% endif %} {% endcomment %}
             {% if user.is_authenticated %}
-              <li><a href="{% url 'accounts:index' %}">Minha Conta</a></li>
-              <li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
-              <form method="post" action="{% url 'accounts:logout' %}" class="navbar-form">
-                {% csrf_token %} 
-                <li><button type="submit" class="custom_btn_logout">Sair</button></li>
-              </form>
-              {% else %}
-              <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            <form method="post" action="{% url 'accounts:logout' %}" class="form-header-dash">
+              {% csrf_token %} 
+              <li><a href="{% url 'accounts:index' %}" class="custom_btn_logout">Minha Conta</a></li>
+              <li><a href="#" id="button-back" onclick="history.back()" class="custom_btn_logout">Voltar</a></li>
+              <li><button type="submit" class="custom_btn_logout">Sair</button></li>
+            </form>
+            {% else %}
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            <li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
             {% endif %}
           </ul>
         </nav>
@@ -54,17 +74,14 @@
           {{ message }}
           </div>
         {% endfor %}
-      {% endblock messages %} 
+      {% endblock messages %}  {% endcomment %}
     
-    <div class="row">
-      <div class="col-lg-12">
-        <ul class="list-unstyled">
-          <li class="pull-right"><a href="#top">Voltar ao Topo</a></li>
-        </ul>
-      </div>
+      {% comment %} Botão para voltar ao topo {% endcomment %}
+    <div class="arrow-up hidden" id="arrow-up">
+      <a href="#top"><img src="{% static "img/icons/arrow-up.png" %}" alt=""></a>
     </div>
   </div>
-</div> {% endcomment %}
+</div>
 
 {% block footer %}
     <!-- Aqui começa o rodapé -->
@@ -72,8 +89,8 @@
         <div>
             <section>
                 <p>
-                    Rua da Saúde, 333 - Saúde<br />
-                    São Paulo - SP, CEP: 00000-000
+                  R. do Oratório, 215 - Mooca<br />
+                  São Paulo - SP, 03117-000
                 </p>
             </section>
             <section>
@@ -114,7 +131,8 @@
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="https://kit.fontawesome.com/c2a3297ec9.js" crossorigin="anonymous"></script>
   <script src="{% static 'assets/bootstrap.min.js'%}"></script>
-  <script src="{% static 'js/back-page.js'%}"></script>
+  <script src="{% static 'js/back-page.js'%}"></script> {% comment %} Script para voltar para página anterior {% endcomment %}
+  <script src="{% static "js/scroll-page.js" %}"></script> {% comment %} Script de rolagem da home page {% endcomment %}
 {% block scripts %}{% endblock scripts %}
 </body>
 </html>
