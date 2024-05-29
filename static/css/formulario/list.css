@@ -1,0 +1,17 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.content>div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.content>div>a {
+  width: auto;
+  height: 40px;
+}
