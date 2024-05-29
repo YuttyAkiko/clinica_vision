@@ -1,0 +1,113 @@
+/* background de cada bloco da pagina ----------------------------------------------------------------------------*/
+.specialities_section{
+    width: 100%;
+    height: 770px;
+    background-color: var(--azul-claro-light);
+    position: relative;
+    margin-bottom: 50px;
+}
+/* tamanho das listras azuis do background - svg ---------------------------------------------------------------*/
+.img_bg_esp{
+    display: flex;
+    width: 100%;
+    height: 770px;
+}
+/* foto + nome + CRM + especialidade ---------------------------------------------------------------------------- */
+.horizon_align{
+    display: flex;
+    flex-direction: row;
+    padding: 60px 80px;
+}
+.crm_dtl{
+    padding: 45px;
+    padding-top: 80px;
+    position: relative;
+    top: -45px;
+
+    display:flexbox;
+    justify-items:left;
+    text-align:justify;
+}
+.crm_dtl> h3{
+    font-family: var(--titulo);
+    font-size: 30px;
+    padding-bottom: 30px;
+    font-weight: bold;
+}
+.crm_dtl> p{
+    font-family: var(--texto);
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+scan{
+    font-weight: bold;
+    font-size: 24px;
+}
+.crm_dtl button{
+    background-color: var(--verde);
+    font-family: var(--button);
+    font-size: 24px;
+    color: var(--branco);
+    padding: 10px 20px 10px 20px;
+    border-radius: 35px;
+    border:none;
+    font-weight: 700;
+    position: relative;
+    top: 26px;
+}
+/* retirando sublinhado do link do botão */
+.crm_dtl a{
+    text-decoration: none;
+    color: var(--branco);
+}
+/* Tratamentos e especialidades ----------------------------------------------------------------------------*/
+.especialities{
+    font-family: var(--texto);
+    font-size: 18px;
+    padding-top: 20px;
+    padding-left: 80px;
+    padding-right: 450px;
+    position: relative;
+    top: -130px;
+    text-align: justify;
+}
+.especialities> h4{
+    font-family: var(--titulo);
+    font-size: 20px;
+    padding-bottom: 20px;
+    font-weight: bold;
+}
+.especialities> ul{
+    padding-bottom: 20px;
+    line-height: 1.5;
+
+}
+.especialities> p{
+    padding-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* alinhamento dos elementos à direita -------------------------------------------------*/
+
+/* foto + nome + CRM + especialidade */
+#right_align{
+    display: flex;
+    flex-direction:row-reverse;
+    padding: 60px 80px;
+}
+#right_side{
+    display:flexbox;
+    text-align: right;
+    justify-items: right;
+    justify-content: flex-end;
+
+    position: relative;
+    padding-right: 80px;    
+    padding-left: 450px;
+}
+/* alinhando botao a direita */
+#right_side a{
+    display: flex;
+    justify-content: flex-end;
+}
+

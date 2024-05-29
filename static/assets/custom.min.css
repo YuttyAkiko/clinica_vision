@@ -223,6 +223,11 @@ body>.navbar {
 
 .col-md-offset-2 {
   margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
 .jumbotron{

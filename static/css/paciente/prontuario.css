@@ -1,0 +1,88 @@
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--texto);
+}
+
+.new-medical-record {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.new-medical-record > a {
+  color: var(--preto);
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  justify-content: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.new-medical-record > a img {
+  margin: 1rem 0;
+  width: 150px;
+}
+
+.new-medical-record > div label {
+  font-weight: 600;
+}
+
+.new-medical-record > div input {
+  background-color: var(--azul-claro);
+  border: none;
+  border-radius: 20px;
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  width: auto;
+}
+
+table, th, td {
+  border: 2px solid var(--preto);
+  margin: 2rem 0;
+  padding: 1rem;
+  width: 80%;
+  table-layout: fixed;
+}
+
+table th {
+  background-color: var(--cinza-claro);
+  font-weight: 600;
+}
+
+#name, #birth {
+  text-align: center;
+}
+
+#far, #close {
+  text-align: center;
+  font-weight: 500;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#attachments, #save {
+  background-color: var(--verde);
+  border: none;
+  border-radius: 20px;
+  color: var(--branco);
+  font-weight: 700;
+  margin: 2rem;
+  padding: 1rem;
+  text-shadow: 1px 1px 5px var(--preto);
+  width: 20%;
+}
+
+#attachments:hover, #save:hover {
+  cursor: pointer;
+  transform: scale(1.08);
+  transition: 200ms;
+}

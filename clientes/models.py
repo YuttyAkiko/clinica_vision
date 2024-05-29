@@ -19,14 +19,14 @@ class Cliente(models.Model):
                     unique=True,)
     data_nasc  = models.DateField(auto_now=False, auto_now_add=False, verbose_name="nascimento", default='2000-01-01')
     SEXO = (
-        ("MAS", "Maculino"),
-        ("FEM", "Feminino")
+        ("M", "Masculino"),
+        ("F", "Feminino")
     )
     sexo = models.CharField(max_length=9, choices=SEXO,)
     phone_regex = RegexValidator(
-        regex=r'^\+?1?\d{9,15}$',
-        message="O número precisa estar neste formato: \
-                        '+99 99 9999-0000'.")
+    regex=r'^\(?\d{2}\)?[\s.-]?\d{4,5}-?\d{4}$',
+    message="O número precisa estar neste formato: (00) 00000-0000 ou (00) 0000-0000")
+
     telefone = models.CharField(verbose_name="Telefone",
                                 validators=[phone_regex],
                                 max_length=17, null=True, blank=True)
