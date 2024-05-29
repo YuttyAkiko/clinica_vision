@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
-{% load widget_tweaks %}
 
 {% block head %}
-  <link rel="stylesheet" href="{% static "css/formulario/form.css" %}">
+    <link rel="stylesheet" href="{% static "css/formulario/form.css" %}">
+    <link rel="stylesheet" href="{% static "css/dashboard/base_dash.css" %}">
 {% endblock head %}
 
-
+{% load widget_tweaks %}
 
 {% block title %}
     Cadastro | {{ block.super }}

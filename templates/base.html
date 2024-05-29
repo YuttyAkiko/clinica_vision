@@ -30,11 +30,11 @@
             <li>
               <a href="{% url 'clientes:consulta_create'%}">Agendamento</a>
             </li>
-            {% if user.is_staff or user.is_superuser %}
+            {% comment %} {% if user.is_staff or user.is_superuser %}
             <li>
               <a href="{% url 'medicos:agendar_consulta'%}">Agendas</a>
             </li>
-            {% endif %}
+            {% endif %} {% endcomment %}
             {% if user.is_authenticated %}
               <li><a href="{% url 'accounts:index' %}">Minha Conta</a></li>
               <li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
