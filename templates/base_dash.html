@@ -3,7 +3,7 @@
 
 {% block title %}
     {{ block.super }} | Minha Conta
-{% endblock%}
+{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -17,7 +17,7 @@
         <div>
             <h1 class="titulo">Bem vindo(a)<br>{{ user.name }}</h1>
 
-            <img src="{% static 'img/dashboard/perfil_icon/icone_02.png' %}" alt="ícone perfil">
+            {% block img %}<img src="{% static 'img/dashboard/perfil_icon/icone_02.png' %}" alt="ícone perfil">{% endblock img %}
 
             <h1> {{ cargo.nome_cargo }} </h1>
 
