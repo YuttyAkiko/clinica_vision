@@ -32,11 +32,12 @@ class Login(LoginView):
 
     model = User
     template_name = 'accounts/login.html'
-    success_url = reverse_lazy("accounts:index")            
+
+    def get_success_url(self):
+        return reverse_lazy('accounts:index')         
 
 
 class Logout(LogoutView):
-
     template_name = 'accounts/logged_out.html'
 
     def get(self, request, *args, **kwargs):

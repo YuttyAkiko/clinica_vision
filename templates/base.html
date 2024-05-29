@@ -48,6 +48,7 @@
             {% endif %} {% endcomment %}
             {% if user.is_authenticated %}
               <li><a href="{% url 'accounts:index' %}">Minha Conta</a></li>
+              <li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
               <li><button type="submit" class="custom_btn_logout">Sair</button></li>
               <form method="post" action="{% url 'accounts:logout' %}">
                 {% csrf_token %} 
