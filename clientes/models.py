@@ -82,6 +82,10 @@ class Consulta(models.Model):
         
     def __str__(self):
         return f'{self.agenda} - {self.cliente}'
+    
+    # Definição de permissões
+    class Permissions:
+        CAN_DELETE_CONSULTA = 'can_delete_consulta'
 
 class Receita(models.Model):
     consulta = models.ForeignKey('Consulta', on_delete=models.CASCADE) # Relacionamento (1,n)
