@@ -23,7 +23,7 @@ class ClienteUpdateView(LoginRequiredMixin, UpdateView):
     model = Cliente
     login_url = reverse_lazy('accounts:login')
     template_name = 'accounts/update_user.html'
-    fields = ['sexo', 'telefone', 'cpf']
+    fields = ['telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio']
     success_url = reverse_lazy('accounts:index')
 
     def get_object(self):

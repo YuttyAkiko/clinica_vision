@@ -1,3 +1,4 @@
+
 from django.conf import settings
 from django.db.models.fields.related import ForeignKey, OneToOneField
 from django_cpf_cnpj.fields import CPFField
