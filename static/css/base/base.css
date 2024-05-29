@@ -86,3 +86,54 @@
     margin-top: 20px;
     width: 100px;
   }
+
+  .arrow-up {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: none; /* Escondido inicialmente */
+    z-index: 1000; /* Certifique-se de que o botão esteja acima de outros elementos */
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+
+  .arrow-up.visible {
+    display: block; /* Torna o botão visível */
+    animation: bubble-pop 0.5s forwards;
+  }
+
+/* Animação de bolha estourando */
+@keyframes bubble-pop {
+  0% {
+      opacity: 0;
+      transform: scale(0.5);
+  }
+  50% {
+      opacity: 1;
+      transform: scale(1.2);
+  }
+  100% {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+  .arrow-up.hidden {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  .arrow-up > a > img {
+    width: 40px;
+    margin: 1rem;
+    background-color: var(--azul-claro);
+    padding: 1rem;
+    border-radius: 50%;
+    border: solid 1px var(--azul-medio);
+  }
+
+  .arrow-up a {
+    display: block;
+    text-align: center;
+  }

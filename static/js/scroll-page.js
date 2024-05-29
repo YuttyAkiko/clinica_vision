@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    /* Função para o smooth do scrool */
     const links = document.querySelectorAll('nav a');
     const offset = 100; // Ajuste o valor conforme necessário
 
@@ -19,4 +20,15 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+});
+
+window.addEventListener('scroll', function () {
+    var arrowUp = document.getElementById('arrow-up');
+    if (window.scrollY > 400) { // Exibir a seta após rolar 400px
+        arrowUp.classList.add('visible');
+        arrowUp.classList.remove('hidden');
+    } else {
+        arrowUp.classList.add('hidden');
+        arrowUp.classList.remove('visible');
+    }
 });
