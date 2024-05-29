@@ -22,9 +22,8 @@
     {% endblock banner %}
 
     {% block about %}
-    <a name="sobre"></a>
     <!--Esta parte é o SOBRE NÓS-->
-    <section class="sobre__container"> 
+    <section id="about" class="sobre__container"> 
         <figure class="sobre__img">
             <img src="{% static "img/home/medico.png" %}" alt="Foto de um médico.">
         </figure>
@@ -50,9 +49,8 @@
     {% endblock about %}
 
     {% block specialties %}
-    <a name="especialidades"></a>
     <!--Aqui começa a parte de ESPECIALIDADES-->
-    <section class="especialidades__container"> 
+    <section id="specialties" class="especialidades__container"> 
         <div class="especialidades__sub__container">
             <!--Aqui é a parte da Neuroftalmologia, a caixa com fundo azul imagem redonda e parágrafo -->
             <h1 class="titulo titulo__padrao__home">Especialidades</h1>
@@ -124,8 +122,7 @@
     {% endblock specialties %}
 
     {% block history %}
-    <a name="historia"></a>
-    <section class="historia__container">
+    <section id="history" class="historia__container">
         <article class="historia">
             <h1 class="titulo titulo__padrao__home">Nossa história</h1>
             <p class="texto texto__padrao__home">A nossa história começa em 2023, fundada pelo/a doutor
@@ -145,4 +142,6 @@
     {% endblock history %}
 {% endblock content %}
 
-{% block scripts %}<script src="https://kit.fontawesome.com/c2a3297ec9.js" crossorigin="anonymous"></script>{% endblock scripts %}
+{% block scripts %}
+    <script src="https://kit.fontawesome.com/c2a3297ec9.js" crossorigin="anonymous"></script>
+{% endblock scripts %}

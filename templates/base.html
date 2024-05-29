@@ -28,7 +28,16 @@
         <nav class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="{% url 'clientes:consulta_create'%}">Agendamento</a>
+              <a href="#about">Sobre nós</a>
+            </li>
+            <li>
+              <a href="#specialties">Especialidades</a>
+            </li>
+            <li>
+              <a href="#history">Nossa história</a>
+            </li>
+            <li>
+              <a href="#">Contato</a>
             </li>
             {% comment %} {% if user.is_staff or user.is_superuser %}
             <li>
@@ -38,9 +47,9 @@
             {% if user.is_authenticated %}
               <li><a href="{% url 'accounts:index' %}">Minha Conta</a></li>
               <li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
+              <li><button type="submit" class="custom_btn_logout">Sair</button></li>
               <form method="post" action="{% url 'accounts:logout' %}">
                 {% csrf_token %} 
-                <li><button type="submit" class="custom_btn_logout">Sair</button></li>
               </form>
               {% else %}
               <li><a href="{% url 'accounts:login' %}">Login</a></li>
@@ -120,7 +129,8 @@
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="https://kit.fontawesome.com/c2a3297ec9.js" crossorigin="anonymous"></script>
   <script src="{% static 'assets/bootstrap.min.js'%}"></script>
-  <script src="{% static 'js/back-page.js'%}"></script>
+  <script src="{% static 'js/back-page.js'%}"></script> {% comment %} Script para voltar para página anterior {% endcomment %}
+  <script src="{% static "js/scroll-page.js" %}"></script> {% comment %} Script de rolagem da home page {% endcomment %}
 {% block scripts %}{% endblock scripts %}
 </body>
 </html>
