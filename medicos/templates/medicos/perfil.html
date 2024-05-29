@@ -16,7 +16,7 @@
       <nav class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav">
           {% if user.is_authenticated %}
-            <li><a href="{% url 'accounts:index' %}">Minha Conta</a></li>
+            <li><a href="{% url 'medicos:medico_perfil' %}">Minha Conta</a></li>
             <li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
             <form method="post" action="{% url 'accounts:logout' %}" class="navbar-form">
               {% csrf_token %} 
@@ -80,7 +80,7 @@
           </div>
 
           <div class="btn_main">
-              <a href="{% url 'medicos:especialidade_lista'%}">
+              <a href="{% url 'medicos:prontuario_pacientes'%}">
                   <img src="{% static 'img/dashboard/icone_paciente.png' %}" alt="ícone perfil paciente">
                   <h2>prontuários</h2>
               </a>
