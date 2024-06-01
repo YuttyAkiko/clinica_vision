@@ -8,7 +8,8 @@ urlpatterns = [
     path('perfil/', views.perfil, name='medico_perfil'),
     path('meus-dados/', views.atualizar_cadastro, name='atualizar_cadastro'),
     path('minha-agenda/', views.listar_consultas, name='listar_consultas'),
-    path('prontuarios/', views.prontuario_pacientes, name='prontuario_pacientes'),
+    path('pacientes/', views.clientes, name='pacientes'),
+    path('pacientes/prontuario/<int:pk>/', views.prontuario, name='prontuario'),
 
     # ADMIN
     path('registro/medico/', views.medico_cadastro, name='medico_cadastro'),

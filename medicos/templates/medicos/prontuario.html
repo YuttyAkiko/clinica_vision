@@ -15,10 +15,12 @@
 
 <main>
     <div class="new-medical-record">
-        <a href="#">
             <img src="{% static 'img/icons/prontuario-medico.png' %}" alt="ícone ilustrativo prontuário">
-            <p>Novo Prontuário</p>
-        </a>
+        <div>
+            <p>Data da Consulta: {{ consulta.agenda.dia }}</p>
+            <p>Hora: {{ consulta.agenda.get_horario_display }} </p>
+            <p>Prontuário: {{ consulta.cliente.id }}</p>
+        </div>
     </div>
 
     <table>
@@ -30,13 +32,13 @@
         </thead>
         <tbody>
             <tr>
-                <td id="name">Yutty Takeyama</td>
-                <td id="birth">18/08/1993</td>
+                <td id="name">{{ consulta.cliente }}</td>
+                <td id="birth">{{ consulta.cliente.data_nasc }}</td>
             </tr>
         </tbody>
     </table>
 
-    <table>
+    <table id="sintomas">
         <thead>
             <tr>
                 <th>Sintomas</th>
@@ -44,12 +46,12 @@
         </thead>
         <tbody>
             <tr>
-                <td>O paciente relata dificuldade ao enchegar placas de transito.</td>
+                <td>{{ consulta.sintomas }}</td>
             </tr>
         </tbody>
     </table>
 
-    <table>
+    <table id="observacoes">
         <thead>
             <tr>
                 <th>Observações</th>
@@ -57,22 +59,24 @@
         </thead>
         <tbody>
             <tr>
-                <td>Secreção lagrimal fraca.</td>
+                <td>{{ consulta.observacoes }}</td>
             </tr>
         </tbody>
 
-        <table>
+        <table id="laudo">
             <thead>
                 <tr>
-                    <th>Laudo (opcional)</th>
+                    <th>Diagnóstico</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>O paciente terá que usar oculos de grau e colirio LAcrifil 1x por dia.</td>
+                    <td>{{ consulta.laudo }}</td>
                 </tr>
             </tbody>
         </table>
+
+        <p id="titulo_exame">Exame Oftalmológico</p>
 
         <table id="far"> <!-- Tabela de receita para longe -->
             <thead>
@@ -138,12 +142,13 @@
             </tbody>
         </table>
 
-        <hr size="5" width="80%" color="black" noshade>
+        {% comment %} <hr size="5" width="80%" color="black" noshade>
 
         <div class="buttons">
-            <input type="file" id="attachments" value="ANEXAR">
+            <label for="file">Adicionar documentos: </label>
+            <input type="file" id="attachments" name="file" value="ANEXAR">
             <input type="submit" id="save" value="SALVAR">
-        </div>
+        </div> {% endcomment %}
 </main>
 
 {% endblock container %}

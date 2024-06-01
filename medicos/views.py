@@ -1,17 +1,15 @@
+from django.db.models.base import Model as Model
+from django.core.exceptions import PermissionDenied
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.contrib import messages
-from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Medico, Agenda, Especialidade
 from .forms import Update_Medico_Form
-from clientes.models import Consulta
+from clientes.models import Consulta, Cliente
 from datetime import datetime
-
-import pdb
-
 
 class TestMixinIsAdmin(UserPassesTestMixin):
     def test_func(self):
@@ -75,7 +73,7 @@ class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
         else:
             return consultas
 
-class ProntuarioListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
+class ClientesListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
     model = Consulta
     login_url = 'accounts:login'
@@ -94,6 +92,17 @@ class ProntuarioListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
             return consultas
         else:
             return consultas
+        
+class ProntuarioDetailView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
+
+    model = Consulta
+    login_url = 'accounts:login'
+    template_name = 'medicos/prontuario.html'
+    context_object_name = 'consulta'
+
+    def get_object(self):
+        consulta = super().get_object()
+        return consulta
 
 # VIEWS - PERFIL ADMIN
 
@@ -175,7 +184,8 @@ class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 perfil = PerfilView.as_view()
 atualizar_cadastro = CadastroUpdateView.as_view()
 listar_consultas = ConsultasListView.as_view()
-prontuario_pacientes = ProntuarioListView.as_view()
+clientes = ClientesListView.as_view()
+prontuario = ProntuarioDetailView.as_view()
 
 
 medico_cadastro = MedicoCreateView.as_view()
