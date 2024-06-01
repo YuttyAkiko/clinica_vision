@@ -40,14 +40,12 @@
                         <p>Especialidade: {{ consulta.agenda.medico.especialidade }}<br>
                             Médico(a): Dr(a) {{ consulta.agenda.medico }}</p>
                             
-                        {% with consulta.agenda|slice:"13:" as horario %}
                         <p>Data: {{ consulta.agenda.dia }}<br>
-                            Hora: {{ horario }}</p>
-                        {% endwith %}
+                            Hora: {{ consulta.agenda.get_horario_display }}</p>
 
                         <p>Status: <br> {{consulta.status_cons}}</p>
 
-                        <a href="{% url 'medicos:prontuario' consulta.cliente.id %}">
+                        <a href="{% url 'medicos:prontuario' consulta.id %}">
                             <img src="{% static 'img/icons/prontuario-medico.png' %}" alt="ícone ilustrativo prontuário">
                         </a>
 

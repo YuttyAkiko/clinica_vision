@@ -6,11 +6,21 @@ main {
 }
 
 .new-medical-record {
-    align-items: center;
+    margin-top: 30px;
+    align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
     width: 80%;
+}
+
+.new-medical-record p, #titulo_exame {
+    font-family: var(--titulo);
+    font-size: 20px;
+}
+
+.new-medical-record img{
+    width: 100px;
+    margin-right: 1rem;
 }
 
 .new-medical-record > a {
@@ -69,9 +79,11 @@ table th {
 }
 
 .buttons {
+    margin-bottom: 30px;
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 #attachments, #save {
@@ -82,7 +94,7 @@ table th {
     font-weight: 700;
     margin: 2rem;
     padding: 1rem;
-    text-shadow: 1px 1px 5px var(--preto);
+    /* text-shadow: 1px 1px 5px var(--preto); */
     width: 20%;
 }
 
@@ -91,3 +103,17 @@ table th {
     transform: scale(1.08);
     transition: 200ms;
 }
+
+hr {
+    border-top: 1px solid #000000;
+}
+
+#sintomas, #observacoes, #laudo {
+    min-height: 100px;
+    max-height: auto;
+}
+
+#close {
+    margin-bottom: 30px;
+}
+
