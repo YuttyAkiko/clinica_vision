@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-    {{ block.super }} | Prontuários
+    Clínica Vision | Pacientes
 {% endblock %}       
 
 {% block head %}
@@ -14,7 +14,7 @@
 {% block botoes %}
 <section class="section_minha_agenda">
     {% block profile-title %}
-        <h1 class="titulo">PRONTUÁRIOS</h1>
+        <h1 class="titulo">PACIENTES</h1>
     {% endblock profile-title %}
     
     {% block accounts_container %}
@@ -47,7 +47,9 @@
 
                         <p>Status: <br> {{consulta.status_cons}}</p>
 
-                        <img src="{% static 'img/icons/prontuario.svg' %}" alt="ícone ilustrativo prontuário">
+                        <a href="{% url 'medicos:prontuario' consulta.cliente.id %}">
+                            <img src="{% static 'img/icons/prontuario-medico.png' %}" alt="ícone ilustrativo prontuário">
+                        </a>
 
                     </div>
                 {% endfor %}

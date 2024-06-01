@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block title %}
+  {{ block.super }} | Minha Conta
+{% endblock %}
+
 {% block header %}
 <div class="nav navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -80,9 +84,9 @@
           </div>
 
           <div class="btn_main">
-              <a href="{% url 'medicos:prontuario_pacientes'%}">
+              <a href="{% url 'medicos:pacientes'%}">
                   <img src="{% static 'img/dashboard/icone_paciente.png' %}" alt="ícone perfil paciente">
-                  <h2>prontuários</h2>
+                  <h2>pacientes</h2>
               </a>
           </div>
       {% endif %}

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-    {{ block.super }} | Minha Agenda
+    Clínica Vision | Minha Agenda
 {% endblock %}       
 
 {% block head %}
@@ -47,7 +47,9 @@
 
                         <p>Status: <br> {{consulta.status_cons}}</p>
 
-                        <img src="{% static 'img/icons/prontuario-medico.png' %}" alt="ícone ilustrativo prontuário">
+                        <a href="{% url 'medicos:prontuario' consulta.cliente.id %}">
+                            <img src="{% static 'img/icons/prontuario-medico.png' %}" alt="ícone ilustrativo prontuário">
+                        </a>
 
                     </div>
                 {% endfor %}
