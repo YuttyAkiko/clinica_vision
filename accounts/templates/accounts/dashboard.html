@@ -38,13 +38,22 @@
             </a>
         </div>
 
+        <div class="btn_main">
+            <a href="{% url 'clientes:consulta_lista'%}">
+                <img src="{% static 'img/dashboard/icone_agenda.png' %}" alt="ícone perfil paciente">
+                <h2>minhas<br>consultas</h2>
+            </a>
+        </div>
+        
+        <div class="btn_main">
+            <a href="{% url 'clientes:consulta_create'%}">
+                <img id="centralize" src="{% static 'img/dashboard/img-calendario-med.png' %}" alt="ícone ilustrativo agendamento">
+                <h2>horários<br>disponíveis</h2>
+            </a>
+        </div>
+            
         {% if request.user.is_staff or request.user.is_superuser %}
-            <div class="btn_main">
-                <a href="{% url 'medicos:agenda_lista'%}">
-                    <img id="centralize" src="{% static 'img/dashboard/icone_agenda.png' %}" alt="ícone ilustrativo agendamento">
-                    <h2>consultar<br>agendamentos</h2>
-                </a>
-            </div>
+            
             
             <div class="btn_main">
                 <a href="{% url 'medicos:medicos_lista'%}">

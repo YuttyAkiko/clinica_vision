@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static 'css/institutional/home/especialidades.css' %}" media="screen" />
     <link rel="stylesheet" href="{% static 'css/institutional/home/sobre.css' %}" media="screen" />
     <link rel="stylesheet" href="{% static 'css/institutional/home/historia.css' %}" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/institutional/home/contato.css' %}" media="screen" />
 {% endblock head %}
 
 {% block content %}
@@ -22,9 +23,8 @@
     {% endblock banner %}
 
     {% block about %}
-    <a name="sobre"></a>
     <!--Esta parte é o SOBRE NÓS-->
-    <section class="sobre__container"> 
+    <section id="about" class="sobre__container"> 
         <figure class="sobre__img">
             <img src="{% static "img/home/medico.png" %}" alt="Foto de um médico.">
         </figure>
@@ -50,9 +50,8 @@
     {% endblock about %}
 
     {% block specialties %}
-    <a name="especialidades"></a>
     <!--Aqui começa a parte de ESPECIALIDADES-->
-    <section class="especialidades__container"> 
+    <section id="specialties" class="especialidades__container"> 
         <div class="especialidades__sub__container">
             <!--Aqui é a parte da Neuroftalmologia, a caixa com fundo azul imagem redonda e parágrafo -->
             <h1 class="titulo titulo__padrao__home">Especialidades</h1>
@@ -124,16 +123,15 @@
     {% endblock specialties %}
 
     {% block history %}
-    <a name="historia"></a>
-    <section class="historia__container">
+    <section id="history" class="historia__container">
         <article class="historia">
             <h1 class="titulo titulo__padrao__home">Nossa história</h1>
-            <p class="texto texto__padrao__home">A nossa história começa em 2023, fundada pelo/a doutor
+            <p class="texto__padrao__home">A nossa história começa em 2023, fundada pelo/a doutor
                 Fabrício , no bairro Belenzinho em São Paulo. O doutor idealizava uma clínica com atendimento
                 humanizado e atento às realidades dos pacientes. Não encontrando isso em outros lugares, decidiu
                 criar sua própria clínica, partindo dos princípios abaixo:
             </p>
-            <ul class="texto texto__padrao__home">
+            <ul class="texto">
                 <li>Atendimento humanizado</li>
                 <li>Melhorias de equipamentos</li>
                 <li>Planejamento da gestão</li>
@@ -143,6 +141,41 @@
         </article>
     </section>
     {% endblock history %}
+    {% block contact %}
+    <section id="contact">
+        <div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.3345108319236!2d-46.60093262571398!3d-23.55642656140893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce594987aded63%3A0xbbff953e0ff625f0!2sSchool%20Senai%20%22Morvan%20Figueiredo%22!5e0!3m2!1sen!2sbr!4v1716991362687!5m2!1sen!2sbr" max-width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="form__container texto">
+            <h2 class="titulo titulo__padrao">Entre em contato conosco</h2>
+            <form class="grid" action="submit">
+                <div class="name texto">
+                    <label for="name">Nome</label>
+                    <input type="text" id="input-contact-name" class="texto">
+                </div>
+
+                <div class="tel texto">
+                    <label for="tel">Telefone</label>
+                    <input type="tel" name="tel" id="input-contact-tel" class="texto">
+                </div>
+
+                <div class="full-width-column texto">
+                    <label for="email">Email</label>
+                    <input type="email" id="input-contact-email" class="texto">
+                </div>
+
+                <div class="full-width-column texto">
+                    <label for="message">Mensagem</label>
+                    <textarea name="message" id="textarea-contact" class="texto" cols="30" rows="10"></textarea>
+                </div>
+
+                <button class="full-width-column texto" id="btn-submit-contact-message">Enviar mensagem</button>
+            </form>
+        </div>
+    </section>
+    {% endblock contact %}
 {% endblock content %}
 
-{% block scripts %}<script src="https://kit.fontawesome.com/c2a3297ec9.js" crossorigin="anonymous"></script>{% endblock scripts %}
+{% block scripts %}
+    <script src="https://kit.fontawesome.com/c2a3297ec9.js" crossorigin="anonymous"></script>
+{% endblock scripts %}

@@ -10,14 +10,15 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.views.generic import CreateView, UpdateView, FormView, DetailView
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.models import Group
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth.views import (
     LoginView, LogoutView,
     )
 from .models import User
+from clientes.models import Cliente
 from .forms import UserAdminCreationForm
-
 
 class IndexView(LoginRequiredMixin, DetailView):
     model = User
@@ -26,24 +27,27 @@ class IndexView(LoginRequiredMixin, DetailView):
     
     def get_object(self):
         return self.request.user
-
+    
+    def get_template_names(self):
+        if self.request.user.is_staff:
+            return ['medicos/perfil.html']
+        return ['accounts/dashboard.html']
 
 class Login(LoginView):
 
     model = User
     template_name = 'accounts/login.html'
-    success_url = reverse_lazy("accounts:index")            
+
+    def get_success_url(self):
+        return reverse_lazy('accounts:index')         
 
 
 class Logout(LogoutView):
-
     template_name = 'accounts/logged_out.html'
 
     def get(self, request, *args, **kwargs):
         auth_logout(request)
         return super().get(request, *args, **kwargs)
-
-
 
 class RegisterView(CreateView):
 
