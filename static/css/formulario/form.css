@@ -49,13 +49,10 @@ section {
 .form-label {
     margin-bottom: -15px;
     font-family: var(--texto);
-<<<<<<< HEAD
     text-transform: uppercase;
-=======
     /* font-weight: bold; */
     /* padding: 0 0 0 1.2rem; */
     font-weight: normal;
->>>>>>> d49a87628a74f9d564401cf5d34e2d9ce00a23d4
 }
 
 .form-button {
