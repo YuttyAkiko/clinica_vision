@@ -7,14 +7,13 @@
 {% endblock head %}
 
 {% block title %}
-    Medicos | {{ block.super }}
+    Meus Horários | {{ block.super }}
 {% endblock %}
 
 {% block accounts_container %}
 <div class="content">
     <div>
-        <h2 class="titulo__padrao">Médicos</h2>
-        <a href="{% url "medicos:medico_cadastro" %}">+ CADASTRAR NOVO MÉDICO</a>
+        <h2 class="titulo__padrao">Horários Disponíveis</h2>
     </div>
 <table class="table table-bordered">
     <thead>
@@ -23,42 +22,41 @@
                 ID
             </th>
             <th>
-                Nome
+                Medico
             </th>
             <th>
-                E-mail
+                Dia
             </th>
             <th>
-                CRM 
+                Horario
             </th>
             <th>
-                Especialidade
-            </th>
-            <th>
-                Telefone
+                Opções
             </th>
         </tr>
     </thead>
     <tbody>
-        {% for medico in object_list %}
+        {% for consulta in object_list %}
         <tr>
             <td>
-                <a href=""># {{ medico.pk }}</a>
+                <a href=""># {{ consulta.pk }}</a>
             </td>
             <td>
-                {{ medico.nome }}
+                {{ consulta.medico }}
             </td>
             <td>
-                {{ medico.email }}
+                {{ consulta.dia|date:"d/m/Y" }}
             </td>
             <td>
-                {{ medico.crm }}
+                {{ consulta.get_horario_display }}
             </td>
             <td>
-                {{ medico.especialidade }}
-            </td>
-            <td>
-                {{ medico.telefone }}
+                <a href="{% url 'medicos:agendar_consulta_atualizar' consulta.id %}" class="text-primary" style="padding-left: 10px; text-decoration: none;">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'medicos:agendar_consulta_deletar' consulta.id %}" class="mr-1 text-danger" style="padding-left: 10px; text-decoration: none;">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
             </td>
         </tr>
         {% endfor %}

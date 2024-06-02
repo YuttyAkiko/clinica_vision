@@ -3,10 +3,8 @@
 {% load static %}
 
 {% block title %}
-  {{ block.super }} | Minha Conta
+  Minha Conta | {{ block.super }}
 {% endblock %}
-
-{% block nav_header %}{% endblock nav_header %}
 
 {% block img %}<img src="{% static 'img/dashboard/perfil_icon/icone_03.png' %}" alt="ícone perfil">{% endblock img %}
 
@@ -45,7 +43,7 @@
       
       {% if request.user.is_staff or request.user.is_superuser %}
           <div class="btn_main">
-              <a href="{% url 'medicos:agenda_lista'%}">
+              <a href="{% url 'medicos:listar_horarios'%}">
                   <img id="centralize" src="{% static 'img/dashboard/icone_calendario.png' %}" alt="ícone ilustrativo agendamento">
                   <h2>horários<br>disponíveis</h2>
               </a>

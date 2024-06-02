@@ -48,15 +48,14 @@
             </li>
             {% endif %} {% endcomment %}
             {% if user.is_authenticated %}
-              {% csrf_token %} 
               <li><a href="{% url 'accounts:index' %}" class="custom_btn_logout">Minha Conta</a></li>
               <li><a href="#" id="button-back" onclick="history.back()" class="custom_btn_logout">Voltar</a></li>
               <form method="post" action="{% url 'accounts:logout' %}" class="navbar-form">
+              {% csrf_token %}                 
               <li><button type="submit" class="custom_btn_logout">Sair</button></li>
               </form>
             {% else %}
             <li><a href="{% url 'accounts:login' %}">Login</a></li>
-            <li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
             {% endif %}
           </ul>
         </nav>

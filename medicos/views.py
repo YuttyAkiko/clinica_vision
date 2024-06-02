@@ -53,6 +53,12 @@ class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
     def get_object(self, queryset=None):
         return get_object_or_404(Medico, user=self.request.user)
         
+class HorariosListView(ListView):
+    model = Agenda
+    login_url = 'accounts:login'
+    template_name = 'medicos/meus_horarios.html'
+    context_object_name = 'agenda'
+
 class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
     model = Consulta
@@ -183,6 +189,7 @@ class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
 perfil = PerfilView.as_view()
 atualizar_cadastro = CadastroUpdateView.as_view()
+horarios_disponiveis = HorariosListView.as_view()
 listar_consultas = ConsultasListView.as_view()
 clientes = ClientesListView.as_view()
 prontuario = ProntuarioDetailView.as_view()

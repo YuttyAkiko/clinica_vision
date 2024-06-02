@@ -7,6 +7,7 @@ urlpatterns = [
     #MEDICO
     path('perfil/', views.perfil, name='medico_perfil'),
     path('meus-dados/', views.atualizar_cadastro, name='atualizar_cadastro'),
+    path('horarios-disponíveis/', views.horarios_disponiveis, name='listar_horarios'),
     path('minha-agenda/', views.listar_consultas, name='listar_consultas'),
     path('pacientes/', views.clientes, name='pacientes'),
     path('pacientes/prontuario/<int:pk>/', views.prontuario, name='prontuario'),

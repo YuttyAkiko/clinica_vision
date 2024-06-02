@@ -1,4 +1,4 @@
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -17,21 +17,15 @@ from django.contrib.auth.views import (
     LoginView, LogoutView,
     )
 from .models import User
-from clientes.models import Cliente
 from .forms import UserAdminCreationForm
 
 class IndexView(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'accounts/dashboard.html'
     login_url = reverse_lazy('accounts:login')
-    
+
     def get_object(self):
         return self.request.user
-    
-    def get_template_names(self):
-        if self.request.user.is_staff:
-            return ['medicos/perfil.html']
-        return ['accounts/dashboard.html']
 
 class Login(LoginView):
 
