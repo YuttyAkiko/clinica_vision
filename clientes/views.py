@@ -45,7 +45,8 @@ class ClienteCreateView(LoginRequiredMixin ,CreateView):
     
     model = Cliente
     template_name = 'clientes/cadastro.html'
-    fields = ['sexo', 'cpf', 'telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio', 'num_carteirinha']
+    fields = ['nome', 'sobrenome', 'cpf', 'sexo', 'cpf', 'telefone', 'cep', 'rua', 'bairro', 
+              'cidade', 'estado', 'convenio', 'num_carteirinha']
     success_url = reverse_lazy('home')
     
     def form_valid(self, form):

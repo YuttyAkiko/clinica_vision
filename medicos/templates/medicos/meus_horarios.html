@@ -31,32 +31,27 @@
                 Horario
             </th>
             <th>
-                Opções
+                Status
             </th>
         </tr>
     </thead>
     <tbody>
-        {% for consulta in object_list %}
+        {% for horario in object_list %}
         <tr>
             <td>
-                <a href=""># {{ consulta.pk }}</a>
+                <a href=""># {{ horario.pk }}</a>
             </td>
             <td>
-                {{ consulta.medico }}
+                {{ horario.medico }}
             </td>
             <td>
-                {{ consulta.dia|date:"d/m/Y" }}
+                {{ horario.dia|date:"d/m/Y" }}
             </td>
             <td>
-                {{ consulta.get_horario_display }}
+                {{ horario.get_horario_display }}
             </td>
             <td>
-                <a href="{% url 'medicos:agendar_consulta_atualizar' consulta.id %}" class="text-primary" style="padding-left: 10px; text-decoration: none;">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <a href="{% url 'medicos:agendar_consulta_deletar' consulta.id %}" class="mr-1 text-danger" style="padding-left: 10px; text-decoration: none;">
-                    <i class="fas fa-trash-alt"></i>
-                </a>
+                <p>Disponível</p>
             </td>
         </tr>
         {% endfor %}

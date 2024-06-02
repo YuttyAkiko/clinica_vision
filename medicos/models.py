@@ -81,3 +81,4 @@ class Agenda(models.Model):
         
     def __str__(self):
         return f'{self.dia.strftime("%b %d %Y")} - {self.get_horario_display()} - {self.medico}'
+    
