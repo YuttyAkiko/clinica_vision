@@ -1,62 +1,61 @@
-{% extends 'medicos/perfil.html' %}
-
+{% extends "base_dash.html" %}
 {% load static %}
 
-{% block title %}
-    Minha Agenda | Clínica Vision
-{% endblock %}       
-
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/dashboard/base_dash.css' %}" media="screen" />
-    <link rel="stylesheet" href="{% static 'css/medico/perfil/minha_agenda.css' %}">
-{% endblock head %} 
+    <link rel="stylesheet" href="{% static "css/formulario/list.css" %}">
+    <link rel="stylesheet" href="{% static "css/dashboard/base_dash.css" %}">
+{% endblock head %}
 
-{% block botoes %}
-<section class="section_minha_agenda">
-    {% block profile-title %}
-        <h1 class="titulo">CONSULTAS FUTURAS</h1>
-    {% endblock profile-title %}
-    
-    {% block accounts_container %}
-    {% endblock accounts_container %}
+{% block title %}
+    Meus Horários | {{ block.super }}
+{% endblock %}
 
-    <div class="container_filter">
-        <form method="GET">
-            <input type="date" name="data_consulta">
-            <button type="submit">FILTRAR</button>
-        </form>
-    </div> 
-
-    <div class="container_consultas">
-        {% if user.is_staff or user.is_superuser %}
-            {% if consultas %}
-                {% for consulta in consultas %}                 
-                    <div class="consulta-item">
-
-                        <p>Paciente: {{ consulta.cliente }}<br>
-                            Prontuário: {{ consulta.cliente.id }}
-                        </p>
-
-                        <p>Especialidade: {{ consulta.agenda.medico.especialidade }}<br>
-                            Médico(a): Dr(a) {{ consulta.agenda.medico }}</p>
-                            
-                        <p>Data: {{ consulta.agenda.dia }}<br>
-                            Hora: {{ consulta.agenda.get_horario_display }}</p>
-
-                        <p>Status: <br> {{consulta.status_cons}}</p>
-
-                        <a href="{% url 'medicos:prontuario' consulta.id %}">
-                            <img src="{% static 'img/icons/prontuario-medico.png' %}" alt="ícone ilustrativo prontuário">
-                        </a>
-
-                    </div>
-                {% endfor %}
-            {% else %}
-                    <h3>Não há consultas agendadas para essa data.</h3>
-            {% endif %}
-        {% endif %}
+{% block accounts_container %}
+<div class="content">
+    <div>
+        <h1 class="titulo">Minha Agenda</h1>
     </div>
-
-</section>
-
-{% endblock botoes %}
+<table class="table table-bordered" id="tabela_agenda">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Medico
+            </th>
+            <th>
+                Dia
+            </th>
+            <th>
+                Horario
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for horario in object_list %}
+        <tr>
+            <td>
+                <a href=""># {{ horario.pk }}</a>
+            </td>
+            <td>
+                {{ horario.medico }}
+            </td>
+            <td>
+                {{ horario.dia|date:"d/m/Y" }}
+            </td>
+            <td>
+                {{ horario.get_horario_display }}
+            </td>
+            <td>
+                <p>Disponível</p>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

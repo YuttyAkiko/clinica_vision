@@ -64,7 +64,7 @@ class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
     model = Consulta
     login_url = 'accounts:login'
-    template_name= 'medicos/minha_agenda.html'
+    template_name= 'medicos/consultas_lista.html'
     context_object_name = 'consultas'
 
     def get_queryset(self):
@@ -80,18 +80,18 @@ class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
         else:
             return consultas
         
-class HorariosListView(ListView):
+class MinhaAgendaListView(ListView):
 
     model = Agenda
     login_url = 'accounts:login'
-    template_name = 'medicos/meus_horarios.html'
+    template_name = 'medicos/minha_agenda.html'
     context_object_name = 'horarios'
 
 class ClientesListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
     model = Consulta
     login_url = 'accounts:login'
-    template_name= 'medicos/prontuario_pacientes.html'
+    template_name= 'medicos/prontuarios_lista.html'
     context_object_name = 'consultas'
 
     def get_queryset(self):
@@ -197,9 +197,9 @@ class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
 perfil = PerfilView.as_view()
 atualizar_cadastro = CadastroUpdateView.as_view()
-horarios_disponiveis = HorariosListView.as_view()
-listar_consultas = ConsultasListView.as_view()
-clientes = ClientesListView.as_view()
+minha_agenda = MinhaAgendaListView.as_view()
+consultas_lista = ConsultasListView.as_view()
+prontuarios_lista = ClientesListView.as_view()
 prontuario = ProntuarioDetailView.as_view()
 
 

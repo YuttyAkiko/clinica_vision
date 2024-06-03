@@ -43,21 +43,21 @@
       
       {% if request.user.is_staff or request.user.is_superuser %}
           <div class="btn_main">
-              <a href="{% url 'medicos:listar_horarios'%}">
+              <a href="{% url 'medicos:minha_agenda'%}">
                   <img src="{% static 'img/dashboard/icone_agenda.png' %}" alt="ícone ilustrativo agendamento">
                   <h2>minha agenda</h2>
               </a>
           </div>
           
           <div class="btn_main">
-              <a href="{% url 'medicos:listar_consultas'%}">
+              <a href="{% url 'medicos:consultas_lista'%}">
                   <img src="{% static 'img/dashboard/icone_calendario.png' %}" alt="ícone perfil funcionário">
                   <h2>consultas</h2>
               </a> 
           </div>
 
           <div class="btn_main">
-              <a href="{% url 'medicos:pacientes'%}">
+              <a href="{% url 'medicos:prontuarios_lista'%}">
                   <img src="{% static 'img/dashboard/icone_paciente.png' %}" alt="ícone perfil paciente">
                   <h2>prontuários</h2>
               </a>
