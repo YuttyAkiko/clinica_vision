@@ -72,10 +72,10 @@ class Consulta(models.Model):
         ('Remarcada', 'Remarcada'),
     )
     status_cons = models.CharField(max_length=10, choices=STATUS_CONSULTA, default=STATUS_CONSULTA)
-    motivo = models.CharField(max_length=199, default='')
-    sintomas = models.TextField(max_length=2000, null=True, blank=True)
-    observacoes = models.TextField(max_length=2000, null=True, blank=True)
-    laudo = models.TextField(max_length=2000, null=True, blank=True)
+    # motivo = models.CharField(max_length=199, null=True, blank=True)
+    # sintomas = models.TextField(max_length=2000, null=True, blank=True)
+    # observacoes = models.TextField(max_length=2000, null=True, blank=True)
+    # laudo = models.TextField(max_length=2000, null=True, blank=True)
     
     class Meta:
         unique_together = ('agenda', 'cliente')
@@ -87,7 +87,20 @@ class Consulta(models.Model):
     class Permissions:
         CAN_DELETE_CONSULTA = 'can_delete_consulta'
 
+class Prontuario(models.Model):
+    consulta = models.OneToOneField(Consulta, on_delete=models.CASCADE, default=0)
+    motivo = models.CharField(max_length=199)
+    sintomas = models.TextField(max_length=2000)
+    observacoes = models.TextField(max_length=2000)
+    laudo = models.TextField(max_length=2000)
+
 class Receita(models.Model):
+    consulta = models.ForeignKey('Consulta', on_delete=models.CASCADE) # Relacionamento (1,n)
+    data = models.DateTimeField(auto_now_add=True)
+    medicamento = models.CharField(max_length=2000, null=True, blank=True)
+    observacoes_receita = models.CharField(max_length=2000, null=True, blank=True)
+
+class Exame(models.Model):
     consulta = models.ForeignKey('Consulta', on_delete=models.CASCADE) # Relacionamento (1,n)
     data = models.DateTimeField(auto_now_add=True)
     L_esf_OD = models.CharField(max_length=30, null=True)
@@ -107,19 +120,40 @@ class Receita(models.Model):
     P_dp_OD = models.CharField(max_length=30, null=True)
     P_dp_OE = models.CharField(max_length=30, null=True)
 
-class Exame(models.Model):
-    id_consulta = models.ForeignKey(Consulta, on_delete=models.CASCADE)
-    tipo_exame = models.CharField(max_length=30)
-    valor_exame = models.FloatField()
-    TIPOS_PAGAMENTO = (
-            ('Convênio','Convênio'),
-            ('Cartão','Cartão'),
-            ('Dinheiro','Dinheiro'),
-            ('Pix','Pix')
-        )
-    tipo_pag_ex = models.CharField(max_length=10, choices=TIPOS_PAGAMENTO)
-    STATUS_PAGAMENTO = (
-            ('Pago','Pago'),
-            ('Pendente', 'Pendente')
-        )
-    status_pag_ex = models.CharField(max_length=10, choices=STATUS_PAGAMENTO) # Select "Yes" ou "No" para o status de pagamento.
+
+# class Receita(models.Model):
+#     consulta = models.ForeignKey('Consulta', on_delete=models.CASCADE) # Relacionamento (1,n)
+#     data = models.DateTimeField(auto_now_add=True)
+#     L_esf_OD = models.CharField(max_length=30, null=True)
+#     L_esf_OE = models.CharField(max_length=30, null=True)
+#     L_cil_OD = models.CharField(max_length=30, null=True)
+#     L_cil_OE = models.CharField(max_length=30, null=True)
+#     L_eixo_OD = models.CharField(max_length=30, null=True)
+#     L_eixo_OE = models.CharField(max_length=30, null=True)
+#     L_dp_OD = models.CharField(max_length=30, null=True)
+#     L_dp_OE = models.CharField(max_length=30, null=True)
+#     P_esf_OD = models.CharField(max_length=30, null=True)
+#     P_esf_OE = models.CharField(max_length=30, null=True)
+#     P_cil_OD = models.CharField(max_length=30, null=True)
+#     P_cil_OE = models.CharField(max_length=30, null=True)
+#     P_eixo_OD = models.CharField(max_length=30, null=True)
+#     P_eixo_OE = models.CharField(max_length=30, null=True)
+#     P_dp_OD = models.CharField(max_length=30, null=True)
+#     P_dp_OE = models.CharField(max_length=30, null=True)
+
+# class Exame(models.Model):
+#     id_consulta = models.ForeignKey(Consulta, on_delete=models.CASCADE)
+#     tipo_exame = models.CharField(max_length=30)
+#     valor_exame = models.FloatField()
+#     TIPOS_PAGAMENTO = (
+#             ('Convênio','Convênio'),
+#             ('Cartão','Cartão'),
+#             ('Dinheiro','Dinheiro'),
+#             ('Pix','Pix')
+#         )
+#     tipo_pag_ex = models.CharField(max_length=10, choices=TIPOS_PAGAMENTO)
+#     STATUS_PAGAMENTO = (
+#             ('Pago','Pago'),
+#             ('Pendente', 'Pendente')
+#         )
+#     status_pag_ex = models.CharField(max_length=10, choices=STATUS_PAGAMENTO) # Select "Yes" ou "No" para o status de pagamento.
