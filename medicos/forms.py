@@ -1,5 +1,6 @@
 from django import forms
 from .models import Medico
+from clientes.models import Consulta, Receita
 
 class Update_Medico_Form(forms.ModelForm):
     class Meta:
@@ -18,4 +19,14 @@ class Update_Medico_Form(forms.ModelForm):
                 field.widget.attrs.update({'maxlength': '40', 'size': '40'})
             if field_name == 'telefone':
                 field.widget.attrs.update({'placeholder': '(00) 0000-0000'})
-            
+
+class Update_Consulta_Form(forms.ModelForm):
+    class Meta:
+        model = Consulta
+        fields = ('agenda','sintomas','observacoes','laudo')
+
+class Update_Receita_Form(forms.ModelForm):
+    class Meta:
+        model = Receita
+        fields = '__all__'
+        
