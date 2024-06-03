@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-    Pacientes | {{ block.super }}
+    Prontuários | Clínica Vision
 {% endblock %}       
 
 {% block head %}
@@ -14,7 +14,8 @@
 {% block botoes %}
 <section class="section_minha_agenda">
     {% block profile-title %}
-        <h1 class="titulo">PACIENTES</h1>
+        <h1 class="titulo">PRONTUÁRIOS</h1>
+        <p>* Prontúarios de pacientes atendidos</p>
     {% endblock profile-title %}
     
     {% block accounts_container %}
@@ -55,7 +56,7 @@
                     </div>
                 {% endfor %}
             {% else %}
-                    <h3>Não há consultas agendadas para essa data.</h3>
+                    <h3>Sem resultados.</h3>
             {% endif %}
         {% endif %}
     </div>
