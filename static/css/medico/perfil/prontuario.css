@@ -98,11 +98,11 @@ table th {
     width: 20%;
 }
 
-#attachments:hover, #save:hover {
+/* #attachments:hover, #save:hover {
     cursor: pointer;
     transform: scale(1.08);
     transition: 200ms;
-}
+} */
 
 hr {
     border-top: 1px solid #000000;
@@ -117,3 +117,26 @@ hr {
     margin-bottom: 30px;
 }
 
+td input, textarea {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+}
+
+textarea {
+    height: 8rem;
+}
+
+textarea:focus, td input:focus {
+    outline: none; /* Remove o outline padrão */
+}
+
+td input {
+    text-align: center;
+}
+
+.buttons img {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+}

@@ -59,6 +59,12 @@ class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+class MinhaAgendaListView(ListView):
+
+    model = Agenda
+    login_url = 'accounts:login'
+    template_name = 'medicos/minha_agenda.html'
+    context_object_name = 'horarios'
     
 class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
@@ -79,13 +85,6 @@ class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
             return consultas
         else:
             return consultas
-        
-class MinhaAgendaListView(ListView):
-
-    model = Agenda
-    login_url = 'accounts:login'
-    template_name = 'medicos/minha_agenda.html'
-    context_object_name = 'horarios'
 
 class ClientesListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 

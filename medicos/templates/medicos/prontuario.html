@@ -48,7 +48,11 @@
         </thead>
         <tbody>
             <tr>
+                {% if consulta.status_cons == "Agendada" %}
+                <td><textarea placeholder="Digitar" rows="5" name="sintomas"></textarea></td>
+                {% else %}
                 <td>{{ consulta.sintomas }}</td>
+                {% endif %}
             </tr>
         </tbody>
     </table>
@@ -61,7 +65,11 @@
         </thead>
         <tbody>
             <tr>
+                {% if consulta.status_cons == "Agendada" %}
+                <td><textarea placeholder="Digitar" rows="5" name="observacoes"></textarea></td>
+                {% else %}
                 <td>{{ consulta.observacoes }}</td>
+                {% endif %}
             </tr>
         </tbody>
 
@@ -73,7 +81,11 @@
             </thead>
             <tbody>
                 <tr>
+                    {% if consulta.status_cons == "Agendada" %}
+                    <td><textarea placeholder="Digitar" rows="5" name="laudo"></textarea></td>
+                    {% else %}
                     <td>{{ consulta.laudo }}</td>
+                    {% endif %}
                 </tr>
             </tbody>
         </table>
@@ -96,17 +108,17 @@
                 </tr>
                 <tr>
                     <td>OD</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" placeholder="0" name="L_ESF_OD"></td>
+                    <td><input type="text" placeholder="0" name="L_CIL_OD"></td>
+                    <td><input type="text" placeholder="0" name="L_EIXO_OD"></td>
+                    <td><input type="text" placeholder="0" name="L_DP_OD"></td>
                 </tr>
                 <tr>
                     <td>OE</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" placeholder="0" name="L_CIL_OE"></td>
+                    <td><input type="text" placeholder="0" name="L_CIL_OE"></td>
+                    <td><input type="text" placeholder="0" name="L_EIXO_OE"></td>
+                    <td><input type="text" placeholder="0" name="L_DP_OE"></td>
                 </tr>
             </tbody>
         </table>
@@ -127,30 +139,32 @@
                 </tr>
                 <tr>
                     <td>OD</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" placeholder="0" name="P_DP_OD"></td>
+                    <td><input type="text" placeholder="0" name="P_CIL_OD"></td>
+                    <td><input type="text" placeholder="0" name="P_EIXO_OD"></td>
+                    <td><input type="text" placeholder="0" name="P_DP_OD"></td>
                 </tr>
                 <tr>
                     <td>OE</td>
 
 
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" placeholder="0" name="P_DP_OE"></td>
+                    <td><input type="text" placeholder="0" name="P_CIL_OE"></td>
+                    <td><input type="text" placeholder="0" name="P_EIXO_OE"></td>
+                    <td><input type="text" placeholder="0" name="P_DP_OE"></td>
                 </tr>
             </tbody>
         </table>
 
-        {% comment %} <hr size="5" width="80%" color="black" noshade>
+        {% if consulta.status_cons == "Agendada" %}
+        <hr size="5" width="80%" color="black" noshade>
 
         <div class="buttons">
-            <label for="file">Adicionar documentos: </label>
-            <input type="file" id="attachments" name="file" value="ANEXAR">
+            <label for="file">Imprimir receita </label>
+            <a href="#"><img src="{% static 'img/icons/impressora.png' %}"></a>
             <input type="submit" id="save" value="SALVAR">
-        </div> {% endcomment %}
+        </div>
+        {% endif %}
 </main>
 
 {% endblock container %}
