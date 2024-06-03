@@ -1,6 +1,7 @@
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.utils.decorators import method_decorator
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.db.models.query_utils import Q
@@ -9,7 +10,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
-from django.views.generic import CreateView, UpdateView, FormView, DetailView
+from django.views.generic import CreateView, UpdateView, FormView, DetailView, View
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import Group
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -20,33 +21,30 @@ from django.contrib.auth.views import (
 from .models import User
 from .forms import UserAdminCreationForm
 
-
 @login_required
-def redirecionar_usuario(request):
+def redirect_user_function(request: HttpRequest) -> HttpResponse:
     if request.user.is_authenticated:
         if request.user.is_staff:
-            return redirect('medicos:medico_perfil')    
+            return reverse('medicos:medico_perfil')
+        else:
+            return reverse('clientes:cliente_perfil') 
     else:
         # Se o usuário não estiver autenticado, redirecione para a página de login
-        return redirect('accounts:login')
+        return reverse('accounts:login')
 
-# class IndexView(LoginRequiredMixin, DetailView):
 
-#     model = User
-#     template_name = 'accounts/dashboard.html'
-#     login_url = reverse_lazy('accounts:login')
-
-#     def get_object(self):
-#         return self.request.user
+class RedirectUserView(View):
+    @method_decorator(login_required)
+    def get(self, request: HttpRequest) -> HttpResponse:
+        return redirect(redirect_user_function(request))
 
 class Login(LoginView):
-
-    model = User
+    
     template_name = 'accounts/login.html'
 
     def get_success_url(self):
-        return reverse_lazy('accounts:index')         
-
+        return reverse('accounts:redirect_user')  
+    
 class Logout(LogoutView):
     template_name = 'accounts/logged_out.html'
 
@@ -143,4 +141,4 @@ logout = Logout.as_view()
 register = RegisterView.as_view()
 update_user = UpdateUserView.as_view()
 update_password = UpdatePasswordView.as_view()
-redirect = redirecionar_usuario
+redirect_user = RedirectUserView.as_view()
