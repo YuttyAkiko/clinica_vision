@@ -5,10 +5,13 @@ from django.db import IntegrityError
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Cliente, Consulta
+from medicos.models import Medico, Agenda, Especialidade
 from django.shortcuts import render, redirect, get_object_or_404
+from .forms import ConsultaForm
+from django.http import JsonResponse
 
 class ClienteCreateView(LoginRequiredMixin ,CreateView):
-    
+
     model = Cliente
     template_name = 'clientes/cadastro.html'
     fields = ['sexo', 'cpf', 'telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio', 'num_carteirinha']
@@ -36,9 +39,53 @@ class ClienteUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-        
 
 class ConsultaCreateView(LoginRequiredMixin, CreateView):
+    model = Consulta
+    form_class = ConsultaForm
+    login_url = 'accounts:login'
+    template_name = 'clientes/cadastro.html'
+    success_url = reverse_lazy('clientes:consulta_lista')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        if self.request.method == 'POST':
+            especialidade_id = self.request.POST.get('especialidade')
+            if especialidade_id:
+                form.fields['medico'].queryset = Medico.objects.filter(especialidade_id=especialidade_id).order_by('nome')
+                
+            medico_id = self.request.POST.get('medico')
+            if medico_id:
+                form.fields['agenda'].queryset = Agenda.objects.filter(medico_id=medico_id).order_by('dia', 'horario')
+        else:
+            # Se for uma solicitação GET, fornecer as opções de especialidades
+            especialidades = Especialidade.objects.all()
+            form.fields['especialidade'].queryset = especialidades
+        return form
+
+    def form_valid(self, form):
+        try:
+            data_agenda = form.cleaned_data['data_agenda']
+            hora_agenda = form.cleaned_data['hora_agenda']
+            form.instance.agenda = Agenda.objects.get_or_create(medico=form.cleaned_data['medico'], dia=data_agenda, horario=hora_agenda)[0]
+            form.instance.cliente = Cliente.objects.get(user=self.request.user)
+            return super().form_valid(form)
+        except IntegrityError as e:
+            if 'UNIQUE constraint failed' in e.args[0]:
+                messages.warning(self.request, 'Você não pode marcar esta consulta')
+                return HttpResponseRedirect(reverse_lazy('clientes:consulta_create'))
+        except Cliente.DoesNotExist:
+            messages.warning(self.request, 'Complete seu cadastro')
+            return HttpResponseRedirect(reverse_lazy('clientes:cliente_cadastro'))
+        messages.info(self.request, 'Consulta marcada com sucesso!')
+        return HttpResponseRedirect(self.success_url)
+    
+def get_medicos_by_especialidade(request):
+        especialidade_id = request.GET.get('especialidade_id')
+        medicos = Medico.objects.filter(especialidade_id=especialidade_id).values('id', 'nome')
+        return JsonResponse({'medicos': list(medicos)})
+    
+""" class ConsultaCreateView(LoginRequiredMixin, CreateView):
 
     model = Consulta
     login_url = 'accounts:login'
@@ -58,7 +105,7 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
             messages.warning(self.request, 'Complete seu cadastro')
             return HttpResponseRedirect(reverse_lazy('clientes:cliente_cadastro'))
         messages.info(self.request, 'Consulta marcada com sucesso!')
-        return HttpResponseRedirect(reverse_lazy('clientes:consulta_lista'))
+        return HttpResponseRedirect(reverse_lazy('clientes:consulta_lista')) """
     
 class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
 

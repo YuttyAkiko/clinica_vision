@@ -5,6 +5,27 @@
 {% block head %}
     <link rel="stylesheet" href="{% static "css/formulario/form.css" %}">
     <link rel="stylesheet" href="{% static "css/dashboard/base_dash.css" %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          $('#id_especialidade').change(function() {
+              var especialidadeId = $(this).val();
+              $.ajax({
+                  url: '{% url "clientes:get_medicos_by_especialidade" %}',
+                  data: {
+                      'especialidade_id': especialidadeId
+                  },
+                  dataType: 'json',
+                  success: function(data) {
+                      $('#id_medico').empty();
+                      $.each(data.medicos, function(key, value) {
+                          $('#id_medico').append($('<option></option>').attr('value', value.id).text(value.nome));
+                      });
+                  }
+              });
+          });
+      });
+  </script>
 {% endblock head %}
 
 {% block title %}

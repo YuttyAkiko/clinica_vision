@@ -10,4 +10,5 @@ urlpatterns = [
     path('consultas/criar/', views.consulta_cadastro, name='consulta_create'),
     path('consultas/editar/<int:pk>/', views.consulta_atualizar, name='consulta_update'),
     path('consultas/excluir/<int:pk>/', views.consulta_excluir, name='consulta_delete'),
+    path('get_medicos_by_especialidade/', views.get_medicos_by_especialidade, name='get_medicos_by_especialidade'),
 ]
