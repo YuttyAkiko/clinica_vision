@@ -1,4 +1,5 @@
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -19,13 +20,24 @@ from django.contrib.auth.views import (
 from .models import User
 from .forms import UserAdminCreationForm
 
-class IndexView(LoginRequiredMixin, DetailView):
-    model = User
-    template_name = 'accounts/dashboard.html'
-    login_url = reverse_lazy('accounts:login')
 
-    def get_object(self):
-        return self.request.user
+@login_required
+def redirecionar_usuario(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return redirect('medicos:medico_perfil')    
+    else:
+        # Se o usuário não estiver autenticado, redirecione para a página de login
+        return redirect('accounts:login')
+
+# class IndexView(LoginRequiredMixin, DetailView):
+
+#     model = User
+#     template_name = 'accounts/dashboard.html'
+#     login_url = reverse_lazy('accounts:login')
+
+#     def get_object(self):
+#         return self.request.user
 
 class Login(LoginView):
 
@@ -34,7 +46,6 @@ class Login(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('accounts:index')         
-
 
 class Logout(LogoutView):
     template_name = 'accounts/logged_out.html'
@@ -132,4 +143,4 @@ logout = Logout.as_view()
 register = RegisterView.as_view()
 update_user = UpdateUserView.as_view()
 update_password = UpdatePasswordView.as_view()
-index = IndexView.as_view()
+redirect = redirecionar_usuario
