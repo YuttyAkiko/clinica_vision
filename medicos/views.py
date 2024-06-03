@@ -39,21 +39,27 @@ class PerfilView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
             return super().get(request, *args, **kwargs)
         except Http404:
             return TestMixinIsAdmin.handle_no_permission(self)
-    
+        
 class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
 
     model = Medico
-    login_url = 'accounts:login'
-    form_class = Update_Medico_Form
-    template_name = 'medicos/atualizar_dados.html'
+    login_url = reverse_lazy('accounts:login')
+    template_name = 'accounts/update_user.html'
+    fields = ['crm', 'telefone']
+    success_url = reverse_lazy('accounts:index')
 
-    def get_success_url(self):
-        return reverse_lazy('medicos:medico_perfil')
-
-    def get_object(self, queryset=None):
-        return get_object_or_404(Medico, user=self.request.user)
+    def get_object(self):
+        user = self.request.user
+        try:
+            return Cliente.objects.get(user=user)
+        except Cliente.DoesNotExist:
+            return None
         
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
+    
 class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
     model = Consulta
