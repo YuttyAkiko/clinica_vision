@@ -5,7 +5,6 @@ from medicos.models import Medico, Especialidade, Agenda
 class ConsultaForm(forms.ModelForm):
     especialidade = forms.ModelChoiceField(queryset=Especialidade.objects.all(), required=True)
     medico = forms.ModelChoiceField(queryset=Medico.objects.none(), required=True)
-    agenda = forms.ModelChoiceField(queryset=Agenda.objects.none(), required=True)
     data_agenda = forms.DateField(label='Data', widget=forms.DateInput(attrs={'type': 'date'}))
     hora_agenda = forms.TimeField(label='Hora', widget=forms.TimeInput(attrs={'type': 'time'}))
 
