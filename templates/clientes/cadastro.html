@@ -6,26 +6,6 @@
     <link rel="stylesheet" href="{% static "css/formulario/form.css" %}">
     <link rel="stylesheet" href="{% static "css/dashboard/base_dash.css" %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(function() {
-          $('#id_especialidade').change(function() {
-              var especialidadeId = $(this).val();
-              $.ajax({
-                  url: '{% url "clientes:get_medicos_by_especialidade" %}',
-                  data: {
-                      'especialidade_id': especialidadeId
-                  },
-                  dataType: 'json',
-                  success: function(data) {
-                      $('#id_medico').empty();
-                      $.each(data.medicos, function(key, value) {
-                          $('#id_medico').append($('<option></option>').attr('value', value.id).text(value.nome));
-                      });
-                  }
-              });
-          });
-      });
-  </script>
 {% endblock head %}
 
 {% block title %}
@@ -48,23 +28,91 @@
             <fieldset>
                 {% for field in form %}
                 <div class="form-group{% if field.errors %} has-error{% endif %}">
-                  <label for="{{ field.auto_id }}" class="col-md-3 control-label">
-                  {{ field.label }}</label>
-                  <div class="col-md-9">
+                <label for="{{ field.auto_id }}" class="col-md-3 control-label">
+                {{ field.label }}</label>
+                <div class="col-md-9">
                     {% render_field field class="form-control" %}
                     {% for error in field.errors %}
                     <span class="help-block">{{ error }}</span>
                     {% endfor %}
-                  </div>
+                </div>
                 </div>
                 {% endfor %}
                 <div class="form-group">
-                  <div class="col-md-9 col-md-offset-3">
+                <div class="col-md-9 col-md-offset-3">
                     <button type="submit" class="btn btn-primary">Salvar</button>
-                  </div>
+                </div>
                 </div>
             </fieldset>
         </form>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $("#id_especialidade").change(function() {
+                var especialidadeId = $(this).val();
+                if (especialidadeId) {
+                    $.ajax({
+                        url: "{% url 'clientes:ajax_get_medicos' %}",
+                        data: {
+                            'especialidade_id': especialidadeId
+                        },
+                        success: function(data) {
+                            $("#id_medico").html('<option value="">---------</option>');
+                            $.each(data.medicos, function(key, value) {
+                                $("#id_medico").append('<option value="' + value.id + '">' + value.nome + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $("#id_medico").html('<option value="">---------</option>');
+                }
+                $("#id_dia").html('<option value="">---------</option>');
+                $("#id_horario").html('<option value="">---------</option>');
+            });
+
+            $("#id_medico").change(function() {
+                var medicoId = $(this).val();
+                if (medicoId) {
+                    $.ajax({
+                        url: "{% url 'clientes:ajax_get_dias' %}",
+                        data: {
+                            'medico_id': medicoId
+                        },
+                        success: function(data) {
+                            $("#id_dia").html('<option value="">---------</option>');
+                            $.each(data.dias, function(key, value) {
+                                $("#id_dia").append('<option value="' + value.dia + '">' + value.dia + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $("#id_dia").html('<option value="">---------</option>');
+                    $("#id_horario").html('<option value="">---------</option>');
+                }
+            });
+
+            $("#id_dia").change(function() {
+                var dia = $(this).val();
+                var medicoId = $("#id_medico").val();
+                if (dia && medicoId) {
+                    $.ajax({
+                        url: "{% url 'clientes:ajax_get_horarios' %}",
+                        data: {
+                            'dia': dia,
+                            'medico_id': medicoId
+                        },
+                        success: function(data) {
+                            $("#id_horario").html('<option value="">---------</option>');
+                            $.each(data.horarios, function(key, value) {
+                                $("#id_horario").append('<option value="' + value.horario + '">' + value.horario + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $("#id_horario").html('<option value="">---------</option>');
+                }
+            });
+        });
+        </script>
     </div>
 </div>
 {% endblock %}

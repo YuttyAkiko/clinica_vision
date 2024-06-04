@@ -38,7 +38,7 @@ class Medico(models.Model):
 
 def validar_dia(value):
     today = date.today()
-    weekday = date.fromisoformat(f'{value}').weekday()
+    weekday = date.fromisoformat(str(value)).weekday()
 
     if value < today:
         raise ValidationError('Não é possivel escolher um data atrasada.')

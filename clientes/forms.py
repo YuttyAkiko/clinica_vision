@@ -1,16 +1,16 @@
 from django import forms
-from clientes.models import Consulta
-from medicos.models import Medico, Especialidade, Agenda
+from .models import Consulta
+from medicos.models import Medico, Agenda, Especialidade
 
 class ConsultaForm(forms.ModelForm):
     especialidade = forms.ModelChoiceField(queryset=Especialidade.objects.all(), required=True)
     medico = forms.ModelChoiceField(queryset=Medico.objects.none(), required=True)
-    data_agenda = forms.DateField(label='Data', widget=forms.DateInput(attrs={'type': 'date'}))
-    hora_agenda = forms.TimeField(label='Hora', widget=forms.TimeInput(attrs={'type': 'time'}))
+    dia = forms.ModelChoiceField(queryset=Agenda.objects.none(), required=True, label="Dia")
+    horario = forms.ChoiceField(choices=[], required=True, label="Horário")
 
     class Meta:
         model = Consulta
-        fields = ['especialidade', 'medico', 'data_agenda', 'hora_agenda', 'tipo_pag_cons']
+        fields = ['especialidade', 'medico', 'dia', 'horario']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -21,13 +21,27 @@ class ConsultaForm(forms.ModelForm):
             except (ValueError, TypeError):
                 pass
         elif self.instance.pk:
-            self.fields['medico'].queryset = self.instance.agenda.medico.especialidade.medicos.order_by('nome')
+            self.fields['medico'].queryset = self.instance.especialidade.medico_set.order_by('nome')
 
         if 'medico' in self.data:
             try:
                 medico_id = int(self.data.get('medico'))
-                self.fields['agenda'].queryset = Agenda.objects.filter(medico_id=medico_id).order_by('dia', 'horario')
+                self.fields['dia'].queryset = Agenda.objects.filter(medico_id=medico_id).values('dia').distinct().order_by('dia')
             except (ValueError, TypeError):
                 pass
         elif self.instance.pk:
-            self.fields['agenda'].queryset = self.instance.agenda.medico.agenda.order_by('dia', 'horario')
+            self.fields['dia'].queryset = self.instance.medico.agenda_set.values('dia').distinct().order_by('dia')
+
+        if 'dia' in self.data:
+            try:
+                dia = self.data.get('dia')
+                medico_id = int(self.data.get('medico'))
+                agendas = Agenda.objects.filter(medico_id=medico_id, dia=dia)
+                self.fields['horario'].choices = [(agenda.horario, agenda.get_horario_display()) for agenda in agendas]
+            except (ValueError, TypeError):
+                pass
+        elif self.instance.pk:
+            agendas = Agenda.objects.filter(medico=self.instance.medico, dia=self.instance.dia)
+            self.fields['horario'].choices = [(agenda.horario, agenda.get_horario_display()) for agenda in agendas]
+        else:
+            self.fields['horario'].choices = []
