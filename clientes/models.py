@@ -94,33 +94,6 @@ class Prontuario(models.Model):
     observacoes = models.TextField(max_length=2000)
     laudo = models.TextField(max_length=2000)
 
-class Receita(models.Model):
-    consulta = models.ForeignKey('Consulta', on_delete=models.CASCADE) # Relacionamento (1,n)
-    data = models.DateTimeField(auto_now_add=True)
-    medicamento = models.CharField(max_length=2000, null=True, blank=True)
-    observacoes_receita = models.CharField(max_length=2000, null=True, blank=True)
-
-class Exame(models.Model):
-    consulta = models.ForeignKey('Consulta', on_delete=models.CASCADE) # Relacionamento (1,n)
-    data = models.DateTimeField(auto_now_add=True)
-    L_esf_OD = models.CharField(max_length=30, null=True)
-    L_esf_OE = models.CharField(max_length=30, null=True)
-    L_cil_OD = models.CharField(max_length=30, null=True)
-    L_cil_OE = models.CharField(max_length=30, null=True)
-    L_eixo_OD = models.CharField(max_length=30, null=True)
-    L_eixo_OE = models.CharField(max_length=30, null=True)
-    L_dp_OD = models.CharField(max_length=30, null=True)
-    L_dp_OE = models.CharField(max_length=30, null=True)
-    P_esf_OD = models.CharField(max_length=30, null=True)
-    P_esf_OE = models.CharField(max_length=30, null=True)
-    P_cil_OD = models.CharField(max_length=30, null=True)
-    P_cil_OE = models.CharField(max_length=30, null=True)
-    P_eixo_OD = models.CharField(max_length=30, null=True)
-    P_eixo_OE = models.CharField(max_length=30, null=True)
-    P_dp_OD = models.CharField(max_length=30, null=True)
-    P_dp_OE = models.CharField(max_length=30, null=True)
-
-
 # class Receita(models.Model):
 #     consulta = models.ForeignKey('Consulta', on_delete=models.CASCADE) # Relacionamento (1,n)
 #     data = models.DateTimeField(auto_now_add=True)

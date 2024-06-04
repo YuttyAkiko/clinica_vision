@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Convenio, Cliente, Consulta, Receita, Exame, Prontuario
+from .models import Convenio, Cliente, Consulta, Prontuario
 
     
 class ClientAdmin(admin.ModelAdmin):
@@ -18,5 +18,3 @@ admin.site.register(Consulta, ConsultaAdmin)
 
 admin.site.register(Convenio)
 admin.site.register(Prontuario)
-admin.site.register(Receita)
-admin.site.register(Exame)
