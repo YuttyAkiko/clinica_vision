@@ -41,7 +41,7 @@
       
       {% if request.user.is_staff or request.user.is_superuser %}
           <div class="btn_main">
-              <a href="{% url 'medicos:minha_agenda'%}">
+              <a href="{% url 'medicos:minha_agenda' %}">
                   <img src="{% static 'img/dashboard/icone_agenda.png' %}" alt="ícone ilustrativo agendamento">
                   <h2>minha agenda</h2>
               </a>

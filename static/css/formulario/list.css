@@ -18,3 +18,8 @@
 #tabela_agenda {
   margin-top: 30px;
 }
+
+#tabela_agenda p {
+  font-weight: 600;
+  color: var(--verde);
+}

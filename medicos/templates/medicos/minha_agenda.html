@@ -13,7 +13,7 @@
 {% block accounts_container %}
 <div class="content">
     <div>
-        <h1 class="titulo">Minha Agenda</h1>
+        <h1 class="titulo">Horários Disponíveis</h1>
     </div>
 <table class="table table-bordered" id="tabela_agenda">
     <thead>
@@ -36,7 +36,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for horario in object_list %}
+        {% for horario in horarios_disponiveis %}
         <tr>
             <td>
                 <a href=""># {{ horario.pk }}</a>
@@ -58,4 +58,5 @@
     </tbody>
 </table>
 </div>
+
 {% endblock %}
