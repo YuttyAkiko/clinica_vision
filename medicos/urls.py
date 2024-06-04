@@ -10,6 +10,7 @@ urlpatterns = [
     path('minha-agenda/', views.minha_agenda, name='minha_agenda'),
     path('consultas/', views.consultas_lista, name='consultas_lista'),
     path('prontuarios/', views.prontuarios_lista, name='prontuarios_lista'),
+    path('prontuarios/add/<int:pk>/', views.prontuario_add, name='prontuario_add'),
     path('prontuarios/<int:pk>/', views.prontuario, name='prontuario'),
 
     # ADMIN

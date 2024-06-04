@@ -1,6 +1,6 @@
 from django import forms
 from .models import Medico
-from clientes.models import Consulta, Receita
+from clientes.models import Consulta, Receita, Prontuario
 
 class Update_Medico_Form(forms.ModelForm):
     class Meta:
@@ -20,13 +20,18 @@ class Update_Medico_Form(forms.ModelForm):
             if field_name == 'telefone':
                 field.widget.attrs.update({'placeholder': '(00) 0000-0000'})
 
-class Update_Consulta_Form(forms.ModelForm):
-    class Meta:
-        model = Consulta
-        fields = ('agenda','sintomas','observacoes','laudo')
+class CreateConsultaForm(forms.ModelForm):
 
-class Update_Receita_Form(forms.ModelForm):
     class Meta:
-        model = Receita
-        fields = '__all__'
-        
+        model = Prontuario
+        fields = ('motivo','sintomas','observacoes','laudo')
+
+# class UpdateReceitaForm(forms.ModelForm):
+
+#     class Meta:
+#         model = Receita
+#         fields = ('medicamento','observacoes_receita')
+
+#     def form_valid(self, form):
+#         form.save()  # Salvar os dados do formulário no banco de dados
+#         return super().form_valid(form)

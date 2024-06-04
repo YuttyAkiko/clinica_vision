@@ -1,0 +1,122 @@
+{% extends 'base.html'%}
+
+{% load static %}
+
+{% block title %}
+    Prontuário | {{ block.super }}
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/dashboard/base_dash.css' %}" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/medico/perfil/prontuario.css' %}">
+{% endblock head %} 
+
+{% block nav_header %}{% endblock nav_header %}
+
+{% block container %}
+
+<main>
+    <form method="post">
+        {% csrf_token %}
+        <div class="new-medical-record">
+            <img src="{% static 'img/icons/prontuario-medico.png' %}" alt="ícone ilustrativo prontuário">
+            <div>
+                <p>{{ form.consulta.value }}</p> {% comment %} campo oculto para validacao do formulario {% endcomment %}
+                <p>Data da Consulta: {{ consulta.agenda.dia }}</p>
+                <p>Hora: {{ consulta.agenda.get_horario_display }}</p>
+                <p>Prontuário: {{ consulta.cliente.id }}</p>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome do paciente</th>
+                    <th>Data de nascimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="name">{{ consulta.cliente }}</td>
+                    <td id="birth">{{ consulta.cliente.data_nasc }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="motivo">
+            <thead>
+                <tr>
+                    <th>Motivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ form.motivo }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="sintomas">
+            <thead>
+                <tr>
+                    <th>Sintomas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ form.sintomas }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="observacoes">
+            <thead>
+                <tr>
+                    <th>Observações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ form.observacoes }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="laudo">
+            <thead>
+                <tr>
+                    <th>Diagnóstico</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ form.laudo }}</td>
+                </tr>
+            </tbody>
+        </table>
+    
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            <strong>Ocorreram os seguintes erros:</strong>
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ field|title }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <hr size="5" width="80%" color="black" noshade>
+
+        <div class="buttons">
+            <input type="submit" id="save" value="SALVAR">
+        </div>
+    </form>
+</main>
+
+{% endblock container %}
+
+
+    

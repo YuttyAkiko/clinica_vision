@@ -1,4 +1,4 @@
-main, #form_prontuario {
+main, form {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -129,10 +129,6 @@ textarea {
 
 textarea:focus, td input:focus {
     outline: none; /* Remove o outline padrão */
-}
-
-td input {
-    text-align: center;
 }
 
 .buttons img {

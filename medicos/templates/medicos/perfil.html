@@ -10,12 +10,10 @@
 
 {% block botoes %}
 <section class="right_menu">
+
   {% block profile-title %}
       <h1 class="titulo">O QUE VOCÊ DESEJA ACESSAR?</h1>
   {% endblock profile-title %}
-
-  {% block accounts_container %}
-  {% endblock accounts_container %}
 
   <div class="botoes">
       <div class="btn_main">
@@ -63,13 +61,7 @@
               </a>
           </div>
       {% endif %}
-
-      {% comment %} <div class="btn_main">
-          <a href="#">
-              <img src="{% static 'img/dashboard/icone_clinica.png' %}" alt="ícone ilustrativo clínica">
-              <h2>DADOS DA<br>CLÍNICA</h2>
-          </a>
-      </div> {% endcomment %}
   </div>
+
 </section>
 {% endblock botoes %}

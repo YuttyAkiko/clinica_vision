@@ -1,5 +1,4 @@
 from django.db.models.base import Model as Model
-from django.core.exceptions import PermissionDenied
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
@@ -7,8 +6,8 @@ from django.http import Http404
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Medico, Agenda, Especialidade
-from .forms import Update_Medico_Form, Update_Consulta_Form, Update_Receita_Form
-from clientes.models import Consulta, Cliente, Receita
+from .forms import CreateConsultaForm
+from clientes.models import Consulta, Cliente, Prontuario
 from datetime import datetime
 
 class TestMixinIsAdmin(UserPassesTestMixin):
@@ -66,88 +65,107 @@ class MinhaAgendaListView(ListView):
     template_name = 'medicos/minha_agenda.html'
     context_object_name = 'horarios'
 
-class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
-
-    model = Consulta
-    login_url = 'accounts:login'
-    template_name= 'medicos/consultas_lista.html'
-    context_object_name = 'consultas'
-
-    def get_queryset(self):
-        medico = get_object_or_404(Medico, user=self.request.user)
-        agendas = Agenda.objects.filter(medico=medico.pk)
-        consultas = Consulta.objects.filter(agenda__in=agendas, status_cons="Agendada")
-
-        data_consulta = self.request.GET.get('data_consulta')
-        if data_consulta:
-            data_consulta = datetime.strptime(data_consulta, '%Y-%m-%d').date()
-            consultas = consultas.filter(agenda__dia=data_consulta)
-            return consultas
-        else:
-            return consultas
-
-class ClientesListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
-
-    model = Consulta
-    login_url = 'accounts:login'
-    template_name= 'medicos/prontuarios_lista.html'
-    context_object_name = 'consultas'
-
-    def get_queryset(self):
-        medico = get_object_or_404(Medico, user=self.request.user)
-        agendas = Agenda.objects.filter(medico=medico.pk)
-        consultas = Consulta.objects.filter(agenda__in=agendas, status_cons="Concluída")
-
-        data_consulta = self.request.GET.get('data_consulta')
-        if data_consulta:
-            data_consulta = datetime.strptime(data_consulta, '%Y-%m-%d').date()
-            consultas = consultas.filter(agenda__dia=data_consulta)
-            return consultas
-        else:
-            return consultas
-        
-# class ProntuarioDetailView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
+# class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
 #     model = Consulta
 #     login_url = 'accounts:login'
-#     template_name = 'medicos/prontuario.html'
-#     context_object_name = 'consulta'
-    
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         # consulta = self.get_object()
-#         # context['receita'] = get_object_or_404(Receita, consulta=consulta)
-#         return context
-    
-class ProntuarioCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
+#     template_name= 'medicos/consultas_lista.html'
+#     context_object_name = 'consultas'
+
+#     def get_queryset(self):
+#         medico = get_object_or_404(Medico, user=self.request.user)
+#         agendas = Agenda.objects.filter(medico=medico.pk)
+#         consultas = Consulta.objects.filter(agenda__in=agendas, status_cons="Agendada")
+
+#         data_consulta = self.request.GET.get('data_consulta')
+#         if data_consulta:
+#             data_consulta = datetime.strptime(data_consulta, '%Y-%m-%d').date()
+#             consultas = consultas.filter(agenda__dia=data_consulta)
+#             return consultas
+#         else:
+#             return consultas
+
+# class ClientesListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
+
+#     model = Consulta
+#     login_url = 'accounts:login'
+#     template_name= 'medicos/prontuarios_lista.html'
+#     context_object_name = 'consultas'
+
+#     def get_queryset(self):
+#         medico = get_object_or_404(Medico, user=self.request.user)
+#         agendas = Agenda.objects.filter(medico=medico.pk)
+#         consultas = Consulta.objects.filter(agenda__in=agendas, status_cons="Concluída")
+
+#         data_consulta = self.request.GET.get('data_consulta')
+#         if data_consulta:
+#             data_consulta = datetime.strptime(data_consulta, '%Y-%m-%d').date()
+#             consultas = consultas.filter(agenda__dia=data_consulta)
+#             return consultas
+#         else:
+#             return consultas
+
+class BaseConsultasListView(ListView):
 
     model = Consulta
-    login_url= 'accounts:login'
-    template_name = 'medicos/prontuario.html'
-    success_url = reverse_lazy('medicos:consultas_lista')
-    form_consulta = Update_Consulta_Form
-    form_receita = Update_Receita_Form
-    fields = ['agenda','sintomas', 'observacoes', 'laudo']
+    login_url = 'accounts:login'
+    template_name = None
+    context_object_name = 'consultas'
+    status_cons_filter = None
+
+    def get_queryset(self):
+        medico = get_object_or_404(Medico, user=self.request.user)
+        agendas = Agenda.objects.filter(medico=medico.pk)
+        consultas = Consulta.objects.filter(agenda__in=agendas, status_cons=self.status_cons_filter)
+
+        data_consulta = self.request.GET.get('data_consulta')
+        if data_consulta:
+            data_consulta = datetime.strptime(data_consulta, '%Y-%m-%d').date()
+            consultas = consultas.filter(agenda__dia=data_consulta)
+            return consultas
+        else:
+            return consultas
+    
+class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, BaseConsultasListView):
+    template_name = 'medicos/consultas_lista.html'
+    status_cons_filter = "Agendada"
+
+class ProntuarioListView(LoginRequiredMixin, TestMixinIsAdmin, BaseConsultasListView):
+    template_name = 'medicos/prontuarios_lista.html'
+    status_cons_filter = "Concluída"
+
+class CreateProntuarioView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
+
+    model = Prontuario
+    login_url = 'accounts:login'
+    template_name = 'medicos/prontuario_add.html'
+    form_class = CreateConsultaForm
+    success_url = reverse_lazy('medicos:medico_perfil')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['consulta'] = self.get_consulta()
-        context['form_consulta'] = self.form_consulta()
-        context['form_receita'] = self.form_receita()
+        context['consulta'] = get_object_or_404(Consulta, pk= self.kwargs['pk'])
         return context
     
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        consulta = self.get_consulta()
-        receita = Receita.objects.create(consulta=consulta)
+        consulta = get_object_or_404(Consulta, pk=self.kwargs['pk'])
+        form.instance.consulta = consulta # adiciona o id da consulta na tabela de prontuario
+        consulta.status_cons = "Concluída" # atualiza o status da consulta como concluida
+        consulta.save()
         return super().form_valid(form)
     
-    def get_consulta(self):
-        consulta_id = self.kwargs.get('pk')  
-        consulta = get_object_or_404(Consulta, pk=consulta_id)
-        return consulta
+class ProntuarioDetailView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
+    
+    model = Consulta
+    login_url = 'accounts:login'
+    template_name = 'medicos/prontuario.html'
 
-  
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        prontuario = get_object_or_404(Prontuario, consulta_id=self.get_object().pk)
+        context['prontuario'] = prontuario
+        return context
+
 # VIEWS - PERFIL ADMIN
 
 class MedicoCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
@@ -229,8 +247,9 @@ perfil = PerfilView.as_view()
 atualizar_cadastro = CadastroUpdateView.as_view()
 minha_agenda = MinhaAgendaListView.as_view()
 consultas_lista = ConsultasListView.as_view()
-prontuarios_lista = ClientesListView.as_view()
-prontuario = ProntuarioCreateView.as_view()
+prontuarios_lista = ProntuarioListView.as_view()
+prontuario_add = CreateProntuarioView.as_view()
+prontuario = ProntuarioDetailView.as_view()
 
 
 medico_cadastro = MedicoCreateView.as_view()

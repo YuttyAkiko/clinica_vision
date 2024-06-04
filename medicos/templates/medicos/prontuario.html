@@ -17,10 +17,10 @@
 
 <main>
     <div class="new-medical-record">
-            <img src="{% static 'img/icons/prontuario-medico.png' %}" alt="ícone ilustrativo prontuário">
+        <img src="{% static 'img/icons/prontuario-medico.png' %}" alt="ícone ilustrativo prontuário">
         <div>
             <p>Data da Consulta: {{ consulta.agenda.dia }}</p>
-            <p>Hora: {{ consulta.agenda.get_horario_display }} </p>
+            <p>Hora: {{ consulta.agenda.get_horario_display }}</p>
             <p>Prontuário: {{ consulta.cliente.id }}</p>
         </div>
     </div>
@@ -39,135 +39,58 @@
             </tr>
         </tbody>
     </table>
-    <form id="form_prontuario" method="POST">
-        {% csrf_token %}
-        <table id="sintomas">
-            <thead>
-                <tr>
-                    <th>Sintomas</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    {% if consulta.status_cons == "Agendada" %}
-                    <td><textarea placeholder="Digitar" rows="5" name="sintomas"></textarea></td>
-                    {% else %}
-                    <td>{{ consulta.sintomas }}</td>
-                    {% endif %}
-                </tr>
-            </tbody>
-        </table>
 
-        <table id="observacoes">
-            <thead>
-                <tr>
-                    <th>Observações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    {% if consulta.status_cons == "Agendada" %}
-                    <td><textarea placeholder="Digitar" rows="5" name="observacoes"></textarea></td>
-                    {% else %}
-                    <td>{{ consulta.observacoes }}</td>
-                    {% endif %}
-                </tr>
-            </tbody>
+    <table id="motivo">
+        <thead>
+            <tr>
+                <th>Motivo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ prontuario.motivo }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-            <table id="laudo">
-                <thead>
-                    <tr>
-                        <th>Diagnóstico</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        {% if consulta.status_cons == "Agendada" %}
-                        <td><textarea placeholder="Digitar" rows="5" name="laudo"></textarea></td>
-                        {% else %}
-                        <td>{{ consulta.laudo }}</td>
-                        {% endif %}
-                    </tr>
-                </tbody>
-            </table>
+    <table id="sintomas">
+        <thead>
+            <tr>
+                <th>Sintomas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ prontuario.sintomas }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-            <p id="titulo_exame">Exame Oftalmológico</p>
+    <table id="observacoes">
+        <thead>
+            <tr>
+                <th>Observações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ prontuario.observacoes }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-            <table id="far"> <!-- Tabela de receita para longe -->
-                <thead>
-                    <tr>
-                        <th colspan="5">Longe</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td>Esférico</td>
-                        <td>Cilindro</td>
-                        <td>Eixo</td>
-                        <td>D.P</td>
-                    </tr>
-                    <tr>
-                        <td>OD</td>
-                        <td><input type="text" placeholder="0" name="L_ESF_OD"></td>
-                        <td><input type="text" placeholder="0" name="L_CIL_OD"></td>
-                        <td><input type="text" placeholder="0" name="L_EIXO_OD"></td>
-                        <td><input type="text" placeholder="0" name="L_DP_OD"></td>
-                    </tr>
-                    <tr>
-                        <td>OE</td>
-                        <td><input type="text" placeholder="0" name="L_CIL_OE"></td>
-                        <td><input type="text" placeholder="0" name="L_CIL_OE"></td>
-                        <td><input type="text" placeholder="0" name="L_EIXO_OE"></td>
-                        <td><input type="text" placeholder="0" name="L_DP_OE"></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table id="close"> <!-- Tabela de receita para perto -->
-                <thead>
-                    <tr>
-                        <th colspan="5">Perto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td>Esférico</td>
-                        <td>Cilindro</td>
-                        <td>Eixo</td>
-                        <td>D.P</td>
-                    </tr>
-                    <tr>
-                        <td>OD</td>
-                        <td><input type="text" placeholder="0" name="P_DP_OD"></td>
-                        <td><input type="text" placeholder="0" name="P_CIL_OD"></td>
-                        <td><input type="text" placeholder="0" name="P_EIXO_OD"></td>
-                        <td><input type="text" placeholder="0" name="P_DP_OD"></td>
-                    </tr>
-                    <tr>
-                        <td>OE</td>
-
-
-                        <td><input type="text" placeholder="0" name="P_DP_OE"></td>
-                        <td><input type="text" placeholder="0" name="P_CIL_OE"></td>
-                        <td><input type="text" placeholder="0" name="P_EIXO_OE"></td>
-                        <td><input type="text" placeholder="0" name="P_DP_OE"></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            {% if consulta.status_cons == "Agendada" %}
-            <hr size="5" width="80%" color="black" noshade>
-
-            <div class="buttons">
-                <label for="file">Imprimir receita </label>
-                <a href="#"><img src="{% static 'img/icons/impressora.png' %}"></a>
-                <input type="submit" id="save" value="SALVAR">
-            </div>
-            {% endif %}
-        </table>
-    </form>
+    <table id="laudo">
+        <thead>
+            <tr>
+                <th>Diagnóstico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ prontuario.laudo }}</td>
+            </tr>
+        </tbody>
+    </table>
 </main>
 
 {% endblock container %}

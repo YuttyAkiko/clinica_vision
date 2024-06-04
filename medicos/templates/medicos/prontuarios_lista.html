@@ -12,24 +12,21 @@
 {% endblock head %} 
 
 {% block botoes %}
+
 <section class="section_minha_agenda">
+
     {% block profile-title %}
         <h1 class="titulo">Prontuários</h1>
         <p>* Prontúarios de pacientes atendidos</p>
     {% endblock profile-title %}
-    
-    {% block accounts_container %}
-    {% endblock accounts_container %}
 
     <div class="container_filter">
         <form method="GET">
             {% csrf_token %}
-            <input id="nome_funcionario" placeholder="NOME">
-            <input id="cpf_funcionario" placeholder="CPF">
             <input type="date" name="data_consulta">
-            <button type="submit">BUSCAR</button>
+            <button type="submit">FITLRAR</button>
         </form>
-    </div> 
+    </div>  
 
     <div class="container_consultas">
         {% if user.is_staff or user.is_superuser %}
