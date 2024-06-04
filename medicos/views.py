@@ -6,7 +6,7 @@ from django.http import Http404
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Medico, Agenda, Especialidade
-from .forms import CreateConsultaForm
+from .forms import CreateProntuarioForm
 from clientes.models import Consulta, Cliente, Prontuario
 from datetime import datetime
 
@@ -65,46 +65,6 @@ class MinhaAgendaListView(ListView):
     template_name = 'medicos/minha_agenda.html'
     context_object_name = 'horarios'
 
-# class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
-
-#     model = Consulta
-#     login_url = 'accounts:login'
-#     template_name= 'medicos/consultas_lista.html'
-#     context_object_name = 'consultas'
-
-#     def get_queryset(self):
-#         medico = get_object_or_404(Medico, user=self.request.user)
-#         agendas = Agenda.objects.filter(medico=medico.pk)
-#         consultas = Consulta.objects.filter(agenda__in=agendas, status_cons="Agendada")
-
-#         data_consulta = self.request.GET.get('data_consulta')
-#         if data_consulta:
-#             data_consulta = datetime.strptime(data_consulta, '%Y-%m-%d').date()
-#             consultas = consultas.filter(agenda__dia=data_consulta)
-#             return consultas
-#         else:
-#             return consultas
-
-# class ClientesListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
-
-#     model = Consulta
-#     login_url = 'accounts:login'
-#     template_name= 'medicos/prontuarios_lista.html'
-#     context_object_name = 'consultas'
-
-#     def get_queryset(self):
-#         medico = get_object_or_404(Medico, user=self.request.user)
-#         agendas = Agenda.objects.filter(medico=medico.pk)
-#         consultas = Consulta.objects.filter(agenda__in=agendas, status_cons="Concluída")
-
-#         data_consulta = self.request.GET.get('data_consulta')
-#         if data_consulta:
-#             data_consulta = datetime.strptime(data_consulta, '%Y-%m-%d').date()
-#             consultas = consultas.filter(agenda__dia=data_consulta)
-#             return consultas
-#         else:
-#             return consultas
-
 class BaseConsultasListView(ListView):
 
     model = Consulta
@@ -139,7 +99,7 @@ class CreateProntuarioView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
     model = Prontuario
     login_url = 'accounts:login'
     template_name = 'medicos/prontuario_add.html'
-    form_class = CreateConsultaForm
+    form_class = CreateProntuarioForm
     success_url = reverse_lazy('medicos:medico_perfil')
 
     def get_context_data(self, **kwargs):
