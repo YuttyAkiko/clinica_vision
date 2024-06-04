@@ -4,11 +4,15 @@ from django.db.models import Q
 from django.http import HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.db import IntegrityError
+from django.db.utils import IntegrityError
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Cliente, Consulta
+from medicos.models import Medico, Agenda, Especialidade
 from django.shortcuts import render, redirect, get_object_or_404
+from .forms import ConsultaForm
+from django.http import JsonResponse
+from datetime import datetime
 
 class PerfilView(LoginRequiredMixin, DetailView):
 
@@ -42,7 +46,7 @@ class PerfilView(LoginRequiredMixin, DetailView):
         return paciente, agendamentos, historicos
 
 class ClienteCreateView(LoginRequiredMixin ,CreateView):
-    
+
     model = Cliente
     template_name = 'clientes/cadastro.html'
     fields = ['sexo', 'cpf', 'telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio', 'num_carteirinha']
@@ -70,9 +74,79 @@ class ClienteUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-        
 
 class ConsultaCreateView(LoginRequiredMixin, CreateView):
+    model = Consulta
+    form_class = ConsultaForm
+    template_name = 'clientes/cadastro.html'
+    success_url = reverse_lazy('clientes:consulta_lista')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        if self.request.method == 'POST':
+            especialidade_id = self.request.POST.get('especialidade')
+            if especialidade_id:
+                form.fields['medico'].queryset = Medico.objects.filter(especialidade_id=especialidade_id).order_by('nome')
+                
+            medico_id = self.request.POST.get('medico')
+            if medico_id:
+                form.fields['dia'].queryset = Agenda.objects.filter(medico_id=medico_id).values('dia').distinct().order_by('dia')
+                
+            dia = self.request.POST.get('dia')
+            if dia:
+                form.fields['horario'].choices = [(agenda.horario, agenda.get_horario_display()) for agenda in Agenda.objects.filter(medico_id=medico_id, dia=dia)]
+        else:
+            form.fields['medico'].queryset = Medico.objects.none()
+            form.fields['dia'].queryset = Agenda.objects.none()
+            form.fields['horario'].choices = []
+        return form
+
+    def form_valid(self, form):
+        try:
+            cliente = Cliente.objects.get(user=self.request.user)
+            medico = form.cleaned_data['medico']
+            dia = form.cleaned_data['dia']
+            horario = form.cleaned_data['horario']
+            agenda, created = Agenda.objects.get_or_create(medico=medico, dia=dia, horario=horario)
+
+            # Converte o dia para string no formato DD-MM-YYYY
+            dia = dia.strftime('%d-%m-%Y')
+
+            form.instance.cliente = cliente
+            form.instance.agenda = agenda
+            return super().form_valid(form)
+        except IntegrityError as e:
+            if 'UNIQUE constraint failed' in e.args[0]:
+                messages.warning(self.request, 'Você não pode marcar esta consulta')
+                return self.form_invalid(form)
+        except Cliente.DoesNotExist:
+            messages.warning(self.request, 'Complete seu cadastro')
+            return self.form_invalid(form)
+        except Exception as e:
+            messages.error(self.request, f"Erro ao marcar a consulta: {str(e)}")
+            return self.form_invalid(form)
+
+    def get_success_url(self):
+        messages.success(self.request, 'Consulta marcada com sucesso!')
+        return reverse_lazy('clientes:consulta_lista')
+
+def get_medicos_by_especialidade(request):
+    especialidade_id = request.GET.get('especialidade_id')
+    medicos = Medico.objects.filter(especialidade_id=especialidade_id).values('id', 'nome')
+    return JsonResponse({'medicos': list(medicos)})
+
+def get_dias_by_medico(request):
+    medico_id = request.GET.get('medico_id')
+    dias = Agenda.objects.filter(medico_id=medico_id).values('dia').distinct().order_by('dia')
+    return JsonResponse({'dias': list(dias)})
+
+def get_horarios_by_dia(request):
+    dia = request.GET.get('dia')
+    medico_id = request.GET.get('medico_id')
+    horarios = Agenda.objects.filter(medico_id=medico_id, dia=dia).values('horario', 'id')
+    return JsonResponse({'horarios': [{'id': horario['id'], 'horario': Agenda.HORARIOS[int(horario['horario'])-1][1]} for horario in horarios]})
+
+""" class ConsultaCreateView(LoginRequiredMixin, CreateView):
 
     model = Consulta
     login_url = 'accounts:login'
@@ -92,7 +166,7 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
             messages.warning(self.request, 'Complete seu cadastro')
             return HttpResponseRedirect(reverse_lazy('clientes:cliente_cadastro'))
         messages.info(self.request, 'Consulta marcada com sucesso!')
-        return HttpResponseRedirect(reverse_lazy('clientes:consulta_lista'))
+        return HttpResponseRedirect(reverse_lazy('clientes:consulta_lista')) """
     
 class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
 
@@ -106,7 +180,7 @@ class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.cliente = Cliente.objects.get(user=self.request.user)
         return super().form_valid(form)
     
-    """ def alterar_consulta(request, consulta_id):
+    def alterar_consulta(request, consulta_id):
         consulta = get_object_or_404(Consulta, pk=consulta_id)
         form = Consulta(instance=consulta)
         if request.method == 'POST':
@@ -115,7 +189,7 @@ class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
                 form.save()
                 messages.success(request, 'Consulta alterada com sucesso!')
                 return redirect('clientes:consulta_lista')
-        return render(request, 'alterar_consulta.html', {'form': form, 'consulta': consulta}) """
+        return render(request, 'alterar_consulta.html', {'form': form, 'consulta': consulta})
     
 class ConsultaDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Consulta

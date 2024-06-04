@@ -46,7 +46,7 @@ class Medico(models.Model):
 
 def validar_dia(value):
     today = date.today()
-    weekday = date.fromisoformat(f'{value}').weekday()
+    weekday = date.fromisoformat(str(value)).weekday()
 
     if value < today:
         raise ValidationError('Não é possivel escolher um data atrasada.')
@@ -55,6 +55,7 @@ def validar_dia(value):
 
 class Agenda(models.Model):
     medico = ForeignKey(Medico, on_delete=models.CASCADE, related_name='agenda')
+    especialidade = ForeignKey(Especialidade, on_delete=models.CASCADE, default=1)
     dia = models.DateField(help_text="Insira uma data para agenda", validators=[validar_dia])
     
     HORARIOS = (
