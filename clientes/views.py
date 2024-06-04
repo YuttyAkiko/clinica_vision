@@ -15,7 +15,7 @@ class ClienteCreateView(LoginRequiredMixin ,CreateView):
 
     model = Cliente
     template_name = 'clientes/cadastro.html'
-    fields = ['sexo', 'cpf', 'telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio', 'num_carteirinha']
+    fields = ['nome', 'sobre', 'sexo', 'cpf', 'telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio']
     success_url = reverse_lazy('home')
     
     def form_valid(self, form):
@@ -75,26 +75,23 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
             horario = form.cleaned_data['horario']
             agenda, created = Agenda.objects.get_or_create(medico=medico, dia=dia, horario=horario)
 
-            # Converte o dia para string no formato DD-MM-YYYY
-            dia = dia.strftime('%d-%m-%Y')
-
             form.instance.cliente = cliente
             form.instance.agenda = agenda
+            form.save()
             return super().form_valid(form)
         except IntegrityError as e:
             if 'UNIQUE constraint failed' in e.args[0]:
                 messages.warning(self.request, 'Você não pode marcar esta consulta')
-                return self.form_invalid(form)
+                return HttpResponseRedirect(reverse_lazy('clientes:consulta_create'))
         except Cliente.DoesNotExist:
             messages.warning(self.request, 'Complete seu cadastro')
-            return self.form_invalid(form)
-        except Exception as e:
-            messages.error(self.request, f"Erro ao marcar a consulta: {str(e)}")
-            return self.form_invalid(form)
+            return HttpResponseRedirect(reverse_lazy('clientes:cliente_cadastro'))
+        messages.info(self.request, 'Consulta marcada com sucesso!')
+        return HttpResponseRedirect(reverse_lazy('clientes:consulta_lista'))
 
-    def get_success_url(self):
+    """ def get_success_url(self):
         messages.success(self.request, 'Consulta marcada com sucesso!')
-        return reverse_lazy('clientes:consulta_lista')
+        return reverse_lazy('clientes:consulta_lista') """
 
 def get_medicos_by_especialidade(request):
     especialidade_id = request.GET.get('especialidade_id')
