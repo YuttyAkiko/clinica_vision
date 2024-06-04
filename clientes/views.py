@@ -125,6 +125,7 @@ class ConsultaListView(LoginRequiredMixin, ListView):
             messages.warning(self.request, 'Crie uma Consulta')
             return None
         return consultas
+    
 
 
 cliente_cadastro = ClienteCreateView.as_view()

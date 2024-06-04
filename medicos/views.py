@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Medico, Agenda, Especialidade
+from clientes.models import Convenio
 
 
 class TestMixinIsAdmin(UserPassesTestMixin):
@@ -93,6 +94,31 @@ class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     def get_queryset(self):
         return Agenda.objects.filter().order_by('-pk')
     
+class ConvenioListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
+    
+    login_url = 'accounts:login'
+    template_name = 'clientes/convenio_lista.html'
+
+    def get_queryset(self):
+        return Convenio.objects.all().order_by('-pk')
+    
+class ConvenioCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
+
+    model = Convenio
+    login_url = 'accounts:login'
+    template_name = 'medicos/cadastro.html'
+    fields = ['nome_convenio',]
+    success_url = reverse_lazy('medicos:convenio_lista')
+
+class ConvenioDeleteView(LoginRequiredMixin, TestMixinIsAdmin, DeleteView):
+    model = Convenio
+    success_url = reverse_lazy('medicos:convenio_lista')
+    template_name = 'form_delete.html'
+
+    def get_success_url(self):
+        messages.success(self.request, "Convênio excluído com sucesso!")
+        return reverse_lazy('medicos:convenio_lista')
+    
 medico_cadastro = MedicoCreateView.as_view()
 medico_lista = MedicoListView.as_view()
 especialidade_cadastro = EspecialidadeCreateView.as_view()
@@ -101,4 +127,7 @@ agenda_cadastro = AgendaCreateView.as_view()
 agenda_atualizar = AgendaUpdateView.as_view()
 agenda_lista = AgendaListView.as_view()
 agenda_deletar = AgendaDeleteView.as_view()
+convenio_lista = ConvenioListView.as_view()
+convenio_cadastro = ConvenioCreateView.as_view()
+convenio_deletar = ConvenioDeleteView.as_view()
 
