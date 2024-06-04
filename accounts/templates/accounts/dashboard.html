@@ -54,7 +54,13 @@
             
         {% if request.user.is_staff or request.user.is_superuser %}
             
-            
+            <div class="btn_main">
+                <a href="{% url 'medicos:agenda_lista'%}">
+                    <img src="{% static 'img/dashboard/img-calendario.png' %}" alt="ícone perfil funcionário">
+                    <h2>agendamento</h2>
+                </a> 
+            </div>
+
             <div class="btn_main">
                 <a href="{% url 'medicos:medicos_lista'%}">
                     <img src="{% static 'img/dashboard/icone_funcionario.png' %}" alt="ícone perfil funcionário">
