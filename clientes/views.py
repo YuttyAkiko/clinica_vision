@@ -80,7 +80,6 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
             horario = form.cleaned_data['horario']
             agenda, created = Agenda.objects.get_or_create(medico=medico, dia=dia, horario=horario)
 
-
             form.instance.cliente = cliente
             form.instance.agenda = agenda
             form.save()
@@ -94,10 +93,6 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
             return HttpResponseRedirect(reverse_lazy('clientes:cliente_cadastro'))
         messages.info(self.request, 'Consulta marcada com sucesso!')
         return HttpResponseRedirect(reverse_lazy('clientes:consulta_lista'))
-
-    """ def get_success_url(self):
-        messages.success(self.request, 'Consulta marcada com sucesso!')
-        return reverse_lazy('clientes:consulta_lista') """
 
 def get_medicos_by_especialidade(request):
     especialidade_id = request.GET.get('especialidade_id')
