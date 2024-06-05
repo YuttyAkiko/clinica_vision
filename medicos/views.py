@@ -46,13 +46,13 @@ class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
     login_url = reverse_lazy('accounts:login')
     template_name = 'accounts/update_user.html'
     fields = ['crm', 'telefone']
-    success_url = reverse_lazy('accounts:index')
+    success_url = reverse_lazy('accounts:redirect_user')
 
     def get_object(self):
         user = self.request.user
         try:
-            return Cliente.objects.get(user=user)
-        except Cliente.DoesNotExist:
+            return Medico.objects.get(user=user)
+        except Medico.DoesNotExist:
             return None
         
     def form_valid(self, form):
