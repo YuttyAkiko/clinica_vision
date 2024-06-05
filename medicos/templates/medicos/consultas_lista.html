@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-    {{ block.super }} | Prontuários
+    Minha Agenda | Clínica Vision
 {% endblock %}       
 
 {% block head %}
@@ -12,18 +12,18 @@
 {% endblock head %} 
 
 {% block botoes %}
+
 <section class="section_minha_agenda">
+
     {% block profile-title %}
-        <h1 class="titulo">PRONTUÁRIOS</h1>
+        <h1 class="titulo">Consultas</h1> 
     {% endblock profile-title %}
-    
-    {% block accounts_container %}
-    {% endblock accounts_container %}
 
     <div class="container_filter">
         <form method="GET">
+            {% csrf_token %}
             <input type="date" name="data_consulta">
-            <button type="submit">FILTRAR</button>
+            <button type="submit">FITLRAR</button>
         </form>
     </div> 
 
@@ -31,7 +31,7 @@
         {% if user.is_staff or user.is_superuser %}
             {% if consultas %}
                 {% for consulta in consultas %}                 
-                    <div class="consulta-item" id="consulta-bg-prontuario"> 
+                    <div class="consulta-item"> 
 
                         <p>Paciente: {{ consulta.cliente }}<br>
                             Prontuário: {{ consulta.cliente.id }}
@@ -40,19 +40,19 @@
                         <p>Especialidade: {{ consulta.agenda.medico.especialidade }}<br>
                             Médico(a): Dr(a) {{ consulta.agenda.medico }}</p>
                             
-                        {% with consulta.agenda|slice:"13:" as horario %}
                         <p>Data: {{ consulta.agenda.dia }}<br>
-                            Hora: {{ horario }}</p>
-                        {% endwith %}
+                            Hora: {{ consulta.agenda.get_horario_display }}</p>
 
                         <p>Status: <br> {{consulta.status_cons}}</p>
 
-                        <img src="{% static 'img/icons/prontuario.svg' %}" alt="ícone ilustrativo prontuário">
+                        <a href="{% url 'medicos:prontuario_add' consulta.id %}">
+                            <img src="{% static 'img/icons/prontuario-medico.png' %}" alt="ícone ilustrativo prontuário">
+                        </a>
 
                     </div>
                 {% endfor %}
             {% else %}
-                    <h3>Não há consultas agendadas para essa data.</h3>
+                    <h3>Sem resultados.</h3>
             {% endif %}
         {% endif %}
     </div>

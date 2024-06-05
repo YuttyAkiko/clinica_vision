@@ -12,6 +12,10 @@ Login | {{ block.super }}
 		<link rel="stylesheet" href="{% static "scss/button-submit.scss" %}">
 {% endblock head %}
 
+{% block nav_header %}
+	<li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
+{% endblock nav_header %}
+
 {% block container %}
 		<main>
 				<section class="bem-vindo__container">

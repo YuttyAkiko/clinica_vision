@@ -5,24 +5,26 @@
 {% block img %}<img src="{% static 'img/dashboard/perfil_icon/icone_01.png' %}" alt="ícone perfil">{% endblock img %}
 
 {% block add_botoes %}
-<div class="btn_main">
-    <a href="{% url 'accounts:update_user'%}">
-        <img src="{% static 'img/dashboard/icone_alterar_nome.png' %}" alt="ícone ilustrativo clínica">
-        <h2>novo<br>agendamento</h2>
-    </a>
-</div>
-
-<div class="btn_main">
-    <a href="{% url 'accounts:update_password'%}">
-        <img src="{% static 'img/dashboard/icone_alterar_senha.png' %}" alt="ícone ilustrativo clínica">
-        <h2>consultas<br>marcadas</h2>
-    </a>
-</div>
 
 <div class="btn_main">
     <a href="{% url 'clientes:cliente_atualizar'%}">
         <img src="{% static 'img/dashboard/perfil_icon/icone_02.png' %}" alt="ícone ilustrativo clínica">
-        <h2>historico<br>de consultas</h2>
+        <h2>atualizar<br>meus dados</h2>
     </a>
 </div>
+
+<div class="btn_main">
+    <a href="{% url 'clientes:consulta_lista'%}">
+        <img src="{% static 'img/dashboard/icone_agenda.png' %}" alt="ícone perfil paciente">
+        <h2>minhas<br>consultas</h2>
+    </a>
+</div>
+
+<div class="btn_main">
+    <a href="{% url 'clientes:consulta_create'%}">
+        <img src="{% static 'img/dashboard/img-calendario-med.png' %}" alt="ícone ilustrativo agendamento">
+        <h2>novo<br>agendamento</h2>
+    </a>
+</div>
+
 {% endblock add_botoes %}

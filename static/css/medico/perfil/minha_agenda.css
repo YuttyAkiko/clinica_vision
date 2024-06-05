@@ -4,10 +4,11 @@
 }
 
 .container_filter {
+    margin-top: 20px;
     display: flex;
     width: 100%;
-    justify-content: flex-end;
 }
+
 .container_filter input, button {
     height: 40px;
     border: none;
@@ -41,7 +42,7 @@
 }
 
 .consulta-item {
-    width: 90%;
+    width: 100%;
     height: auto;
     padding: 10px; /* Ajustado para garantir espaço interno */
 

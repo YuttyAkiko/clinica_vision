@@ -58,12 +58,12 @@ class Consulta(models.Model):
         ('Dinheiro','Dinheiro'),
         ('Pix','Pix')
     )
-    tipo_pag_cons = models.CharField(max_length=10, choices=TIPOS_PAGAMENTO, default=TIPOS_PAGAMENTO)
+    tipo_pag_cons = models.CharField(max_length=10, choices=TIPOS_PAGAMENTO, default='')
     STATUS_PAGAMENTO = (
         ('Pago','Pago'),
         ('Pendente', 'Pendente')
     )
-    status_pag_cons = models.CharField(max_length=10, choices=STATUS_PAGAMENTO, default=STATUS_PAGAMENTO) # Select "Yes" ou "No" para o status de pagamento.
+    status_pag_cons = models.CharField(max_length=10, choices=STATUS_PAGAMENTO, default='') # Select "Yes" ou "No" para o status de pagamento.
     STATUS_CONSULTA = (
         ('Concluída', 'Concluída'),
         ('Cancelada', 'Cancelada'),

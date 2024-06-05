@@ -45,7 +45,8 @@ class ClienteCreateView(LoginRequiredMixin ,CreateView):
     
     model = Cliente
     template_name = 'clientes/cadastro.html'
-    fields = ['sexo', 'cpf', 'telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio', 'num_carteirinha']
+    fields = ['nome', 'sobrenome', 'cpf', 'sexo', 'cpf', 'telefone', 'cep', 'rua', 'bairro', 
+              'cidade', 'estado', 'convenio', 'num_carteirinha']
     success_url = reverse_lazy('home')
     
     def form_valid(self, form):
@@ -57,8 +58,8 @@ class ClienteUpdateView(LoginRequiredMixin, UpdateView):
     model = Cliente
     login_url = reverse_lazy('accounts:login')
     template_name = 'accounts/update_user.html'
-    fields = ['telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio']
-    success_url = reverse_lazy('accounts:index')
+    fields = ['nome','sobrenome','cpf','data_nasc','sexo','telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio']
+    success_url = reverse_lazy('clientes:cliente_perfil')
 
     def get_object(self):
         user = self.request.user
@@ -83,6 +84,8 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         try:
             form.instance.cliente = Cliente.objects.get(user=self.request.user)
+            form.instance.status_cons = "Agendada"
+            form.instance.status_cons = "Agendada"
             form.save()
         except IntegrityError as e:
             if 'UNIQUE constraint failed' in e.args[0]:
@@ -100,7 +103,7 @@ class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
     login_url = 'accounts:login'
     template_name = 'clientes/cadastro.html'
     fields = ['agenda']
-    success_url = reverse_lazy('medicos:consulta_lista')
+    success_url = reverse_lazy('clientes:consulta_lista')
     
     def form_valid(self, form):
         form.instance.cliente = Cliente.objects.get(user=self.request.user)
@@ -117,7 +120,8 @@ class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
                 return redirect('clientes:consulta_lista')
         return render(request, 'alterar_consulta.html', {'form': form, 'consulta': consulta}) """
     
-class ConsultaDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class ConsultaDeleteView(LoginRequiredMixin, DeleteView):
+    
     model = Consulta
     success_url = reverse_lazy('clientes:consulta_list')
     template_name = 'form_delete.html'
@@ -163,6 +167,7 @@ class ConsultaListView(LoginRequiredMixin, ListView):
 perfil = PerfilView.as_view()
 cliente_cadastro = ClienteCreateView.as_view()
 cliente_atualizar = ClienteUpdateView.as_view()
+
 consulta_lista = ConsultaListView.as_view()
 consulta_cadastro = ConsultaCreateView.as_view()
 consulta_atualizar = ConsultaUpdateView.as_view()

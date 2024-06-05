@@ -2,99 +2,43 @@
 
 {% load static %}
 
-{% block header %}
-<div class="nav navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <a href="{% url 'home'%}" class="navbar-brand"><img src="{% static "img/logo/logo-vision-dark.svg" %}" class="logo" alt=""></a>
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <nav class="navbar-collapse collapse" id="navbar-main">
-        <ul class="nav navbar-nav">
-          {% if user.is_authenticated %}
-            <li><a href="{% url 'medicos:medico_perfil' %}">Minha Conta</a></li>
-            <li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
-            <form method="post" action="{% url 'accounts:logout' %}" class="navbar-form">
-              {% csrf_token %} 
-              <li><button type="submit" class="custom_btn_logout">Sair</button></li>
-            </form>
-            {% else %}
-            <li><a href="{% url 'accounts:login' %}">Login</a></li>
-          {% endif %}
-        </ul>
-      </nav>
-    </div>
-  </div>
-{% endblock header %}
+{% block title %}
+  Minha Conta | {{ block.super }}
+{% endblock %}
 
 {% block img %}<img src="{% static 'img/dashboard/perfil_icon/icone_03.png' %}" alt="ícone perfil">{% endblock img %}
 
-{% block botoes %}
-<section class="right_menu">
-  {% block profile-title %}
-      <h1 class="titulo">O QUE VOCÊ DESEJA ACESSAR?</h1>
-  {% endblock profile-title %}
+{% block add_botoes %}
 
-  {% block accounts_container %}
-  {% endblock accounts_container %}
-
-  <div class="botoes">
-      <div class="btn_main">
-          <a href="{% url 'accounts:update_user'%}">
-              <img src="{% static 'img/dashboard/icone_alterar_nome.png' %}" alt="ícone ilustrativo clínica">
-              <h2>alterar<br>usuário e e-mail</h2>
-          </a>
-      </div>
-
-      <div class="btn_main">
-          <a href="{% url 'accounts:update_password'%}">
-              <img src="{% static 'img/dashboard/icone_alterar_senha.png' %}" alt="ícone ilustrativo clínica">
-              <h2>alterar<br>senha</h2>
-          </a>
-      </div>
+<div class="btn_main">
+    <a href="{% url 'medicos:atualizar_cadastro'%}">
+        <img src="{% static 'img/dashboard/perfil_icon/icone_02.png' %}" alt="ícone ilustrativo clínica">
+        <h2>atualizar<br>meus dados</h2>
+    </a>
+</div>
       
-      <div class="btn_main">
-          <a href="{% url 'clientes:cliente_atualizar'%}">
-              <img src="{% static 'img/dashboard/perfil_icon/icone_02.png' %}" alt="ícone ilustrativo clínica">
-              <h2>atualizar<br>meus dados</h2>
-          </a>
-      </div>
+{% if request.user.is_staff or request.user.is_superuser %}
+    <div class="btn_main">
+        <a href="{% url 'medicos:minha_agenda' %}">
+            <img src="{% static 'img/dashboard/icone_agenda.png' %}" alt="ícone ilustrativo agendamento">
+            <h2>minha agenda</h2>
+        </a>
+    </div>
+    
+    <div class="btn_main">
+        <a href="{% url 'medicos:consultas_lista'%}">
+            <img src="{% static 'img/dashboard/icone_calendario.png' %}" alt="ícone perfil funcionário">
+            <h2>consultas</h2>
+        </a> 
+    </div>
 
-      {% block add_botoes %}{% endblock add_botoes %}
-      
-      {% if request.user.is_staff or request.user.is_superuser %}
-          <div class="btn_main">
-              <a href="{% url 'medicos:agenda_lista'%}">
-                  <img id="centralize" src="{% static 'img/dashboard/icone_calendario.png' %}" alt="ícone ilustrativo agendamento">
-                  <h2>horários<br>disponíveis</h2>
-              </a>
-          </div>
-          
-          <div class="btn_main">
-              <a href="{% url 'medicos:listar_consultas'%}">
-                  <img src="{% static 'img/dashboard/icone_agenda.png' %}" alt="ícone perfil funcionário">
-                  <h2>minha agenda</h2>
-              </a> 
-          </div>
+    <div class="btn_main">
+        <a href="{% url 'medicos:prontuarios_lista'%}">
+            <img src="{% static 'img/dashboard/icone_paciente.png' %}" alt="ícone perfil paciente">
+            <h2>prontuários</h2>
+        </a>
+    </div>
+{% endif %}
 
-          <div class="btn_main">
-              <a href="{% url 'medicos:prontuario_pacientes'%}">
-                  <img src="{% static 'img/dashboard/icone_paciente.png' %}" alt="ícone perfil paciente">
-                  <h2>prontuários</h2>
-              </a>
-          </div>
-      {% endif %}
+{% endblock add_botoes %}
 
-      {% comment %} <div class="btn_main">
-          <a href="#">
-              <img src="{% static 'img/dashboard/icone_clinica.png' %}" alt="ícone ilustrativo clínica">
-              <h2>DADOS DA<br>CLÍNICA</h2>
-          </a>
-      </div> {% endcomment %}
-  </div>
-</section>
-{% endblock botoes %}
