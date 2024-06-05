@@ -60,7 +60,12 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
                 
             dia = self.request.POST.get('dia')
             if dia:
-                form.fields['horario'].choices = [(agenda.horario, agenda.get_horario_display()) for agenda in Agenda.objects.filter(medico_id=medico_id, dia=dia)]
+                # Converte a data para o formato correto
+                try:
+                    dia = datetime.strptime(dia, '%d-%m-%Y').date()
+                except ValueError:
+                    messages.error(self.request, 'Formato de data inválido. Use DD-MM-YYYY.')
+                    return self.form_invalid(form)
         else:
             form.fields['medico'].queryset = Medico.objects.none()
             form.fields['dia'].queryset = Agenda.objects.none()
@@ -74,6 +79,7 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
             dia = form.cleaned_data['dia']
             horario = form.cleaned_data['horario']
             agenda, created = Agenda.objects.get_or_create(medico=medico, dia=dia, horario=horario)
+
 
             form.instance.cliente = cliente
             form.instance.agenda = agenda
