@@ -68,7 +68,9 @@ class MinhaAgendaListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         horarios_disponiveis = self.object_list
-        horarios_agendados = Consulta.objects.filter(agenda__in=horarios_disponiveis, status_cons="Agendada")
+        horarios_agendados = Consulta.objects.filter(
+            agenda__in=horarios_disponiveis, status_cons__in=["Agendada", "Concluída"]
+        )
         horarios_disponiveis = horarios_disponiveis.exclude(pk__in=[consulta.agenda.pk for consulta in horarios_agendados])
         context['horarios_disponiveis'] = horarios_disponiveis
         return context
