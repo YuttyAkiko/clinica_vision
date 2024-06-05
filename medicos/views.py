@@ -144,8 +144,12 @@ class MedicoCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
     model = Medico
     login_url = 'accounts:login'
     template_name = 'medicos/admin/cadastro.html'
-    fields = ['nome', 'crm', 'email', 'telefone', 'especialidade']
+    fields = ['nome', 'sobrenome', 'crm', 'email', 'telefone', 'especialidade']
     success_url = reverse_lazy('medicos:medicos_lista')
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
     
 class MedicoListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     
@@ -171,12 +175,21 @@ class EspecialidadeListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     def get_queryset(self):
         return Especialidade.objects.all().order_by('-pk')
 
+class EspecialidadeDeleteView(LoginRequiredMixin, TestMixinIsAdmin, DeleteView):
+    model = Especialidade
+    success_url = reverse_lazy('medicos:especialidade_lista')
+    template_name = 'form_delete.html'
+
+    def get_success_url(self):
+        messages.success(self.request, "Convênio excluído com sucesso!")
+        return reverse_lazy('medicos:especialidade_lista')
+
 
 class AgendaCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
 
     model = Agenda
     login_url = 'accounts:login'
-    template_name = 'medicos/agenda_cadastro.html'
+    template_name = 'medicos/admin/agenda_cadastro.html'
     fields = ['medico', 'dia', 'horario']
     success_url = reverse_lazy('medicos:agenda_lista')
     
@@ -209,7 +222,7 @@ class AgendaDeleteView(LoginRequiredMixin, TestMixinIsAdmin, DeleteView):
 class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     
     login_url = 'accounts:login'
-    template_name = 'medicos/agenda_lista.html'
+    template_name = 'medicos/admin/agenda_lista.html'
 
     def get_queryset(self):
         return Agenda.objects.filter().order_by('-pk')
@@ -253,6 +266,7 @@ medico_cadastro = MedicoCreateView.as_view()
 medico_lista = MedicoListView.as_view()
 especialidade_cadastro = EspecialidadeCreateView.as_view()
 especialidade_lista = EspecialidadeListView.as_view()
+especialidade_deletar = EspecialidadeDeleteView.as_view()
 agenda_cadastro = AgendaCreateView.as_view()
 agenda_atualizar = AgendaUpdateView.as_view()
 agenda_lista = AgendaListView.as_view()

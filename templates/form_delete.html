@@ -14,7 +14,7 @@
             <h1>Apagar</h1>
         </div>
         <form action="" method="POST">
-            <p>Deseja realmente excluir o agendamento: <br>
+            <p>Deseja realmente excluir: <br>
             <strong>{{ object }}</strong>?</p>
             {% csrf_token %}
             {{ form.as_p }}
