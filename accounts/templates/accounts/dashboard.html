@@ -34,7 +34,8 @@
         {% block add_botoes %}{% endblock add_botoes %}
         
         {% block admin_botoes %}
-        {% if request.user.is_staff or request.user.is_superuser %}
+        {% if request.user.is_superuser %}
+            {% comment %} Botões que vão aparecer apenas no perfil do Administrador {% endcomment %}
             <div class="btn_main">
                 <a href="{% url 'medicos:medicos_lista'%}">
                     <img src="{% static 'img/dashboard/icone_funcionario.png' %}" alt="ícone perfil funcionário">
