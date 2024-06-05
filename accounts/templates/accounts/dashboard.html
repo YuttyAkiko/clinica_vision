@@ -1,0 +1,77 @@
+{% extends 'base_dash.html'%}
+
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/dashboard/base_dash.css' %}" media="screen" />
+{% endblock head %}
+
+{% block botoes %}
+
+<section class="right_menu">
+
+    {% block profile-title %}
+        <h1 class="titulo">O QUE VOCÊ DESEJA ACESSAR?</h1>
+    {% endblock profile-title %}
+
+    <div class="botoes">
+
+        <div class="btn_main">
+            <a href="{% url 'accounts:update_user'%}">
+                <img src="{% static 'img/dashboard/icone_alterar_nome.png' %}" alt="ícone ilustrativo clínica">
+                <h2>alterar<br>usuário e e-mail</h2>
+            </a>
+        </div>
+
+        <div class="btn_main">
+            <a href="{% url 'accounts:update_password'%}">
+                <img src="{% static 'img/dashboard/icone_alterar_senha.png' %}" alt="ícone ilustrativo clínica">
+                <h2>alterar<br>senha</h2>
+            </a>
+        </div>
+        
+        {% block add_botoes %}{% endblock add_botoes %}
+        
+        {% block admin_botoes %}
+        {% if request.user.is_staff or request.user.is_superuser %}
+
+            <div class="btn_main">
+                <a href="{% url 'medicos:agenda_lista'%}">
+                    <img src="{% static 'img/dashboard/img-calendario.png' %}" alt="ícone perfil funcionário">
+                    <h2>agendamento</h2>
+                </a> 
+            </div>
+
+            <div class="btn_main">
+                <a href="{% url 'medicos:medicos_lista'%}">
+                    <img src="{% static 'img/dashboard/icone_funcionario.png' %}" alt="ícone perfil funcionário">
+                    <h2>médicos</h2>
+                </a> 
+            </div>
+
+            <div class="btn_main">
+                <a href="{% url 'medicos:especialidade_lista'%}">
+                    <img src="{% static 'img/dashboard/icone_especialidade.png' %}" alt="ícone perfil paciente">
+                    <h2>especialidades</h2>
+                </a>
+            </div>
+
+            <div class="btn_main">
+                <a href="{% url "medicos:convenio_lista" %}">
+                    <img src="{% static 'img/dashboard/icone_convenio.png' %}" alt="ícone perfil paciente">
+                    <h2>convênios</h2>
+                </a>
+            </div>
+            {% endif %}
+        {% endblock admin_botoes %}
+
+        {% comment %} <div class="btn_main">
+            <a href="#">
+                <img src="{% static 'img/dashboard/icone_clinica.png' %}" alt="ícone ilustrativo clínica">
+                <h2>DADOS DA<br>CLÍNICA</h2>
+            </a>
+        </div> {% endcomment %}
+    </div>
+</section>
+{% endblock botoes %}

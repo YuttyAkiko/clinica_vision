@@ -1,0 +1,14 @@
+IMPORTANTE:
+-- REVISAR MEDICO - VIEWS: CadastroUpdateView, nao esta funcionando;
+-- Adicionar função de "esqueci minha senha";
+-- Rever view index de accounts para que o usuario seja redirecionado ao seu perfil de acordo com o tipo de usuario;
+
+# Lembrete
+
+- Criar aplicativo para funcionario
+
+- Fazer os models para funcionario e relacionar com médico
+
+- Fazer templantes
+
+- Fazer as views

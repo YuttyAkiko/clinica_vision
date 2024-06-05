@@ -1,0 +1,71 @@
+.section_minha_agenda {
+    width: 100%;
+    margin: 0 2rem 4rem 0;
+}
+
+.container_filter {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+}
+
+.container_filter input, button {
+    height: 40px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.container_filter input {
+    padding: 0 10px;
+}
+
+.container_filter button {
+    width: 100px;
+    background-color: var(--verde);
+    font-family: var(--texto);
+    font-weight: 600;
+    color: var(--branco);
+}
+
+/* Estilização da lista de consultas */
+.container_consultas {
+    width: 100%;
+    min-height: 400px;
+    max-height: auto;
+    padding: 30px 0;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.consulta-item {
+    width: 100%;
+    height: auto;
+    padding: 10px; /* Ajustado para garantir espaço interno */
+
+    border-radius: 10px;
+    background-color: var(--azul-claro);
+    margin: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    box-sizing: border-box; /* Garante que padding não expanda a div */
+}
+
+.consulta-item img {
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+}
+
+.consulta-item p {
+    font-weight: 600;
+}
+
+#consulta-bg-prontuario {
+    background-color: var(--cinza-claro);
+}

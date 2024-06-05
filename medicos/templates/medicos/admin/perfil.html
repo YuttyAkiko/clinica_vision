@@ -1,0 +1,28 @@
+{% extends 'accounts/dashboard.html' %}
+
+{% load static %}
+
+{% block title %}
+  Minha Conta | {{ block.super }}
+{% endblock %}
+
+{% block img %}<img src="{% static 'img/dashboard/perfil_icon/icone_03.png' %}" alt="ícone perfil">{% endblock img %}
+
+{% block admin_botoes %}
+    {% if request.user.is_superuser %}
+    <div class="btn_main">
+        <a href="{% url 'medicos:medicos_lista'%}">
+            <img src="{% static 'img/dashboard/icone_funcionario.png' %}" alt="ícone perfil funcionário">
+            <h2>médicos</h2>
+        </a> 
+    </div>
+
+    <div class="btn_main">
+        <a href="{% url 'medicos:especialidade_lista'%}">
+            <img src="{% static 'img/dashboard/icone_especialidade.png' %}" alt="ícone perfil paciente">
+            <h2>especialidades</h2>
+        </a>
+    </div>
+    {% endif %}
+{% endblock admin_botoes %}
+

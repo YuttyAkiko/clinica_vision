@@ -9,10 +9,11 @@ from . import views
 app_name = 'accounts'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.redirect_user, name='redirect_user'),
+    path('perfil/', views.admin_perfil, name='admin_perfil'),
     path('alterar-dados/', views.update_user, name='update_user'),
     path('alterar-senha/', views.update_password, name='update_password'),
-    path('registro/', views.register, name='register'),
+    path('cadastro/', views.register, name='register'),
     path('entrar/', views.login, name='login'),
     path('sair/', views.logout, name='logout'),  # URLs de autenticação do DRF,
     path('recuperar-senha/',

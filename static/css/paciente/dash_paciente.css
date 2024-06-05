@@ -1,0 +1,243 @@
+/* background */
+body{
+    width: 100%;
+    height: 480px;
+}
+/* Aplicando display grid na pagina e definindo duas colunas, com duas linhas;*/
+.container_grid_paciente {
+    margin: 0 auto;
+    max-width: 100%;
+    height: fit-content;
+    padding: 0px 50px 0px 0px;
+
+    display: grid;
+    grid-template-columns: 450px auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+    "left_menu subtitle"
+    "left_menu section_principal";
+    grid-gap: 0% 5%;
+}
+
+#subtitle_paciente {
+    margin-right: 10%;
+}
+
+/* definindo posição dos botoes centrais */
+.section_principal {
+    grid-area: "section_principal";
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-weight: 600; /*fonte em negrito*/
+}
+
+/* estilo dos botoes à esquerda, dentro da janela azul*/
+.btn_quadrado_pac {
+    max-width: 380px;
+    min-width: 290px;    
+    height: 140px;
+
+    display: flex;
+    justify-content: center;
+
+    background-color: var(--branco);
+    border: 2px solid var(--preto);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 4px var(--preto);
+}
+/* tamanho dos icones dentro do botao*/
+.btn_quadrado_pac img{
+    width: 90px;
+    height: 90px;
+    padding-right: 5px;
+}
+/* alinhamento dos icones + h1 dos botoes dentro da janela azul*/
+.btn_quadrado_pac a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/* estilo e alinhamento do botao de do "agendamentos" */
+.btn_agendamentos_futuros {
+    max-width: 90%;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+
+    border: 2px solid var(--preto);
+    border-radius: 15px;
+    background-color: var(--branco);
+    box-shadow: 0 4px 4px var(--cinza-claro);
+}
+/* estilo da linha interna do botao do "agendamentos" */
+.linha_interna{
+    width: 80%;
+    height: 45px;
+    font-family: var(--texto);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    border: 1px solid var(--preto);
+    border-radius: 15px;
+}
+/* tam botão excluir (vermelho) */
+.icones_menores{
+    width: 30px;
+}
+/* removendo borda padrao do button */
+button {
+    border: none;
+    background-color: var(--branco);
+}
+/* subtitulo acima do botao */
+.section_principal h2{
+    font-weight: 700;
+    display: flex;
+    align-items: flex-start;
+}
+/* estilo botao historico de consultas */
+.historico_consulta {
+    max-width: 90%;
+    height: 340px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    border: 2px solid var(--preto);
+    border-radius: 15px;
+    background-color: var(--branco);
+    box-shadow: 0 4px 4px #666;
+}
+/* estilo dos botoes dentro do historico de consultas */
+.bg_botao{
+    width: 90%;
+    height: 66px;
+    font-family: var(--texto);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    border: 1px solid var(--cinza);
+    border-radius: 15px;
+    background-color: var(--cinza-claro);
+}
+
+/* parametro para a pagina do alert */
+#janela_cancelar {
+    display: none;
+    position: fixed;
+    z-index: 1;/* posicionamento da pagina sobre a principal painel_paciente */
+    left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);/* transparencia da pagina*/
+}
+/* estilo da janela alert */
+.elem_janela {
+	background-color: var(--branco);
+	margin: 15% auto;
+	padding: 20px;
+	border: 2px solid var(--preto);
+	width: 920px;
+	height: 380px;
+	border-radius: 15px;
+}
+/* estilo dos elementos dentro da janela alert */
+.elem_janela {
+	font-family: var(--texto);
+
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	justify-content: space-around;
+}
+/* posicionamento do titulo "cancelar agendamento" */
+.align_close {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: center;
+}
+/* alinhamento do botao "X" ao canto direito */
+.align_close button {
+	position: relative;
+	left: 28%;
+}
+
+/* cor do subtitulo */
+.elem_janela h1 {
+	color: var(--vermelho);
+}
+
+/* estilo e posicionamento da primeira e segunda linha de elementos especialidade, paciente, data, hora e medico */
+.align_linha {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+/* estilo dos inputs */
+.elem_janela input {
+	width: 200px;
+	height: 40px;
+	border-radius: 20px;
+	border: none;
+	background-color: var(--azul-claro);
+}
+
+/* aumentando os dois primeiros inputs da linha1*/
+#input_ajuste {
+	width: 300px;
+}
+
+/* estilo do botao confirmar (vermelho) */
+#btn_confirmar {
+	width: 170px;
+	height: 50px;
+
+	border-radius: 20px;
+	background-color: var(--vermelho);
+	color: var(--branco);
+	font-family: var(--texto);
+	font-size: 20px;
+}
+
+/* estilo do segundo alert, pós clicar no botao "confirmar" */
+#janela_confirmado {
+	display: none;
+    position: fixed;
+    z-index: 1;/* posicionamento da pagina sobre a principal painel_paciente */
+    left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);/* transparencia da pagina*/
+}
+
+/* tamanho da img ´x´ vermelho */
+#janela_confirmado img {
+	width: 257px;
+	height: 257px;
+}
+/* alinhamento ao centro da img ´x´ */
+.elem_janela-self {
+	align-items: center;
+}
+
+
+

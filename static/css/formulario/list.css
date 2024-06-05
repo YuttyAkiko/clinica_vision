@@ -1,0 +1,25 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.content>div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.content>div>a {
+  width: auto;
+  height: 40px;
+}
+
+#tabela_agenda {
+  margin-top: 30px;
+}
+
+#tabela_agenda p {
+  font-weight: 600;
+  color: var(--verde);
+}

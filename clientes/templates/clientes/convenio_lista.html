@@ -1,0 +1,49 @@
+{% extends "base_dash.html" %}
+{% load static %}
+
+{% block title %}
+    Convênio
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/formulario/list.css" %}">
+    <link rel="stylesheet" href="{% static "css/dashboard/base_dash.css" %}">
+{% endblock head %}
+
+{% block accounts_container %}
+<div class="content">
+    <div>
+        <h2 class="titulo__padrao">Convênios</h2>
+        <a href="{% url "medicos:convenio_cadastro" %}">+ CADASTRAR NOVA CONVÊNIO</a>
+    </div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Nome
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for convenio in object_list %}
+        <tr>
+            <td>
+                <a href=""># {{ convenio.pk }}</a>
+            </td>
+            <td>
+                {{ convenio.nome_convenio }}
+            </td>
+            <td>
+                <a href="{% url 'medicos:convenio_deletar' convenio.id %}" class="mr-1 text-danger" style="padding-left: 10px; text-decoration: none;">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
