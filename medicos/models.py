@@ -17,13 +17,8 @@ class Medico(models.Model):
     nome = models.CharField(verbose_name="Nome", max_length=200, default='')
     sobrenome = models.CharField(verbose_name="Sobrenome", max_length=200, default='')
     GENEROS = (
-<<<<<<< HEAD
         ('Feminino','Feminino'),
         ('Masculimo','Masculino')
-=======
-        ('F', 'Feminino'),
-        ('M', 'Masculino')
->>>>>>> feature/agendamento
     )
     genero = models.CharField(max_length=9, choices=GENEROS, default='')
     email = models.EmailField(verbose_name="Email")
@@ -38,7 +33,6 @@ class Medico(models.Model):
     especialidade = ForeignKey(Especialidade,
                             on_delete=models.CASCADE,
                             related_name='medicos')
-<<<<<<< HEAD
     
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, 
@@ -47,9 +41,6 @@ class Medico(models.Model):
         default=0
     )
     
-=======
-
->>>>>>> feature/agendamento
     def __str__(self):
         return f'{self.nome}'
 
@@ -91,5 +82,5 @@ class Agenda(models.Model):
         unique_together = ('horario', 'dia')
 
     def __str__(self):
-        return f'{self.dia.strftime("%b %d %Y")} - {self.get_horario_display()} - {self.medico}'
+        return f'{self.dia.strftime("%b %d %Y")} - {self.get_horario_display()} - Dr.{self.medico} - {self.especialidade}'
     

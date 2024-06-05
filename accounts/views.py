@@ -20,6 +20,7 @@ from django.contrib.auth.views import (
     )
 from .models import User
 from .forms import UserAdminCreationForm
+from clientes.models import Cliente
 
 @login_required
 def redirect_user_function(request: HttpRequest) -> HttpResponse:
@@ -60,10 +61,12 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('accounts:login')
     
     def form_valid(self, form):
-        messages.info(
-            self.request, "Cadastro realizado com sucesso! Faça seu login."
-        )
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        # Cria uma instância de Paciente associada ao novo usuário
+        Cliente.objects.create(user=self.object)
+        messages.info(self.request, "Cadastro realizado com sucesso! Faça seu login.")
+        
+        return response
 
 def password_reset_request(request):
     if request.method == 'POST':
@@ -121,7 +124,7 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
 
     template_name = 'accounts/update_password.html'
     login_url = reverse_lazy('accounts:login')
-    success_url = reverse_lazy('accounts:index')
+    success_url = reverse_lazy('accounts:redirect_user')
     form_class = PasswordChangeForm
 
     def get_form_kwargs(self):

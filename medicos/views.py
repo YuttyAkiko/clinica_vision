@@ -6,14 +6,10 @@ from django.http import Http404
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Medico, Agenda, Especialidade
-<<<<<<< HEAD
 from .forms import CreateProntuarioForm
-from clientes.models import Consulta, Cliente, Prontuario
+from clientes.models import Consulta, Cliente, Prontuario, Convenio
 from datetime import datetime
-=======
-from clientes.models import Convenio
 
->>>>>>> feature/agendamento
 
 class TestMixinIsAdmin(UserPassesTestMixin):
     def test_func(self):
@@ -73,7 +69,9 @@ class MinhaAgendaListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         horarios_disponiveis = self.object_list
-        horarios_agendados = Consulta.objects.filter(agenda__in=horarios_disponiveis, status_cons="Agendada")
+        horarios_agendados = Consulta.objects.filter(
+            agenda__in=horarios_disponiveis, status_cons__in=["Agendada", "Concluída"]
+        )
         horarios_disponiveis = horarios_disponiveis.exclude(pk__in=[consulta.agenda.pk for consulta in horarios_agendados])
         context['horarios_disponiveis'] = horarios_disponiveis
         return context
@@ -215,7 +213,6 @@ class AgendaListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
 
     def get_queryset(self):
         return Agenda.objects.filter().order_by('-pk')
-<<<<<<< HEAD
 
 perfil = PerfilView.as_view()
 atualizar_cadastro = CadastroUpdateView.as_view()
@@ -226,7 +223,6 @@ prontuario_add = CreateProntuarioView.as_view()
 prontuario = ProntuarioDetailView.as_view()
 
 
-=======
     
 class ConvenioListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     
@@ -253,7 +249,6 @@ class ConvenioDeleteView(LoginRequiredMixin, TestMixinIsAdmin, DeleteView):
         messages.success(self.request, "Convênio excluído com sucesso!")
         return reverse_lazy('medicos:convenio_lista')
     
->>>>>>> feature/agendamento
 medico_cadastro = MedicoCreateView.as_view()
 medico_lista = MedicoListView.as_view()
 especialidade_cadastro = EspecialidadeCreateView.as_view()

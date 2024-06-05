@@ -13,7 +13,7 @@
 {% block accounts_container %}
 <div class="content">
     <div>
-        <h2 class="titulo__padrao">Minhas Consultas</h2>
+        <h1 class="titulo">Minhas Consultas</h1>
     </div>
 <table class="table table-bordered">
     <thead>
@@ -22,19 +22,26 @@
                 ID
             </th>
             <th>
-                Medico
-            </th>
-            <th>
                 Dia
             </th>
             <th>
+                Médico(a)
+            </th>
+            <th>
+                Especialidade
+            </th>
+            <th>
                 Horario
+            </th>
+            <th>
+                Status
             </th>
             <th>
                 Opções
             </th>
         </tr>
     </thead>
+    
     <tbody>
         {% for consulta in object_list %}
         <tr>
@@ -42,19 +49,25 @@
                 <a href=""># {{ consulta.pk }}</a>
             </td>
             <td>
+                {{ consulta.agenda.dia|date:"d/m/Y" }}
+            </td>
+            <td>
                 {{ consulta.agenda.medico }}
             </td>
             <td>
-                {{ consulta.agenda.dia|date:"d/m/Y" }}
+                {{ consulta.agenda.medico.especialidade }}
             </td>
             <td>
                 {{ consulta.agenda.get_horario_display }}
             </td>
             <td>
-                <a href="{% url 'medicos:agendar_consulta_atualizar' consulta.id %}" class="text-primary" style="padding-left: 10px; text-decoration: none;">
+                {{ consulta.status_cons }}
+            </td>
+            <td>
+                <a href="{% url 'clientes:consulta_update' consulta.id %}" class="text-primary" style="padding-left: 10px; text-decoration: none;">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="{% url 'medicos:agendar_consulta_deletar' consulta.id %}" class="mr-1 text-danger" style="padding-left: 10px; text-decoration: none;">
+                <a href="{% url 'clientes:consulta_delete' consulta.id %}" class="mr-1 text-danger" style="padding-left: 10px; text-decoration: none;">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>
@@ -67,7 +80,14 @@
                 </a>
             </td> {% endcomment %}
         </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">
+                <h2>Sem consulta agendada.</h2>
+            </td>
+        </tr>
         {% endfor %}
     </tbody>
 </table>
+
 {% endblock %}
