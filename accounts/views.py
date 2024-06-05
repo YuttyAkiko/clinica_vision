@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import HttpResponse, HttpRequest, Http404
+from django.http import HttpResponse, HttpRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models.query_utils import Q
@@ -26,7 +26,7 @@ from clientes.models import Cliente
 def redirect_user_function(request: HttpRequest) -> HttpResponse:
     if request.user.is_authenticated:
         if request.user.is_superuser:
-            return reverse('accounts:admin_perfil')
+            return HttpResponseRedirect(reverse('accounts:admin_perfil'))
         if request.user.is_staff:
             return reverse('medicos:medico_perfil')
         else:
@@ -52,15 +52,10 @@ class TestMixinIsAdmin(UserPassesTestMixin):
 class PerfilView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
     model = User
     login_url = 'accounts:login'
-    template_name = 'accounts/dashboard.html'
+    template_name = 'accounts/perfil_admin.html'
 
     def get_object(self, queryset=None):
         return get_object_or_404(User, pk=self.request.user.pk)  
-
-    def get(self, request, *args, **kwargs):
-        if request.user.is_superuser:
-            return redirect('accounts:admin_perfil')
-        return super().get(request, *args, **kwargs)
     
 class Login(LoginView):
     
@@ -161,7 +156,7 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
 
 
 
-perfil = PerfilView.as_view()
+admin_perfil = PerfilView.as_view()
 login = Login.as_view()
 logout = Logout.as_view()
 register = RegisterView.as_view()
