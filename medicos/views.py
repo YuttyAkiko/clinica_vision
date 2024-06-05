@@ -34,11 +34,11 @@ class PerfilView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
     def get_object(self, queryset=None):
         return get_object_or_404(Medico, user=self.request.user)
     
-    def get(self, request, *args, **kwargs):
+    """ def get(self, request, *args, **kwargs):
         try:
             return super().get(request, *args, **kwargs)
         except Http404:
-            return TestMixinIsAdmin.handle_no_permission(self)
+            return TestMixinIsAdmin.handle_no_permission(self) """
         
 class CadastroUpdateView(LoginRequiredMixin, TestMixinIsAdmin, UpdateView):
 
