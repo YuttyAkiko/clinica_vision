@@ -143,14 +143,14 @@ class MedicoCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
 
     model = Medico
     login_url = 'accounts:login'
-    template_name = 'medicos/cadastro.html'
+    template_name = 'medicos/admin/cadastro.html'
     fields = ['nome', 'crm', 'email', 'telefone', 'especialidade']
     success_url = reverse_lazy('medicos:medicos_lista')
     
 class MedicoListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     
     login_url = 'accounts:login'
-    template_name = 'medicos/medicos_lista.html'
+    template_name = 'medicos/admin/medicos_lista.html'
 
     def get_queryset(self):
         return Medico.objects.all().order_by('-pk')
@@ -159,14 +159,14 @@ class EspecialidadeCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
 
     model = Especialidade
     login_url = 'accounts:login'
-    template_name = 'medicos/cadastro.html'
+    template_name = 'medicos/admin/cadastro.html'
     fields = ['nome',]
     success_url = reverse_lazy('medicos:especialidade_lista')
     
 class EspecialidadeListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     
     login_url = 'accounts:login'
-    template_name = 'medicos/especialidade_lista.html'
+    template_name = 'medicos/admin/especialidade_lista.html'
 
     def get_queryset(self):
         return Especialidade.objects.all().order_by('-pk')
@@ -236,7 +236,7 @@ class ConvenioCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
 
     model = Convenio
     login_url = 'accounts:login'
-    template_name = 'medicos/cadastro.html'
+    template_name = 'medicos/admin/cadastro.html'
     fields = ['nome_convenio',]
     success_url = reverse_lazy('medicos:convenio_lista')
 

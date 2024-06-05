@@ -34,6 +34,28 @@
         {% block add_botoes %}{% endblock add_botoes %}
         
         {% block admin_botoes %}
+        {% if request.user.is_staff or request.user.is_superuser %}
+            <div class="btn_main">
+                <a href="{% url 'medicos:medicos_lista'%}">
+                    <img src="{% static 'img/dashboard/icone_funcionario.png' %}" alt="ícone perfil funcionário">
+                    <h2>médicos</h2>
+                </a> 
+            </div>
+
+            <div class="btn_main">
+                <a href="{% url 'medicos:especialidade_lista'%}">
+                    <img src="{% static 'img/dashboard/icone_especialidade.png' %}" alt="ícone perfil paciente">
+                    <h2>especialidades</h2>
+                </a>
+            </div>
+
+            <div class="btn_main">
+                <a href="{% url "medicos:convenio_lista" %}">
+                    <img src="{% static 'img/dashboard/icone_convenio.png' %}" alt="ícone perfil paciente">
+                    <h2>convênios</h2>
+                </a>
+            </div>
+            {% endif %}
         {% endblock admin_botoes %}
 
         {% comment %} <div class="btn_main">
