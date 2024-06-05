@@ -13,7 +13,7 @@ main {
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
-    height: auto;
+    height: 900px;
     width: 40%;
 }
 
