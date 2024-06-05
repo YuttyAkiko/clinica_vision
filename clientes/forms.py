@@ -1,4 +1,4 @@
-from django import forms
+""" from django import forms
 from .models import Consulta
 from medicos.models import Medico, Agenda, Especialidade
 
@@ -45,3 +45,4 @@ class ConsultaForm(forms.ModelForm):
             self.fields['horario'].choices = [(agenda.horario, agenda.get_horario_display()) for agenda in agendas]
         else:
             self.fields['horario'].choices = []
+ """

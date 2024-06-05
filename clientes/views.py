@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Cliente, Consulta
 from medicos.models import Medico, Agenda, Especialidade
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ConsultaForm
+# from .forms import ConsultaForm
 from django.http import JsonResponse
 from datetime import datetime
 
@@ -76,7 +76,8 @@ class ClienteUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class ConsultaCreateView(LoginRequiredMixin, CreateView):
+""" class ConsultaCreateView(LoginRequiredMixin, CreateView):
+    # ESTÁ CLASSE ESTÁ COM OS INPUTS DO AGENDAMENTO SEPARADOS!!!
     model = Consulta
     form_class = ConsultaForm
     template_name = 'clientes/cadastro.html'
@@ -144,8 +145,9 @@ def get_horarios_by_dia(request):
     medico_id = request.GET.get('medico_id')
     horarios = Agenda.objects.filter(medico_id=medico_id, dia=dia).values('horario', 'id')
     return JsonResponse({'horarios': [{'id': horario['id'], 'horario': Agenda.HORARIOS[int(horario['horario'])-1][1]} for horario in horarios]})
+"""
 
-""" class ConsultaCreateView(LoginRequiredMixin, CreateView):
+class ConsultaCreateView(LoginRequiredMixin, CreateView):
 
     model = Consulta
     login_url = 'accounts:login'
@@ -167,7 +169,7 @@ def get_horarios_by_dia(request):
             messages.warning(self.request, 'Complete seu cadastro')
             return HttpResponseRedirect(reverse_lazy('clientes:cliente_cadastro'))
         messages.info(self.request, 'Consulta marcada com sucesso!')
-        return HttpResponseRedirect(reverse_lazy('clientes:consulta_lista')) """
+        return HttpResponseRedirect(reverse_lazy('clientes:consulta_lista'))
     
 class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
 

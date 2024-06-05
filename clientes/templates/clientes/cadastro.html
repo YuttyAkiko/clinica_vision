@@ -54,7 +54,7 @@
                 {% endfor %}
             {% endblock messages %}
         </div>
-        <script type="text/javascript">
+        {% comment %} <script type="text/javascript">
         $(document).ready(function() {
             $("#id_especialidade").change(function() {
                 var especialidadeId = $(this).val();
@@ -121,7 +121,7 @@
                 }
             });
         });
-        </script>
+        </script> {% endcomment %}
     </div>
 </div>
 {% endblock %}
