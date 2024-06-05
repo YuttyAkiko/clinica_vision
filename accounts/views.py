@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import HttpResponse, HttpRequest
-from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpRequest, Http404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models.query_utils import Q
 from django.template.loader import render_to_string
@@ -13,7 +13,7 @@ from django.utils.encoding import force_bytes
 from django.views.generic import CreateView, UpdateView, FormView, DetailView, View
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import Group
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth.views import (
     LoginView, LogoutView,
@@ -25,6 +25,8 @@ from clientes.models import Cliente
 @login_required
 def redirect_user_function(request: HttpRequest) -> HttpResponse:
     if request.user.is_authenticated:
+        if request.user.is_superuser:
+            return reverse('accounts:admin_perfil')
         if request.user.is_staff:
             return reverse('medicos:medico_perfil')
         else:
@@ -38,7 +40,28 @@ class RedirectUserView(View):
     @method_decorator(login_required)
     def get(self, request: HttpRequest) -> HttpResponse:
         return redirect(redirect_user_function(request))
+    
+class TestMixinIsAdmin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
 
+    def handle_no_permission(self):
+        messages.error(self.request, "Você não tem permissões para acessar esta página.")
+        return redirect("accounts:login") 
+    
+class PerfilView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
+    model = User
+    login_url = 'accounts:login'
+    template_name = 'accounts/dashboard.html'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(User, pk=self.request.user.pk)  
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_superuser:
+            return redirect('accounts:admin_perfil')
+        return super().get(request, *args, **kwargs)
+    
 class Login(LoginView):
     
     template_name = 'accounts/login.html'
@@ -138,7 +161,7 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
 
 
 
-
+perfil = PerfilView.as_view()
 login = Login.as_view()
 logout = Logout.as_view()
 register = RegisterView.as_view()

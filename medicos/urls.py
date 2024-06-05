@@ -22,11 +22,7 @@ urlpatterns = [
     path('agendar/apagar/<int:pk>/', views.agenda_deletar, name='agendar_consulta_deletar'),
     path('minhas/consultas/', views.agenda_lista, name="agenda_lista"),
     path('admim/lista/medicos/', views.medico_lista, name="medicos_lista"),
-<<<<<<< HEAD
-    path('admim/lista/especialidades/', views.especialidade_lista, name="especialidade_lista")
-=======
     path('admim/lista/especialidades/', views.especialidade_lista, name="especialidade_lista"),
     path('admim/lista/convenios/', views.convenio_lista, name="convenio_lista"),
     path('convenio/apagar/<int:pk>/', views.convenio_deletar, name='convenio_deletar'),
->>>>>>> feature/agendamento
 ]
