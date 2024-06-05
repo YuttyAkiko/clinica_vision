@@ -324,7 +324,7 @@ learningmanager/media/
 .pytest_cache/
 
 # ignore sqlite databases
-# *.db
-# *.sqlite
-# *.sqlite3
+*.db
+*.sqlite
+*.sqlite3
 

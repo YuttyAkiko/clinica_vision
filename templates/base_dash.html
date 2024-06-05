@@ -1,23 +1,26 @@
 {% extends 'base.html'%}
+
 {% load static %}
 
 {% block title %}
-    {{ block.super }} | Minha Conta
-{% endblock%}
+    {{ block.super }}
+{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/dashboard/base_dash.css' %}" media="screen" />
 {% endblock head %}
 
+{% block nav_header %}{% endblock nav_header %}
+
 {% block container %}
 <main>
 {% block side-menu %}
     <section class="left_menu">
         <div>
+            <img src="{% static 'img/dashboard/perfil_icon/icone_04.png' %}" alt="ícone perfil">
+            
             <h1 class="titulo">Bem vindo(a)<br>{{ user.name }}</h1>
-
-            <img src="{% static 'img/dashboard/perfil_icon/icone_02.png' %}" alt="ícone perfil">
 
             <h1> {{ cargo.nome_cargo }} </h1>
 

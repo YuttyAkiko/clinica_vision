@@ -2,6 +2,12 @@
     margin: 0;
 }
 
+.navbar-form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
 .custom_btn_logout {
     background-color: transparent;
     border: none;
@@ -13,4 +19,5 @@
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 21px;
+    margin: 0 1rem;
 }

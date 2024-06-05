@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_dash.html" %}
 {% load static %}
 {% load widget_tweaks %}
 
@@ -12,15 +12,9 @@ Login | {{ block.super }}
 		<link rel="stylesheet" href="{% static "scss/button-submit.scss" %}">
 {% endblock head %}
 
-{% block login-header %}
-		<div id="btn_header_dash">
-				<nav>
-						<ul>
-								<li><a href="{% url "home" %}">VOLTAR</a></li>
-						</ul>
-				</nav>
-		</div>
-{% endblock login-header %}
+{% block nav_header %}
+	<li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
+{% endblock nav_header %}
 
 {% block container %}
 		<main>

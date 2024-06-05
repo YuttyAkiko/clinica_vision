@@ -10,12 +10,18 @@ img {
     width: 100%;
 }
 
+.form-header-dash {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 /* estilo e posicionamento da janela azul */
 .left_menu {
     max-width: 300px;
     min-width: 250px;
     height: 500px;
-    margin: 0 2rem 4rem 0;
+    margin: 0 5rem 4rem 0;
     /* faixa listrada esta com pequeno espaçamento entre a janela azul, por isso essa margem negativa */
     background-color: var(--azul-medio);
     border-radius: 0px 0px 70px 0px;
@@ -45,6 +51,7 @@ img {
     font-size: 20px;
     font-weight: 700;
     line-height: 30px;
+    color: var(--branco);
 }
 
 /* -------------------------------------- painel - pg administrador ---------------------*/
@@ -67,7 +74,6 @@ img {
     min-width: 100px;
     height: 150px;
     padding-bottom: 20px;
-    filter: invert(1);
 }
 
 /* estilo do botao a esquerda - novo usuario */
@@ -93,7 +99,7 @@ img {
 
 /* subtitulo "oq voce deseja acessar? */
 .titulo {
-    font-size: 24px;
+    font-size: 30px;
     margin: 5rem 1rem 1rem;
     text-align: -webkit-center;
 }

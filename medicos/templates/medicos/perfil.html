@@ -1,0 +1,44 @@
+{% extends 'accounts/dashboard.html' %}
+
+{% load static %}
+
+{% block title %}
+  Minha Conta | {{ block.super }}
+{% endblock %}
+
+{% block img %}<img src="{% static 'img/dashboard/perfil_icon/icone_03.png' %}" alt="ícone perfil">{% endblock img %}
+
+{% block add_botoes %}
+
+<div class="btn_main">
+    <a href="{% url 'medicos:atualizar_cadastro'%}">
+        <img src="{% static 'img/dashboard/perfil_icon/icone_02.png' %}" alt="ícone ilustrativo clínica">
+        <h2>atualizar<br>meus dados</h2>
+    </a>
+</div>
+      
+{% if request.user.is_staff or request.user.is_superuser %}
+    <div class="btn_main">
+        <a href="{% url 'medicos:minha_agenda' %}">
+            <img src="{% static 'img/dashboard/icone_agenda.png' %}" alt="ícone ilustrativo agendamento">
+            <h2>minha agenda</h2>
+        </a>
+    </div>
+    
+    <div class="btn_main">
+        <a href="{% url 'medicos:consultas_lista'%}">
+            <img src="{% static 'img/dashboard/icone_calendario.png' %}" alt="ícone perfil funcionário">
+            <h2>consultas</h2>
+        </a> 
+    </div>
+
+    <div class="btn_main">
+        <a href="{% url 'medicos:prontuarios_lista'%}">
+            <img src="{% static 'img/dashboard/icone_paciente.png' %}" alt="ícone perfil paciente">
+            <h2>prontuários</h2>
+        </a>
+    </div>
+{% endif %}
+
+{% endblock add_botoes %}
+

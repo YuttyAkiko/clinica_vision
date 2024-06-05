@@ -9,7 +9,8 @@ from . import views
 app_name = 'accounts'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.redirect_user, name='redirect_user'),
+    path('perfil/', views.admin_perfil, name='admin_perfil'),
     path('alterar-dados/', views.update_user, name='update_user'),
     path('alterar-senha/', views.update_password, name='update_password'),
     path('cadastro/', views.register, name='register'),
