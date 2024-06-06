@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "bootstrap-icons": "^1.11.3"
+  }
+}

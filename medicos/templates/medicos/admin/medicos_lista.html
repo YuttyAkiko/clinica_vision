@@ -1,11 +1,21 @@
-{% extends "accounts/index.html" %}
+{% extends "base_dash.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/formulario/list.css" %}">
+    <link rel="stylesheet" href="{% static "css/dashboard/base_dash.css" %}">
+{% endblock head %}
 
 {% block title %}
-    Medicos
+    Medicos | {{ block.super }}
 {% endblock %}
 
 {% block accounts_container %}
-<h2>Medicos</h2>
+<div class="content">
+    <div>
+        <h2 class="titulo__padrao">Médicos</h2>
+        <a href="{% url "medicos:medico_cadastro" %}">+ CADASTRAR NOVO MÉDICO</a>
+    </div>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -54,4 +64,5 @@
         {% endfor %}
     </tbody>
 </table>
+</div>
 {% endblock %}

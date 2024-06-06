@@ -1,0 +1,59 @@
+{% extends 'medicos/perfil.html' %}
+
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/perfil/base.css' %}" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/formulario/form.css' %}" media="screen" />
+{% endblock head %}
+
+{% block title %}
+    Meus Dados | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<section>
+
+    <div class="perfil-cadastro">
+        <img src="{% static 'img/dashboard/perfil_icon/icone_01.png' %}" alt="perfil">
+        {% if user.is_superuser %}
+            <h1 class="titulo">{{ funcionario.pk }}</h1>    
+        {% else %}
+            <h1 class="titulo">MEUS DADOS</h1>
+        {% endif %}
+    </div>
+
+    <div id="container-forms">
+
+        <form method="POST" class="form-grid" novalidate>
+
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            {% if field.name != 'genero' %}
+                <div class="form-field">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label><br>
+                    {{ field }} {{ field.errors }}
+                </div>
+            {% else %} 
+            {% comment %} adicionado regra para desabilitar o select do genero {% endcomment %}
+                <div class="form-field">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label><br>
+                    <input type="text" value="{{ field.value }}" class="input-estilizado" readonly>
+                </div>
+            {% endif %}
+        {% endfor %}
+            <div class="form-button">
+                <div>
+                    <button type="submit">CONCLUIR</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock content %}
+
