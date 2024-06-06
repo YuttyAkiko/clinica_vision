@@ -147,10 +147,6 @@ class MedicoCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
     fields = ['nome', 'sobrenome', 'crm', 'email', 'telefone', 'especialidade']
     success_url = reverse_lazy('medicos:medicos_lista')
     
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-    
 class MedicoListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     
     login_url = 'accounts:login'
@@ -274,4 +270,3 @@ agenda_deletar = AgendaDeleteView.as_view()
 convenio_lista = ConvenioListView.as_view()
 convenio_cadastro = ConvenioCreateView.as_view()
 convenio_deletar = ConvenioDeleteView.as_view()
-
