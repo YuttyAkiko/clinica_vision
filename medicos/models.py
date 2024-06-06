@@ -32,7 +32,8 @@ class Medico(models.Model):
                                 max_length=17, null=True, blank=True)
     especialidade = ForeignKey(Especialidade,
                             on_delete=models.CASCADE,
-                            related_name='medicos')
+                            related_name='medicos',
+                            null=True)
     
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, 
