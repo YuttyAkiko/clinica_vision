@@ -1,0 +1,93 @@
+{% extends "base_dash.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/formulario/list.css" %}">
+    <link rel="stylesheet" href="{% static "css/dashboard/base_dash.css" %}">
+{% endblock head %}
+
+{% block title %}
+    Minhas Consultas
+{% endblock %}
+
+{% block accounts_container %}
+<div class="content">
+    <div>
+        <h1 class="titulo">Minhas Consultas</h1>
+    </div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Dia
+            </th>
+            <th>
+                Médico(a)
+            </th>
+            <th>
+                Especialidade
+            </th>
+            <th>
+                Horario
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Opções
+            </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        {% for consulta in object_list %}
+        <tr>
+            <td>
+                <a href=""># {{ consulta.pk }}</a>
+            </td>
+            <td>
+                {{ consulta.agenda.dia|date:"d/m/Y" }}
+            </td>
+            <td>
+                {{ consulta.agenda.medico }}
+            </td>
+            <td>
+                {{ consulta.agenda.medico.especialidade }}
+            </td>
+            <td>
+                {{ consulta.agenda.get_horario_display }}
+            </td>
+            <td>
+                {{ consulta.status_cons }}
+            </td>
+            <td>
+                <a href="{% url 'clientes:consulta_update' consulta.id %}" class="text-primary" style="padding-left: 10px; text-decoration: none;">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'clientes:consulta_delete' consulta.id %}" class="mr-1 text-danger" style="padding-left: 10px; text-decoration: none;">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+            {% comment %} <td>
+                <a href="{% url 'medicos:agendar_consulta_atualizar' consulta.id %}" class="text-primary" style="padding-left: 10px; text-decoration: none;">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'medicos:agendar_consulta_deletar' consulta.id %}" class="mr-1 text-danger" style="padding-left: 10px; text-decoration: none;">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td> {% endcomment %}
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">
+                <h2>Sem consulta agendada.</h2>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'medicos/perfil.html' %}
+
+{% load static %}
+
+{% block title %}
+    Minha Agenda | Clínica Vision
+{% endblock %}       
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/dashboard/base_dash.css' %}" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/medico/perfil/minha_agenda.css' %}">
+{% endblock head %} 
+
+{% block botoes %}
+
+<section class="section_minha_agenda">
+
+    {% block profile-title %}
+        <h1 class="titulo">Consultas</h1> 
+    {% endblock profile-title %}
+
+    <div class="container_filter">
+        <form method="GET">
+            {% csrf_token %}
+            <input type="date" name="data_consulta">
+            <button type="submit">FITLRAR</button>
+        </form>
+    </div> 
+
+    <div class="container_consultas">
+        {% if user.is_staff or user.is_superuser %}
+            {% if consultas %}
+                {% for consulta in consultas %}                 
+                    <div class="consulta-item"> 
+
+                        <p>Paciente: {{ consulta.cliente }}<br>
+                            Prontuário: {{ consulta.cliente.id }}
+                        </p>
+
+                        <p>Especialidade: {{ consulta.agenda.medico.especialidade }}<br>
+                            Médico(a): Dr(a) {{ consulta.agenda.medico }}</p>
+                            
+                        <p>Data: {{ consulta.agenda.dia }}<br>
+                            Hora: {{ consulta.agenda.get_horario_display }}</p>
+
+                        <p>Status: <br> {{consulta.status_cons}}</p>
+
+                        <a href="{% url 'medicos:prontuario_add' consulta.id %}">
+                            <img src="{% static 'img/icons/prontuario-medico.png' %}" alt="ícone ilustrativo prontuário">
+                        </a>
+
+                    </div>
+                {% endfor %}
+            {% else %}
+                    <h3>Sem resultados.</h3>
+            {% endif %}
+        {% endif %}
+    </div>
+
+</section>
+
+{% endblock botoes %}

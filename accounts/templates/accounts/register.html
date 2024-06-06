@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_dash.html" %}
 {% load static %}
 {% load widget_tweaks %}
 {% load sass_tags %}
@@ -17,7 +17,7 @@
   <div class="row login__container">
     <div class="col-md-8 col-md-offset-2">
         <div class="page-header">
-            <h1>Cadastro</h1>
+            <h1>Cadastro Cliente</h1>
         </div>
         <form class="form-horizontal login" method="post">
             {% csrf_token %}
@@ -56,7 +56,7 @@
 {% endblock container %}
 
 {% block scripts %}
-  <script src="{% static "js/button-submit.js" %}"></script>r
+  <script src="{% static "js/button-submit.js" %}"></script>
 {% endblock scripts %}
 
 

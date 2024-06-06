@@ -1,20 +1,22 @@
-{% extends "base.html" %}
+{% extends "base_dash.html" %}
 {% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/formulario/form.css" %}">
+    <link rel="stylesheet" href="{% static "css/dashboard/base_dash.css" %}">
+{% endblock head %}
+
 {% load widget_tweaks %}
 
 {% block title %}
     Cadastro | {{ block.super }}
 {% endblock %}
 
-{% block head %}
-    <link rel="stylesheet" href="{% static "css/formulario/inputs.css" %}">
-{% endblock head %}
-
 {% block container %}
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="page-header">
-            <h1 class="text-center">Cadastro</h1>
+            <h1>Cadastro</h1>
         </div>
         <form class="form-horizontal" method="post">
             {% csrf_token %}

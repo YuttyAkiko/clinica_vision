@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_dash.html" %}
 {% load static %}
 {% load widget_tweaks %}
 
@@ -9,19 +9,14 @@ Login | {{ block.super }}
 {% block head %}
 		<link rel="stylesheet" href="{% static "css/login/login.css" %}">
 		<link rel="stylesheet" href="{% static "css/formulario/form.css" %}">
+		<link rel="stylesheet" href="{% static "scss/button-submit.scss" %}">
 {% endblock head %}
 
-{% block login-header %}
-		<div id="btn_header_dash">
-				<nav>
-						<ul>
-								<li><a href="{% url "home" %}">VOLTAR</a></li>
-						</ul>
-				</nav>
-		</div>
-{% endblock login-header %}
+{% block nav_header %}
+	<li><a href="#" id="button-back" onclick="history.back()">Voltar</a></li>
+{% endblock nav_header %}
 
-{% block content %}
+{% block container %}
 		<main>
 				<section class="bem-vindo__container">
 						<div class="bg-bem-vindo"></div> <!-- Esta div é o fundo branco emcima do bg -->
@@ -31,7 +26,16 @@ Login | {{ block.super }}
 						</div>
 				</section>
 				<section class="login__container"> <!-- Essa section é toda a parte da direita -->
-						<div class="login__links">
+					<div class="container margin-top">
+						{% block messages %}
+							{% for message in messages %}
+								<div class='alert alert-{{ message.tags}}'>
+								{{ message }}
+								</div>
+							{% endfor %}
+						{% endblock messages %}
+					</div>
+						{% comment %} <div class="login__links">
 								<h1>LOGIN</h1>
 								<nav>
 										<div class="login__facebook texto__padrao">
@@ -47,9 +51,9 @@ Login | {{ block.super }}
 														<img src="{% static "img/icons/google.png" %}" alt="">Continuar com Google</a>
 										</div>
 								</nav>
-						</div>
+						</div> {% endcomment %}
 						<div class="login">
-								<span class="titulo__padrao">Ou</span>
+								{% comment %} <span class="titulo__padrao">Ou</span> {% endcomment %}
 								<form class="form-horizontal" method="post">
 										{% csrf_token %}
 												<div class="form-group {% if form.username.errors %} has-error {% endif %}">
@@ -76,7 +80,7 @@ Login | {{ block.super }}
 												</div>
 												<div class="form-group">
 														<div class="col-md-9 col-md-offset-3">
-																<button type="submit" class="form-button">ENTRAR</button>
+																<button type="submit" id="button-submit" class="form-button">ENTRAR</button>
 														</div>
 												</div>
 								</form>
@@ -94,4 +98,9 @@ Login | {{ block.super }}
 						</div>
 				</section>
 		</main>
-{% endblock content %}
+{% endblock container %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{% static "js/button-submit.js" %}"></script>
+{% endblock scripts %}

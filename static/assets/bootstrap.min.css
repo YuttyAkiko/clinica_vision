@@ -4293,12 +4293,10 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 }
 
 .nav>li {
-    position: relative;
     display: block
 }
 
 .nav>li>a {
-    position: relative;
     display: block;
     padding: 10px 15px;
     text-transform: uppercase;
@@ -23680,12 +23678,13 @@ input,button,select,textarea {
 }
 
 a {
-    color: #18bc9c;
+    color: var(--azul-medio-light);
     text-decoration: none
 }
 
 a:hover,a:focus {
     /* color: var(--cinza); */
+    color: var(--verde);
     text-decoration: none;
 }
 

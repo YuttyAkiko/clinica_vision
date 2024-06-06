@@ -11,7 +11,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -24,7 +23,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'rest_framework',
     'sass_processor',
-    
+
     'accounts',
     'clientes',
     'medicos',
@@ -84,8 +83,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
-
 LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
@@ -104,10 +101,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/scss'),
 ]
 
-SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
+""" SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(BASE_DIR, 'static', 'scss'),
-]
+] """
 
 # Configurações adicionais se necessário
 SASS_PROCESSOR_ENABLED = True

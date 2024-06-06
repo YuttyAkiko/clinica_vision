@@ -1,9 +1,18 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static "css/custom.min.css" %}">
+{% endblock head %}
+
 
 {% block container %}
   <div class="jumbotron page-header">
-    <p>Você saiu!</p>
-      <a href="{% url 'accounts:login'%}">
-        Volte para o Login.</a>
+    <p>Sessão encerrada com sucesso. Até a próxima!</p>
+      <a href="{% url 'home'%}">Volte para a página principal</a>
+      <br>
+      Ou
+      <br>
+      <a href="{% url 'accounts:login'%}">Acesse novamente</a>
   </div>
 {% endblock  %}
