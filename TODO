@@ -1,7 +1,20 @@
 IMPORTANTE:
--- REVISAR MEDICO - VIEWS: CadastroUpdateView, nao esta funcionando;
 -- Adicionar função de "esqueci minha senha";
--- Rever view index de accounts para que o usuario seja redirecionado ao seu perfil de acordo com o tipo de usuario;
+-- Retirar box messages e trocar toasts;
+-- Fazer o deploy da versão 1.0.0;
+-- Adicionar funcionalidade do formulario de contato;
+-- Adicionar status do pagamento do agendamento no perfil do admin;
+-- Adicionar checkbox para agendamento dos horários disponíveis o médico;
+-- Criar nossa pagework;
+-- Adicionar os icones do footer;
+-- Separar campos de agendamento;
+-- Ajustur o texto do banner;
+-- Adicionar animações nos botoes e na institucional;
+-- Adicionar redirect para pg login aos botoes de agendar da institucional e ajustar estilo;
+-- Ajustar responsividade - prioridade para pg de login;
+-- Ajustar a transição do scroll smooth;
+
+-- Repassar o projects para o novo repositório;
 
 # Lembrete
 
