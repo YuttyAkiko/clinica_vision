@@ -97,9 +97,18 @@ class BaseConsultasListView(ListView):
         if data_consulta:
             data_consulta = datetime.strptime(data_consulta, '%Y-%m-%d').date()
             consultas = consultas.filter(agenda__dia=data_consulta)
-            return consultas
-        else:
-            return consultas
+
+        # Adicionando filtro para buscar pacientes por ID
+        cliente_id = self.request.GET.get('cliente_id')
+        if cliente_id:
+            try:
+                cliente = Cliente.objects.get(id=cliente_id)
+                consultas = consultas.filter(cliente=cliente)
+            except Cliente.DoesNotExist:
+                # Se o paciente não for encontrado, retornar uma lista vazia de consultas
+                consultas = Consulta.objects.none()
+        
+        return consultas
     
 class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, BaseConsultasListView):
     template_name = 'medicos/consultas_lista.html'
