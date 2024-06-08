@@ -22,7 +22,7 @@ class Medico(models.Model):
     )
     genero = models.CharField(max_length=9, choices=GENEROS, default='')
     email = models.EmailField(verbose_name="Email")
-    crm = models.CharField(verbose_name="CRM", max_length=200)
+    crm = models.CharField(unique=True, verbose_name="CRM", max_length=200)
     phone_regex = RegexValidator(
         regex=r'^\(?\d{2}\)?[\s.-]?\d{4,5}-?\d{4}$',
         message="O número precisa estar neste formato: (00) 00000-0000 ou (00) 0000-0000"
