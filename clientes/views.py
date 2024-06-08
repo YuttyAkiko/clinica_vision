@@ -62,7 +62,7 @@ class ClienteUpdateView(LoginRequiredMixin, UpdateView):
     model = Cliente
     login_url = reverse_lazy('accounts:login')
     template_name = 'accounts/update_user.html'
-    fields = ['nome','sobrenome','cpf','data_nasc','sexo','telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio']
+    fields = ['nome','sobrenome','data_nasc','sexo','telefone', 'cep', 'rua', 'bairro', 'cidade', 'estado', 'convenio']
     success_url = reverse_lazy('clientes:cliente_perfil')
 
     def get_object(self):
@@ -74,6 +74,7 @@ class ClienteUpdateView(LoginRequiredMixin, UpdateView):
         
     def form_valid(self, form):
         form.instance.user = self.request.user
+        form.instance.cpf = self.get_object().cpf #adicionando o cpf do banco de dados no formulario p/ validação
         return super().form_valid(form)
 
 """ class ConsultaCreateView(LoginRequiredMixin, CreateView):
