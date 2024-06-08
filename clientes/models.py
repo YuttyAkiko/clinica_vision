@@ -17,7 +17,7 @@ class Cliente(models.Model):
     cpf = CPFField(verbose_name="CPF",
                     max_length=50,
                     unique=True,)
-    data_nasc  = models.DateField(auto_now=False, auto_now_add=False, verbose_name="nascimento", default='0000-00-00')
+    data_nasc  = models.DateField(auto_now=False, auto_now_add=False, verbose_name="nascimento", default='2000-01-01')
     SEXO = (
         ("M", "Masculino"),
         ("F", "Feminino")
