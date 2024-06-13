@@ -30,6 +30,12 @@
     }
 }
 
+@media (max-width:768px) {
+    .banner > div {
+        width: 100%;
+    }
+}
+
 /* .banner__container {
     height: 600px;
     width: 100%;

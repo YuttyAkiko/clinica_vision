@@ -91,7 +91,13 @@
     border-radius: 8px;
     border: solid 1px;
     margin: .5rem 0;
-    width: 400px;
     border: none;
     background-color: var(--azul-claro-light);
+}
+
+@media (width >= 768px) {
+    .form-control {
+        width: 400px;
+        margin-bottom: 2rem;
+    }
 }

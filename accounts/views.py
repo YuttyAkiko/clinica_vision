@@ -72,8 +72,10 @@ class RegisterView(CreateView):
     
     def form_valid(self, form):
         response = super().form_valid(form)
+        nome = form.cleaned_data['name']
+        cpf = form.cleaned_data['cpf']
         # Cria uma instância de Paciente associada ao novo usuário
-        Cliente.objects.create(user=self.object)
+        Cliente.objects.create(user=self.object, nome=nome, cpf=cpf)
         messages.info(self.request, "Cadastro realizado com sucesso! Faça seu login.")
         
         return response
@@ -124,7 +126,7 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('accounts:login')
     template_name = 'accounts/update_user.html'
     fields = ['username', 'email']
-    success_url = reverse_lazy('accounts:index')
+    success_url = reverse_lazy('accounts:login')
 
     def get_object(self):
         return self.request.user
@@ -134,7 +136,7 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
 
     template_name = 'accounts/update_password.html'
     login_url = reverse_lazy('accounts:login')
-    success_url = reverse_lazy('accounts:redirect_user')
+    success_url = reverse_lazy('accounts:login')
     form_class = PasswordChangeForm
 
     def get_form_kwargs(self):

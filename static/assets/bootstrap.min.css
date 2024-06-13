@@ -24145,7 +24145,8 @@ pre code {
 
 @media (min-width: 768px) {
     .container {
-        width:750px
+        width: 100%;
+        display: flex;
     }
 }
 
@@ -27026,7 +27027,11 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 @media (min-width: 768px) {
     .navbar-nav {
         float:left;
-        margin: 0
+        margin: 0;
+        /* word-wrap: revert; */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
     }
 
     .navbar-nav>li {

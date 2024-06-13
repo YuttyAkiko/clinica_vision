@@ -9,6 +9,10 @@ from .models import Medico, Agenda, Especialidade
 from .forms import CreateProntuarioForm
 from clientes.models import Consulta, Cliente, Prontuario, Convenio
 from datetime import datetime
+from accounts.models import User
+from accounts.forms import UserAdminCreationForm
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import get_user_model
 
 
 class TestMixinIsAdmin(UserPassesTestMixin):
@@ -93,9 +97,18 @@ class BaseConsultasListView(ListView):
         if data_consulta:
             data_consulta = datetime.strptime(data_consulta, '%Y-%m-%d').date()
             consultas = consultas.filter(agenda__dia=data_consulta)
-            return consultas
-        else:
-            return consultas
+
+        # Adicionando filtro para buscar pacientes por ID
+        cliente_id = self.request.GET.get('cliente_id')
+        if cliente_id:
+            try:
+                cliente = Cliente.objects.get(id=cliente_id)
+                consultas = consultas.filter(cliente=cliente)
+            except Cliente.DoesNotExist:
+                # Se o paciente não for encontrado, retornar uma lista vazia de consultas
+                consultas = Consulta.objects.none()
+        
+        return consultas
     
 class ConsultasListView(LoginRequiredMixin, TestMixinIsAdmin, BaseConsultasListView):
     template_name = 'medicos/consultas_lista.html'
@@ -140,13 +153,29 @@ class ProntuarioDetailView(LoginRequiredMixin, TestMixinIsAdmin, DetailView):
 # VIEWS - PERFIL ADMIN
 
 class MedicoCreateView(LoginRequiredMixin, TestMixinIsAdmin, CreateView):
-
     model = Medico
     login_url = 'accounts:login'
     template_name = 'medicos/admin/cadastro.html'
-    fields = ['nome', 'sobrenome', 'crm', 'email', 'telefone', 'especialidade']
+    fields = ['nome', 'sobrenome', 'genero', 'email', 'crm', 'telefone', 'especialidade']
     success_url = reverse_lazy('medicos:medicos_lista')
     
+    def form_valid(self, form):
+        medico = form.save(commit=False)
+        User = get_user_model()
+        
+        # Criar um usuário associado ao médico com a senha padrão "1234"
+        user = User.objects.create(
+            username=medico.email,
+            email=medico.email,
+            name=f'{medico.nome} {medico.sobrenome}',
+            is_staff=True,
+            password=make_password('1234')  # Definindo a senha padrão
+        )
+        medico.user = user
+        medico.save()
+        
+        return super().form_valid(form)
+
 class MedicoListView(LoginRequiredMixin, TestMixinIsAdmin, ListView):
     
     login_url = 'accounts:login'
