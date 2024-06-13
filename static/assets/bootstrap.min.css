@@ -25185,7 +25185,11 @@ fieldset {
     padding: 0;
     margin: 0;
     border: 0;
-    min-width: 0
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
 }
 
 legend {
