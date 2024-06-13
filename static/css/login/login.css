@@ -1,211 +1,429 @@
-main {
-    display: flex;
-    height: auto;
-    width: 100%;
-    justify-content: center;
+/* RESPONSIVO */
+@media (width < 768px) {
+    main {
+        margin-top: 50px;
+        flex-direction: column;
+    }
+
+    .bem-vindo__container {
+        background-image: url(/static/img/background/bg-create-account.svg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        display: flex;
+        justify-content: center;
+        height: 200px;
+        width: 100%;
+    }
+
+    .bem-vindo__conteudo h1 {
+        padding: 0;
+        margin: 0;
+        text-shadow: 0 0 5px var(--branco);
+        font-size: 18px;
+    }
+
+    /* Aqui comeÃƒÂ§a onde fica os elementos a esquerda */
+
+    .bem-vindo {
+        background-color: var(--branco);
+        height: auto;
+        opacity: 0.5;
+        width: 80%;
+    }
+
+    .bem-vindo__conteudo {
+        background: rgba(255, 255, 255, 0.5);
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem 4rem;
+        height: auto;
+        /* margin-right: 2rem; */
+        justify-content: center;
+        width: auto;
+    }
+
+    h1 {
+        color: var(--azul-escuro);
+        font-family: var(--titulo);
+        /* font-size: 20px; */
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    #btn-criar-conta {
+        background-color: var(--azul-roxo);
+        border-radius: 30px;
+        color: var(--branco);
+        display: flex;
+        font-family: var(--titulo);
+        justify-content: center;
+        margin-top: 3em;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 16px;
+        width: 180px;
+        padding: 1rem;
+        transition: .5s;
+    }
+
+    #btn-criar-conta:hover {
+        transform: scale(1.1);
+    }
+
+    /* Fim dos elementos a esquerda */
+
+    /* InÃƒÂ­cio dos elementos a direita */
+
+    .login__container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+    }
+
+    a {
+        align-items: center;
+        color: var(--azul-roxo);
+    }
+
+    .login__links nav {
+        border-bottom: 1px solid var(--preto);
+        padding-bottom: 1rem;
+    }
+
+    .login__links nav a {
+        margin: 1.5rem 0;
+    }
+
+    .login__links h1 {
+        height: auto;
+        width: auto;
+        text-align: center;
+    }
+
+    .login__facebook a {
+        background-color: #3C5A9A;
+        border-radius: 40px;
+        color: var(--branco);
+        display: flex;
+        font-family: var(--texto);
+        font-size: 20px;
+        font-weight: 700;
+        height: 50px;
+        justify-content: center;
+        padding: 0 70px;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: auto;
+    }
+
+    .login__facebook img {
+        height: 30px;
+        margin-right: 2rem;
+        width: 30px;
+    }
+
+    .login__apple a {
+        align-items: center;
+        background-color: var(--preto);
+        border-radius: 40px;
+        color: var(--branco);
+        display: flex;
+        font-weight: 700;
+        height: 50px;
+        justify-content: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: auto;
+    }
+
+    .login__apple img {
+        height: 45x;
+        margin-right: 2rem;
+        width: 45px;
+    }
+
+    .login__google a {
+        background-color: var(--branco);
+        border: 1px solid var(--preto);
+        border-radius: 40px;
+        color: var(--preto);
+        display: flex;
+        font-weight: 700;
+        height: 50px;
+        justify-content: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: auto;
+    }
+
+    .login__google img {
+        height: 30px;
+        margin-right: 2rem;
+        width: 30px;
+    }
+
+    .login {
+        display: flex;
+        flex-direction: column;
+        font-family: var(--texto);
+        align-items: center;
+    }
+
+    .login form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login form > button {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .login span {
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    .login p {
+        line-height: 2rem;
+    }
+
+    .login a {
+        text-decoration: none;
+    }
+
+    .input {
+        background-color: var(--azul-claro);
+        border: none;
+        border-radius: 20px;
+        height: 40px;
+        margin: 0.5rem 0 1rem 0;
+        padding: 0 300px 0 50px;
+        width: auto;
+    }
+
+    /* Fim dos elementos que ficam a direita */
 }
 
-/* Aqui comeÃ§a onde fica os elementos a esquerda */
+@media (width >= 768px) {
+    main {
+        display: flex;
+        height: auto;
+        width: 100%;
+        justify-content: center;
+    }
 
-.bem-vindo__container {
-    background-image: url(/static/img/background/bg-create-account.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    height: 900px;
-    width: 40%;
+    /* Aqui comeÃƒÂ§a onde fica os elementos a esquerda */
+
+    .bem-vindo {
+        background-color: var(--branco);
+        height: auto;
+        opacity: 0.5;
+        width: 80%;
+    }
+
+    .bem-vindo__container {
+        background-image: url(/static/img/background/bg-create-account.svg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        height: 900px;
+        width: 40%;
+    }
+
+    .bem-vindo__conteudo {
+        background: rgba(255, 255, 255, 0.5);
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 4rem;
+        height: auto;
+        /* margin-right: 2rem; */
+        width: auto;
+    }
+
+    .bem-vindo__conteudo h1 {
+        padding-top: 5em;
+    }
+
+    h1 {
+        color: var(--azul-escuro);
+        font-family: var(--titulo);
+        font-size: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    #btn-criar-conta {
+        background-color: var(--azul-roxo);
+        border-radius: 30px;
+        color: var(--branco);
+        display: flex;
+        font-family: var(--titulo);
+        justify-content: center;
+        margin-top: 3em;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 16px;
+        width: 180px;
+        padding: 1rem;
+        transition: .5s;
+    }
+
+    #btn-criar-conta:hover {
+        transform: scale(1.1);
+    }
+
+    /* Fim dos elementos a esquerda */
+
+    /* InÃƒÂ­cio dos elementos a direita */
+
+    .login__container {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+    }
+
+    a {
+        align-items: center;
+        color: var(--azul-roxo);
+    }
+
+    .login__links nav {
+        border-bottom: 1px solid var(--preto);
+        padding-bottom: 1rem;
+    }
+
+    .login__links nav a {
+        margin: 1.5rem 0;
+    }
+
+    .login__links h1 {
+        height: auto;
+        width: auto;
+        text-align: center;
+    }
+
+    .login__facebook a {
+        background-color: #3C5A9A;
+        border-radius: 40px;
+        color: var(--branco);
+        display: flex;
+        font-family: var(--texto);
+        font-size: 20px;
+        font-weight: 700;
+        height: 50px;
+        justify-content: center;
+        padding: 0 70px;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: auto;
+    }
+
+    .login__facebook img {
+        height: 30px;
+        margin-right: 2rem;
+        width: 30px;
+    }
+
+    .login__apple a {
+        align-items: center;
+        background-color: var(--preto);
+        border-radius: 40px;
+        color: var(--branco);
+        display: flex;
+        font-weight: 700;
+        height: 50px;
+        justify-content: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: auto;
+    }
+
+    .login__apple img {
+        height: 45x;
+        margin-right: 2rem;
+        width: 45px;
+    }
+
+    .login__google a {
+        background-color: var(--branco);
+        border: 1px solid var(--preto);
+        border-radius: 40px;
+        color: var(--preto);
+        display: flex;
+        font-weight: 700;
+        height: 50px;
+        justify-content: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: auto;
+    }
+
+    .login__google img {
+        height: 30px;
+        margin-right: 2rem;
+        width: 30px;
+    }
+
+    .login {
+        display: flex;
+        flex-direction: column;
+        font-family: var(--texto);
+        align-items: center;
+    }
+
+    .login form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login form > button {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .login span {
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    .login p {
+        line-height: 2rem;
+    }
+
+    .login a {
+        text-decoration: none;
+    }
+
+    .input {
+        background-color: var(--azul-claro);
+        border: none;
+        border-radius: 20px;
+        height: 40px;
+        margin: 0.5rem 0 1rem 0;
+        padding: 0 300px 0 50px;
+        width: auto;
+    }
+
+    /* Fim dos elementos que ficam a direita */
 }
-
-.bem-vindo {
-    background-color: var(--branco);
-    height: auto;
-    opacity: 0.5;
-    width: 80%;
-}
-
-.bem-vindo__conteudo {
-    background: rgba(255, 255, 255, 0.5);
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 4rem;
-    height: auto;
-    /* margin-right: 2rem; */
-    width: auto;
-}
-
-.bem-vindo__conteudo h1 {
-    padding-top: 5em;
-}
-
-h1 {
-    color: var(--azul-escuro);
-    font-family: var(--titulo);
-    /* font-size: 20px; */
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-}
-
-#btn-criar-conta {
-    background-color: var(--azul-roxo);
-    border-radius: 30px;
-    color: var(--branco);
-    display: flex;
-    font-family: var(--titulo);
-    height: 55px;
-    justify-content: center;
-    margin-top: 3em;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 800;
-    font-size: 16px;
-    width: 180px;
-    padding: 0 1rem;
-    transition: .5s;
-}
-
-#btn-criar-conta:hover {
-    transform: scale(1.1);
-}
-
-/* Fim dos elementos a esquerda */
-
-/* InÃ­cio dos elementos a direita */
-
-.login__container {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 0;
-}
-
-a {
-    align-items: center;
-    color: var(--azul-roxo);
-}
-
-.login__links nav {
-    border-bottom: 1px solid var(--preto);
-    padding-bottom: 1rem;
-}
-
-.login__links nav a {
-    margin: 1.5rem 0;
-}
-
-.login__links h1 {
-    height: auto;
-    width: auto;
-    text-align: center;
-}
-
-.login__facebook a {
-    background-color: #3C5A9A;
-    border-radius: 40px;
-    color: var(--branco);
-    display: flex;
-    font-family: var(--texto);
-    font-size: 20px;
-    font-weight: 700;
-    height: 50px;
-    justify-content: center;
-    padding: 0 70px;
-    text-decoration: none;
-    text-transform: uppercase;
-    width: auto;
-}
-
-.login__facebook img {
-    height: 30px;
-    margin-right: 2rem;
-    width: 30px;
-}
-
-.login__apple a {
-    align-items: center;
-    background-color: var(--preto);
-    border-radius: 40px;
-    color: var(--branco);
-    display: flex;
-    font-weight: 700;
-    height: 50px;
-    justify-content: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    width: auto;
-}
-
-.login__apple img {
-    height: 45x;
-    margin-right: 2rem;
-    width: 45px;
-}
-
-.login__google a {
-    background-color: var(--branco);
-    border: 1px solid var(--preto);
-    border-radius: 40px;
-    color: var(--preto);
-    display: flex;
-    font-weight: 700;
-    height: 50px;
-    justify-content: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    width: auto;
-}
-
-.login__google img {
-    height: 30px;
-    margin-right: 2rem;
-    width: 30px;
-}
-
-.login {
-    display: flex;
-    flex-direction: column;
-    font-family: var(--texto);
-    align-items: center;
-}
-
-.login form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.login form > button {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-}
-
-.login span {
-    text-align: center;
-    margin: 1rem 0;
-}
-
-.login p {
-    line-height: 2rem;
-}
-
-.login a {
-    text-decoration: none;
-}
-
-.input {
-    background-color: var(--azul-claro);
-    border: none;
-    border-radius: 20px;
-    height: 40px;
-    margin: 0.5rem 0 1rem 0;
-    padding: 0 300px 0 50px;
-    width: auto;
-}
-
-/* Fim dos elementos que ficam a direita */

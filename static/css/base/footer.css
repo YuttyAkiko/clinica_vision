@@ -62,3 +62,13 @@ footer > div:nth-child(2) > section:nth-child(3) img {
 footer > div:nth-child(2) > section:nth-child(3) img:hover {
     color: var(--amarelo);
 }
+
+@media (max-width: 768px) {
+    footer > div:first-child {
+        flex-direction: column;
+    }
+
+    footer > div:last-child {
+        flex-direction: column-reverse;
+    }
+}
