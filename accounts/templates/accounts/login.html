@@ -27,7 +27,7 @@ Login | {{ block.super }}
 						</div>
 				</section>
 				<section class="login__container"> <!-- Essa section é toda a parte da direita -->
-					<div class="container margin-top">
+					{% comment %} <div class="container margin-top">
 						{% block messages %}
 							{% for message in messages %}
 								<div class='alert alert-{{ message.tags}}'>
@@ -35,7 +35,7 @@ Login | {{ block.super }}
 								</div>
 							{% endfor %}
 						{% endblock messages %}
-					</div>
+					</div> {% endcomment %}
 						{% comment %} <div class="login__links">
 								<h1>LOGIN</h1>
 								<nav>
