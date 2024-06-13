@@ -25185,11 +25185,7 @@ fieldset {
     padding: 0;
     margin: 0;
     border: 0;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
+    min-width: 0
 }
 
 legend {
@@ -29751,4 +29747,12 @@ a.list-group-item-danger.active:hover,a.list-group-item-danger.active:focus {
 
 .popover {
     color: #2c3e50
+}
+
+@media (width < 768px) {
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
