@@ -24,3 +24,44 @@
   font-weight: 600;
   color: var(--verde);
 }
+
+/* Estilos responsivos */
+@media (width < 1024px) {
+
+    .responsive-table,
+    .responsive-table thead,
+    .responsive-table tbody,
+    .responsive-table th,
+    .responsive-table td,
+    .responsive-table tr {
+        display: block;;
+    }
+
+    .responsive-table thead tr {
+        display: none;
+    }
+
+    .responsive-table tr {
+        margin-bottom: 15px;
+    }
+
+    .responsive-table td {
+        text-align: center;
+        padding-left: 50%;
+        position: relative;
+        width: 50%;
+        position: relative;
+        left: 25%;
+        border: solid 1px var(--azul-escuro-light);
+    }
+    }
+
+    .responsive-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }

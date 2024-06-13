@@ -15,7 +15,7 @@
     <div>
         <h1 class="titulo">Minhas Consultas</h1>
     </div>
-<table class="table table-bordered">
+<table class="table table-bordered responsive-table">
     <thead>
         <tr>
             <th>
@@ -43,7 +43,8 @@
     </thead>
     
     <tbody>
-        {% for consulta in object_list %}
+        <div>
+            {% for consulta in object_list %}
         <tr>
             <td>
                 <a href=""># {{ consulta.pk }}</a>
@@ -87,6 +88,7 @@
             </td>
         </tr>
         {% endfor %}
+        </div>
     </tbody>
 </table>
 

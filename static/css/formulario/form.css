@@ -101,3 +101,9 @@
         margin-bottom: 2rem;
     }
 }
+
+@media (width < 768px) {
+    .form-dash {
+        margin-left: 0;
+    }
+}

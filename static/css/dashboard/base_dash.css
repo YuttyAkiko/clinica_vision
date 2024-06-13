@@ -169,3 +169,42 @@ a {
     text-decoration: none;
     /* color: var(--branco); */
 }
+
+/* RESPONSIVO */
+
+@media (width < 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    .left_menu {
+        min-width: 90%;
+        height: 150px;
+    }
+
+    .left_menu>div {
+        flex-direction: row;
+    }
+
+    .left_menu>div>img {
+        max-width: 100px;
+        min-width: 100px;
+        height: 120px;
+        padding-bottom: 20px;
+    }
+
+    .left_menu>div>h1 {
+        font-size: 18px;
+        margin: 1rem;
+    }
+
+    .titulo {
+        font-size: 20px;
+        margin: 0;
+        text-align: -webkit-center;
+    }
+
+    .botoes {
+        justify-content: center;
+    }
+}
