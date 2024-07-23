@@ -15,6 +15,8 @@ complicada devido à alta demanda dos pacientes.
 
 A Clínica Vision nos contratou para desenvolver um sistema web integrado onde seja possível realizar a gestão da clínica de forma automatizada e ter acesso fácil aos dados sobre as informações de seus pacientes.
 
+Para acessar 👉 [Clique aqui](https://clinicavision.pythonanywhere.com/)
+
 <!-- ## Protótipo de alta fidelidade
 <img src="static/img/home_vision.png" width="400px"> -->
 
@@ -48,8 +50,8 @@ Para poder ter o primeiro acesso e pode configurar o aplicação vamos executar 
 ```
 (venv)$ ./manage.py migrate
 (venv)$ ./manage.py createsuperuser
-Apelido/Usuário: admin
-E-mail: admin@email.com
+Apelido/Usuário: 
+E-mail: 
 Password: 
 Password (again):
 ```
@@ -63,5 +65,5 @@ Para iniciar o servidor depois deste passo você deve:
 Para visualizar se tudo esta executando como esperado vamos acessar o seguinte endereço:
 [http://localhost:8000/](http://localhost:8000/)
 
-Ou você pode ter acesso a admin do Django:
+Ou você pode ter acesso ao admin do Django:
 [http://localhost:8000/admin](http://localhost:8000/admin)
