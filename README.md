@@ -29,8 +29,8 @@ $ git clone https://github.com/YuttyAkiko/vision.git
 
 Entre na pasta criada e inicie um ambiente virtual:
 ```
-$ cd vision
-$ python -m venv venv
+$ cd clinica_vision
+$ python -m venv .venv
 ```
 Depois você deve ativá-lo com o seguinte comando:
 ```
@@ -41,14 +41,15 @@ ou
 ```
 $ source ./venv/bin/activate
 ```
-Apos ativado, instale as bibliotecas necessárias para executar o projeto:
+Após ativado, instale as bibliotecas necessárias para executar o projeto:
 ```
  (venv)$ pip install -r requirements.txt
 ```
-Para poder ter o primeiro acesso e pode configurar o aplicação vamos executar o comando 
+Para poder ter o primeiro acesso você pode configurar a aplicação. Para isso, vamos executar o comando 
 'migrate' para gerar o banco de dados padrão do Django(SQLite). E depois criar o superusuario:
 ```
 (venv)$ ./manage.py migrate
+(venv)$ ./manage.py makemigrations
 (venv)$ ./manage.py createsuperuser
 Apelido/Usuário: 
 E-mail: 
@@ -56,7 +57,7 @@ Password:
 Password (again):
 ```
 
-Para iniciar o servidor depois deste passo você deve:
+Use o comando a seguir para iniciar o servidor localhost:
 ```
 (venv)$ ./manage.py runserver
 ```
